@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { DividerModule } from "primeng/divider";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { InputTextModule } from "primeng/inputtext";
+import { PasswordModule } from "primeng/password";
 
 
 
@@ -39,7 +41,9 @@ import { RegisterComponent } from './register/register.component';
     MenuModule,
     DialogModule,
     InputTextareaModule,
-    DividerModule
+    DividerModule,
+    InputTextModule,
+    PasswordModule
   ]
 })
 export class PagesModule { }

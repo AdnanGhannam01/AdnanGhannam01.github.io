@@ -1,1 +1,42 @@
-<p>register works!</p>
+<form (submit)="register()">
+    <div class="form-input">
+        <label htmlFor="name">Username</label>
+        <input #name
+            pInputText 
+            id="name" 
+            name="name"
+            [required]="true"
+            type="email"
+            [style]="{ width: '100%' }"
+            aria-describedby="name-help" />
+        <small id="name-help"></small>
+    </div>
+
+    <div class="form-input">
+        <label htmlFor="email">Email</label>
+        <input #name
+            pInputText 
+            id="email" 
+            name="email"
+            [required]="true"
+            [style]="{ width: '100%' }"
+            aria-describedby="email-help" />
+        <small id="email-help"></small>
+    </div>
+
+    <div class="form-input">
+        <label htmlFor="password">Password</label>
+        <p-password #password
+            id="password" 
+            name="password" 
+            aria-describedby="password-help" 
+            [toggleMask]="true"
+        ></p-password>
+        <small id="password-help"></small>
+    </div>
+    <p-button
+        label="Register"
+        styleClass="p-button-success"
+        [style]="{ width: '100%' }"
+    ></p-button>
+</form>

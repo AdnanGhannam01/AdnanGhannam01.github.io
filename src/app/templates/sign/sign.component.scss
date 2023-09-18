@@ -1,0 +1,31 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+    min-height: 100dvh;
+    @include mixin.flex;
+    background-color: var(--alpha-blue);
+
+    .container {
+        max-width: 450px;
+        flex: 1;
+        background-color: var(--bg-primary);
+        box-shadow: var(--bs-secondary);
+        padding: 1em;
+        border-radius: 7px;
+    }
+
+    .sign {
+        &__logo {
+            margin: 1em auto;
+        }
+    }
+
+    ::ng-deep {
+        .form-input {
+            @include mixin.flex(flex-start, flex-start, column);
+            gap: .25em;
+            margin-bottom: .5em;
+        }
+    }
+}
