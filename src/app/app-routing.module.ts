@@ -4,9 +4,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { ToolkitComponent } from './pages/toolkit/toolkit.component';
 import { ArticleComponent } from './pages/article/article.component';
 import { SignComponent } from './pages/sign/sign.component';
+import { TutorialsComponent } from './pages/toolkit/tutorials/tutorials.component';
 
 const routes: Routes = [
-  { path: "toolkits/:id", component: ToolkitComponent },
+  {
+    path: "toolkits/:id",
+    component: ToolkitComponent,
+    children: [
+      { path: "", component: TutorialsComponent }
+    ]
+  },
   { path: "article/:id", component: ArticleComponent },
   // TODO MAKE THOSE PAGES
   { path: "login", component: SignComponent },

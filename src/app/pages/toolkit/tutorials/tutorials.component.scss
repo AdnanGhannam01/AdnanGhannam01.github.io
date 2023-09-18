@@ -1,0 +1,19 @@
+@use "../../../utilities/mixin.scss";
+
+:host {
+    padding: 2em 0;
+    @include mixin.flex(flex-start, flex-start, row, wrap);
+    gap: 2em;
+
+    .tutorials {
+        &__sidebar {
+            flex-basis: 300px;
+            flex-grow: 1;
+        }
+
+        &__main {
+            flex-basis: 500px;
+            flex-grow: 9999;
+        }
+    }
+}

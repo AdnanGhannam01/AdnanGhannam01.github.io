@@ -35,7 +35,7 @@
 
     --clr-list-item-hover: rgb(var(--blue));
     --bg-list-item-hover: var(--alpha-blue);
-    --clr-list-item: var(--gray);
+    --clr-list-item: var(--alpha-darker-blue);
 
     --bg-toolkit-header: var(--light-blue);
 }
@@ -73,6 +73,10 @@ body {
     &:hover,
     &.active {
         color: var(--clr-link-hover);
+    }
+
+    .icon {
+        margin-inline-end: .5em;
     }
 }
 

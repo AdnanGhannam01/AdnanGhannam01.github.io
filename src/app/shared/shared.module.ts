@@ -10,6 +10,7 @@ import { ButtonModule } from "primeng/button";
 import { FooterComponent } from './footer/footer.component';
 import { TabmenuComponent } from './tabmenu/tabmenu.component';
 import { ToolkitSearchComponent } from './toolkit-search/toolkit-search.component';
+import { CardComponent } from './card/card.component';
 
 
 
@@ -20,7 +21,8 @@ import { ToolkitSearchComponent } from './toolkit-search/toolkit-search.componen
     ListItemComponent,
     FooterComponent,
     TabmenuComponent,
-    ToolkitSearchComponent
+    ToolkitSearchComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
@@ -32,9 +34,11 @@ import { ToolkitSearchComponent } from './toolkit-search/toolkit-search.componen
   exports: [
     LogoComponent,
     NavbarComponent,
+    ListItemComponent,
     FooterComponent,
     TabmenuComponent,
-    ToolkitSearchComponent
+    ToolkitSearchComponent,
+    CardComponent
   ],
 })
 export class SharedModule { }

@@ -11,5 +11,4 @@ import { Component, Input } from '@angular/core';
 })
 export class ListItemComponent {
   @Input() dir: "left" | "right" | "top" | "bottom" = "left";
-  @Input() text = "";
 }
