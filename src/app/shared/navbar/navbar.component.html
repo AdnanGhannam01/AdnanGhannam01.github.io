@@ -7,7 +7,7 @@
         <li (click)="showDialog('frame')" class="docs-list__item">Frameworks</li>
     </ul>
 
-    <div *ngIf="isLoggedIn ">
+    <div *ngIf="isLoggedIn">
         <p-menu #menu [model]="userMenuItems" [popup]="true"></p-menu>
         <p-button type="butto" 
             (onClick)="menu.toggle($event)" 
@@ -15,6 +15,12 @@
             styleClass="p-button-rounded p-button-info p-button-outlined"
         ></p-button>
     </div>
+
+    <p-button
+        styleClass="p-button-text p-button-success"
+        label="Login"
+        icon="pi pi-sign-in"
+    ></p-button>
 </div>
 
 <p-dialog [header]="selectedToolkit" 
