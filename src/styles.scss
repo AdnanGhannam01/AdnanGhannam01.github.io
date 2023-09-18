@@ -13,6 +13,8 @@
     --dark-blue: #03338f;
     --darker-blue: 37, 38, 95;
     --alpha-darker-blue: rgba(var(--darker-blue), 0.702);
+
+    --clr-link-hover: var(--alpha-darker-blue);
 }
 
 html {
@@ -39,12 +41,17 @@ body {
 }
 
 .docs-link {
-    &:hover {
+    text-decoration: none;
+    color: inherit;
+    transition: color .25s ease;
 
+    &:hover {
+        color: var(--clr-link-hover);
     }
 }
 
 .docs-list {
+    list-style-type: none;
 }
 
 .docs-img {
