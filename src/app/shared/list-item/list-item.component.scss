@@ -1,0 +1,10 @@
+:host {
+    display: block;
+    color: var(--clr-list-item);
+    cursor: pointer;
+
+    &:hover,
+    &.active {
+        background-color: var(--bg-list-item-hover);
+    }
+}

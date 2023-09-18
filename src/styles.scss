@@ -1,4 +1,5 @@
-@use "./app/utilities/primeNG.custom.scss";
+@use "./app/utilities/mixin.scss";
+@import "./app/utilities/primeNG.custom.scss";
 @import "primeng/resources/themes/bootstrap4-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
@@ -9,12 +10,24 @@
     --ff-primary: 'Poppins', sans-serif;
 
     --light-blue: #e1f0fc;
-    --blue: #0556f3;
+    --blue: 5, 86, 243;
+    --alpha-blue: rgba(var(--blue), .2);
     --dark-blue: #03338f;
     --darker-blue: 37, 38, 95;
     --alpha-darker-blue: rgba(var(--darker-blue), 0.702);
+    --light-gray: #d3dce6;
+    --gray: #a8a8bf;
 
-    --clr-link-hover: var(--alpha-darker-blue);
+    --clr-border: var(--light-gray);
+    --clr-rounded-border: rgb(var(--blue));
+
+    --bs-navbar: 0px 4px 12px rgba(37,38,94,.06);
+
+    --clr-link-hover: rgb(var(--blue));
+
+    --clr-list-item-hover: rgb(var(--blue));
+    --bg-list-item-hover: var(--alpha-blue);
+    --clr-list-item: var(--gray);
 }
 
 html {
@@ -35,23 +48,34 @@ body {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 1172px;
     margin-inline: auto;
-    padding: 1.5em;
+    padding-inline: 1.5em;
 }
 
 .docs-link {
     text-decoration: none;
     color: inherit;
-    transition: color .25s ease;
+    transition: all .25s ease;
+    cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &.active {
         color: var(--clr-link-hover);
     }
 }
 
 .docs-list {
     list-style-type: none;
+
+    &__item {
+        cursor: pointer;
+        transition: color .25s ease;
+
+        &:hover {
+            color: var(--clr-list-item-hover);
+        }
+    }
 }
 
 .docs-img {
@@ -60,3 +84,54 @@ body {
     object-fit: cover;
     object-position: center;
 }
+
+.docs-with-border {
+    $size: 3px;
+    position: relative;
+    padding: .5em 1em;
+
+    &::after {
+        display: inline-block;
+        background-color: var(--clr-rounded-border);
+    }
+
+    &.active {
+        &::after {
+            content: '';
+        }
+    }
+
+    &.left {
+        &::after {
+            @include mixin.absolute(0, auto, 0, 0);
+            border-radius: 0 7px 7px 0; 
+            width: $size;
+        }
+    }
+
+    &.right {
+        &::after {
+            @include mixin.absolute(0, 0, 0, auto);
+            border-radius: 7px 0 0 7px;
+            width: $size;
+        }
+    }
+
+    &.bottom {
+        &::after {
+            @include mixin.absolute(auto, 0, 0, 0);
+            border-radius: 7px 7px 0 0;
+            height: $size;
+        }
+    }
+
+    &.top {
+        &::after {
+            @include mixin.absolute(0, 0, auto, 0);
+            border-radius: 0 0 7px 7px;
+            height: $size;
+        }
+    }
+}
+
+h1, h2, h3, h4, h5, h6, strong { font-weight: 500 }

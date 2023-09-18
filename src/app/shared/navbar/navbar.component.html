@@ -1,0 +1,79 @@
+<div class="container">
+    <a class="docs-logo" routerLink="/"></a>
+
+    <ul class="docs-list">
+        <li (click)="showDialog('lang')" class="docs-list__item">Languages</li>
+        <li (click)="showDialog('lib')" class="docs-list__item">Libraries</li>
+        <li (click)="showDialog('frame')" class="docs-list__item">Frameworks</li>
+    </ul>
+
+    <div>
+        <p-menu #menu [model]="userMenuItems" [popup]="true"></p-menu>
+        <p-button type="butto" 
+            (onClick)="menu.toggle($event)" 
+            icon="pi pi-user" 
+            styleClass="p-button-rounded p-button-info p-button-outlined"
+        ></p-button>
+    </div>
+</div>
+
+<p-dialog [header]="selectedToolkit" 
+    [(visible)]="visible" 
+    [modal]="true" 
+    [style]="{ 'min-width': '300px', 'width': '950px' }" 
+    [draggable]="false"
+    [resizable]="false">
+    <div class="dialog__content">
+        <div class="dialog__left">
+            <!-- TODO fetch Languages and add an active index -->
+            <h3
+                docs-list-item
+                class="docs-link active"
+                text="Javascript"
+                dir="right"
+            ></h3>
+            <h3
+                docs-list-item
+                class="docs-link"
+                text="Asp.Net"
+                dir="right"
+            ></h3>
+            <h3
+                docs-list-item
+                class="docs-link"
+                text="Asp.Net"
+                dir="right"
+            ></h3>
+            <h3
+                docs-list-item
+                class="docs-link"
+                text="Asp.Net"
+                dir="right"
+            ></h3>
+            <h3
+                docs-list-item
+                class="docs-link"
+                text="Asp.Net"
+                dir="right"
+            ></h3>
+        </div>
+        <div class="dialog__center">
+            <h2 class="title">Popular Tutorials</h2>
+            <!-- TODO loop -->
+            <strong><a class="docs-link" routerLink="/"> Operators in JavaScript </a></strong>
+            <strong><a class="docs-link" routerLink="/"> Operators in JavaScript </a></strong>
+            <strong><a class="docs-link" routerLink="/"> Operators in JavaScript </a></strong>
+            <strong><a class="docs-link" routerLink="/"> Operators in JavaScript </a></strong>
+            <strong><a class="docs-link" routerLink="/"> Operators in JavaScript </a></strong>
+            <a class="docs-link">View All...</a>
+        </div>
+        <div class="dialog__right">
+            <h2 class="title">Reference Materials</h2>
+            <!-- TODO loop -->
+            <strong><a class="docs-link" routerLink="/"> Operators in JavaScript </a></strong>
+            <strong><a class="docs-link" routerLink="/"> Operators in JavaScript </a></strong>
+            <strong><a class="docs-link" routerLink="/"> Operators in JavaScript </a></strong>
+            <a class="docs-link">View All...</a>
+        </div>
+    </div>
+</p-dialog>

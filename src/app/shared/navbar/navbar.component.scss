@@ -1,0 +1,52 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+    box-shadow: var(--bs-navbar);
+    padding: 1em;
+    
+    .container {
+        @include mixin.flex;
+        gap: 1.5em;
+    }
+
+    .docs-list {
+        @include mixin.flex(flex-start);
+        gap: 1em;
+        flex: 1;
+    }
+
+    ::ng-deep {
+        .dialog {
+            &__content {
+                @include mixin.flex(stretch, stretch);
+            }
+
+            &__left {
+                width: 175px;
+            }
+
+            &__center,
+            &__right {
+                padding: 0 1em;
+                flex: 1;
+
+                .title {
+                    margin-bottom: .75em;
+                    font-size: 1.4em;
+                }
+
+                .docs-link {
+                    margin-bottom: .5em;
+                    display: block;
+                }
+            }
+
+            &__center {
+                $border: 1px solid var(--clr-border);
+                border-right: $border;
+                border-left: $border;
+            }
+        }
+    }
+}
