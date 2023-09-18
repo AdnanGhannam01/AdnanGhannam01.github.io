@@ -9,11 +9,13 @@ import { SignComponent } from './templates/sign/sign.component';
 import { MainComponent } from './templates/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { PreventLoggedInAccessGuard } from './guards/prevent-logged-in-access.guard';
 
 const routes: Routes = [
   {
     path: "s",
     component: SignComponent,
+    canActivate: [PreventLoggedInAccessGuard],
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent }

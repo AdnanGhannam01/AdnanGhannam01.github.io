@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { TemplatesModule } from './templates/templates.module';
+import { PreventLoggedInAccessGuard } from './guards/prevent-logged-in-access.guard';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { TemplatesModule } from './templates/templates.module';
     HttpClientModule,
     TemplatesModule
   ],
-  providers: [],
+  providers: [PreventLoggedInAccessGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
