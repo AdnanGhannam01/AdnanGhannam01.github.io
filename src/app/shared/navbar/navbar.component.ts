@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface Toolkits {
   lang: string;
@@ -42,6 +43,12 @@ export class NavbarComponent {
       command: () => { }
     }
   ];
+
+  isLoggedIn: boolean;
+
+  constructor(private authService: AuthService) {
+    this.isLoggedIn = authService.isLoggedIn();
+  }
 
   showDialog(toolkit: keyof Toolkits) {
     this.selectedToolkit = this.toolkits[toolkit];

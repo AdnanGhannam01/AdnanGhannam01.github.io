@@ -7,7 +7,7 @@
         <li (click)="showDialog('frame')" class="docs-list__item">Frameworks</li>
     </ul>
 
-    <div>
+    <div *ngIf="isLoggedIn ">
         <p-menu #menu [model]="userMenuItems" [popup]="true"></p-menu>
         <p-button type="butto" 
             (onClick)="menu.toggle($event)" 
