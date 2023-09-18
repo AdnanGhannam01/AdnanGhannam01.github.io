@@ -5,6 +5,9 @@ import { ToolkitComponent } from './toolkit/toolkit.component';
 import { ArticleComponent } from './article/article.component';
 import { SignComponent } from './sign/sign.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SharedModule } from '../shared/shared.module';
+import { AppRoutingModule } from '../app-routing.module';
+import { TutorialsComponent } from './toolkit/tutorials/tutorials.component';
 
 
 
@@ -14,10 +17,13 @@ import { ProfileComponent } from './profile/profile.component';
     ToolkitComponent,
     ArticleComponent,
     SignComponent,
-    ProfileComponent
+    ProfileComponent,
+    TutorialsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
+    AppRoutingModule
   ]
 })
 export class PagesModule { }

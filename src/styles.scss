@@ -10,7 +10,7 @@
     --ff-primary: 'Poppins', sans-serif;
 
     --white: #fff;
-    --light-blue: #e1f0fc;
+    --light-blue: #e0f0fc;
     --blue: 5, 86, 243;
     --alpha-blue: rgba(var(--blue), .2);
     --dark-blue: #03338f;
@@ -20,9 +20,11 @@
     --gray: #a8a8bf;
 
     --clr-border: var(--light-gray);
+    --clr-border-active: rgb(var(--blue));
     --clr-rounded-border: rgb(var(--blue));
+    --bg-primary: var(--white);
 
-    --bs-navbar: 0px 4px 12px rgba(37,38,94,.06);
+    --bs-primary: 0px 4px 12px rgba(37,38,94,.06);
 
     --bg-footer: #2b324d;
     --clr-footer: var(--white);
@@ -34,6 +36,8 @@
     --clr-list-item-hover: rgb(var(--blue));
     --bg-list-item-hover: var(--alpha-blue);
     --clr-list-item: var(--gray);
+
+    --bg-toolkit-header: var(--light-blue);
 }
 
 html {
@@ -51,6 +55,7 @@ html {
 body {
     font-family: var(--ff-primary);
     font-size: 16px;
+    color: rgb(var(--darker-blue));
 }
 
 .container {
@@ -94,6 +99,7 @@ body {
 .docs-with-border {
     $size: 3px;
     position: relative;
+    display: inline-block;
     padding: .5em 1em;
 
     &::after {

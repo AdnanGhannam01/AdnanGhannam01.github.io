@@ -8,6 +8,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { MenuModule } from "primeng/menu";
 import { ButtonModule } from "primeng/button";
 import { FooterComponent } from './footer/footer.component';
+import { TabmenuComponent } from './tabmenu/tabmenu.component';
+import { ToolkitSearchComponent } from './toolkit-search/toolkit-search.component';
 
 
 
@@ -16,7 +18,9 @@ import { FooterComponent } from './footer/footer.component';
     LogoComponent,
     NavbarComponent,
     ListItemComponent,
-    FooterComponent
+    FooterComponent,
+    TabmenuComponent,
+    ToolkitSearchComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,9 @@ import { FooterComponent } from './footer/footer.component';
   exports: [
     LogoComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TabmenuComponent,
+    ToolkitSearchComponent
   ],
 })
 export class SharedModule { }

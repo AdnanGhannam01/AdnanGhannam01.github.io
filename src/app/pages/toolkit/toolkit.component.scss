@@ -1,0 +1,18 @@
+:host {
+    .toolkit {
+        &__header {
+            padding: 1em 0;
+            background-color: var(--bg-toolkit-header);
+            margin-bottom: 2em;
+        }
+
+        &__name,
+        &__desc {
+            margin: 1em 0;
+        }
+
+        &__search {
+            transform: translateY(2em);
+        }
+    }
+}

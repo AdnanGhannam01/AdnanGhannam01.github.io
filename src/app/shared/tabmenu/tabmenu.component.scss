@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    border-bottom: 1px solid var(--clr-border);
+
+    .tabmenu {
+        &__item {
+            font-size: 1.1em;
+            font-weight: 500;
+            
+            &:not(:last-child) {
+                margin-right: 1em;
+            }
+        }
+
+        &__icon {
+            margin-inline-end: .5em;
+        }
+    }
+}

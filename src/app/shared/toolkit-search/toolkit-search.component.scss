@@ -1,0 +1,36 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex(center, stretch);
+    background-color: var(--bg-primary);
+    box-sizing: var(--bs-primary);
+    border: 1px solid var(--clr-border);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: var(--bs-primary);
+
+    &:focus-within {
+        border-color: var(--clr-border-active);
+    }
+    
+    .toolkit-search {
+        &__label {
+            border-right: 1px solid var(--clr-border);
+        }
+
+        &__input {
+            all: unset;
+            flex: 1;
+        }
+
+        &__label,
+        &__input {
+            padding: 1em 1.5em;
+        }
+
+        &__button {
+            align-self: center;
+            margin-inline: .5em;
+        }
+    }
+}

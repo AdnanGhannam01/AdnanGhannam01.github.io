@@ -1,1 +1,13 @@
-<p>toolkit works!</p>
+<header class="toolkit__header">
+    <div class="container">
+        <h1 class="toolkit__name">Learn JavaScript Programming</h1>
+        <p class="toolkit__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa deserunt excepturi maiores adipisci atque consectetur similique, magnam quidem minima assumenda illo sed eum nesciunt veritatis ex vero nihil itaque voluptas! Corrupti maiores maxime tempora? Consequuntur exercitationem laborum esse. A ab veniam laudantium eligendi modi odit similique sunt voluptas enim velit, dicta, perspiciatis, quisquam aperiam officiis sequi blanditiis ex vero suscipit.</p>
+        <docs-tabmenu [items]="tabMenuItems"></docs-tabmenu>
+        <form class="toolkit__search" docs-toolkit-search></form>
+    </div>
+</header>
+<div class="toolkit__content">
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>
