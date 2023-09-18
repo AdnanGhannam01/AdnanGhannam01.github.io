@@ -1,0 +1,33 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+    background-color: var(--bg-footer);
+    color: var(--clr-footer);
+    padding: 1em;
+
+    .container {
+        @include mixin.grid(1fr, repeat(auto-fit, minmax(180px, 1fr)), 2em, 1em);
+        align-content: center
+    }
+
+    .footer {
+        &__section {
+            @include mixin.flex(flex-start, flex-start, column);
+            gap: .5em;
+
+            &__title {
+                margin-bottom: .5em;
+            }
+
+            .docs-link {
+                font-size: .9em;
+                color: var(--clr-footer-link);
+
+                &:hover {
+                    color: var(--clr-footer-link-hover);
+                }
+            }
+        }
+    }
+}

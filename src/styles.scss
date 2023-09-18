@@ -9,6 +9,7 @@
 :root {
     --ff-primary: 'Poppins', sans-serif;
 
+    --white: #fff;
     --light-blue: #e1f0fc;
     --blue: 5, 86, 243;
     --alpha-blue: rgba(var(--blue), .2);
@@ -22,6 +23,11 @@
     --clr-rounded-border: rgb(var(--blue));
 
     --bs-navbar: 0px 4px 12px rgba(37,38,94,.06);
+
+    --bg-footer: #2b324d;
+    --clr-footer: var(--white);
+    --clr-footer-link: var(--light-gray);
+    --clr-footer-link-hover: var(--white);
 
     --clr-link-hover: rgb(var(--blue));
 

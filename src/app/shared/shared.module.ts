@@ -7,6 +7,7 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { MenuModule } from "primeng/menu";
 import { ButtonModule } from "primeng/button";
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -14,7 +15,8 @@ import { ButtonModule } from "primeng/button";
   declarations: [
     LogoComponent,
     NavbarComponent,
-    ListItemComponent
+    ListItemComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ButtonModule } from "primeng/button";
   ],
   exports: [
     LogoComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
 })
 export class SharedModule { }
