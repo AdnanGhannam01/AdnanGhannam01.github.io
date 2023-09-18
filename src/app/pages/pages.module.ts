@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { TutorialsComponent } from './toolkit/tutorials/tutorials.component';
+import { ReferencesComponent } from './toolkit/references/references.component';
 
 
 
@@ -18,7 +19,8 @@ import { TutorialsComponent } from './toolkit/tutorials/tutorials.component';
     ArticleComponent,
     SignComponent,
     ProfileComponent,
-    TutorialsComponent
+    TutorialsComponent,
+    ReferencesComponent
   ],
   imports: [
     CommonModule,

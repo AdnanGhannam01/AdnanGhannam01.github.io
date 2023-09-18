@@ -1,6 +1,7 @@
 <a *ngFor="let item of items"
     [routerLink]="item.url" 
     routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
     class="docs-with-border bottom docs-link tabmenu__item">
 <span *ngIf="item.icon" [class]="item.icon + ' tabmenu__icon'"></span>
 {{ item.label }}

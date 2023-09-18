@@ -1,0 +1,28 @@
+:host {
+    $padding: 1rem 1.5rem;
+
+    .references {
+        &__section {
+            box-shadow: var(--bs-secondary);
+            border-radius: 7px;
+            margin: 2em 0;
+
+            &__title {
+                padding: $padding;
+            }
+
+            >* {
+                &:not(:last-child) {
+                    border-bottom: 1px solid var(--clr-border);
+                }
+            }
+        }
+
+        &__article {
+            padding: $padding;
+            &__title {
+                margin-bottom: .25em;
+            }
+        }
+    }
+}
