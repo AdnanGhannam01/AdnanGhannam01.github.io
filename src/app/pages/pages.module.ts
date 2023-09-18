@@ -9,6 +9,12 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { TutorialsComponent } from './toolkit/tutorials/tutorials.component';
 import { ReferencesComponent } from './toolkit/references/references.component';
+import { ButtonModule } from 'primeng/button';
+import { MenuModule } from 'primeng/menu';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from "primeng/inputtextarea";
+import { FormsModule } from '@angular/forms';
+import { DividerModule } from "primeng/divider";
 
 
 
@@ -25,7 +31,13 @@ import { ReferencesComponent } from './toolkit/references/references.component';
   imports: [
     CommonModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ButtonModule,
+    MenuModule,
+    DialogModule,
+    InputTextareaModule,
+    DividerModule
   ]
 })
 export class PagesModule { }
