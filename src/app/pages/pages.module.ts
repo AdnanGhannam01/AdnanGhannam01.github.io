@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { ToolkitComponent } from './toolkit/toolkit.component';
 import { ArticleComponent } from './article/article.component';
-import { SignComponent } from './sign/sign.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
@@ -15,6 +14,8 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { FormsModule } from '@angular/forms';
 import { DividerModule } from "primeng/divider";
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -23,10 +24,11 @@ import { DividerModule } from "primeng/divider";
     HomeComponent,
     ToolkitComponent,
     ArticleComponent,
-    SignComponent,
     ProfileComponent,
     TutorialsComponent,
-    ReferencesComponent
+    ReferencesComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,

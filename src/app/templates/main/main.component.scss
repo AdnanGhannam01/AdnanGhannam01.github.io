@@ -1,0 +1,12 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex(stretch, stretch, column);
+    min-height: 100dvh;
+
+    .app {
+        &__main {
+            flex: 1;
+        }
+    }
+}
