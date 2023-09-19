@@ -36,11 +36,6 @@
         <p-divider></p-divider>
 
         <div class="article__footer">
-            <!-- TODO edit -->
-            <small class="article__footer__views">
-                <span class="pi pi-eye"></span>
-                10 Views
-            </small>
             <!-- TODO update buttons -->
             <div class="article__footer__btns">
                 <p-button 
@@ -51,6 +46,18 @@
                 <p-button icon="pi pi-thumbs-down" 
                     label="Dislike"
                     styleClass="p-button-danger"
+                ></p-button>
+            </div>
+            <!-- TODO edit -->
+            <div class="article__footer__info">
+                <small class="article__footer__views">
+                    <span class="pi pi-eye"></span>
+                    10 Views
+                </small>
+                <p-button icon="pi pi-paperclip" 
+                    styleClass="p-button-text"
+                    (onClick)="copyLink()"
+                    pTooltip="Copy Link" tooltipPosition="top"
                 ></p-button>
             </div>
         </div>

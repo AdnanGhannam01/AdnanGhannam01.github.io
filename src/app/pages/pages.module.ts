@@ -26,6 +26,7 @@ import { ChangePasswordComponent } from './profile/change-password/change-passwo
 import { TableModule } from "primeng/table";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TreeModule } from 'primeng/tree';
+import { TooltipModule } from "primeng/tooltip";
 
 
 
@@ -58,7 +59,8 @@ import { TreeModule } from 'primeng/tree';
     PasswordModule,
     ConfirmDialogModule,
     TableModule,
-    TreeModule
+    TreeModule,
+    TooltipModule
   ],
   providers: [ConfirmationService]
 })

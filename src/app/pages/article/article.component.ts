@@ -53,6 +53,10 @@ export class ArticleComponent {
     ];
   }
 
+  async copyLink() {
+    await navigator.clipboard.writeText(window.location.href);
+  }
+
   sendFeedback(el: HTMLTextAreaElement) {
     // TODO send
   }
