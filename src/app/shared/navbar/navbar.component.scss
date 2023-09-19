@@ -2,6 +2,7 @@
 @use "../../utilities/mediaQuery.scss";
 
 :host {
+    $border: 1px solid var(--clr-border);
     display: block;
     box-shadow: var(--bs-primary);
     padding: 1em;
@@ -60,9 +61,32 @@
             }
 
             &__center {
-                $border: 1px solid var(--clr-border);
                 border-right: $border;
                 border-left: $border;
+            }
+        }
+
+        @include mediaQuery.Tablets {
+            .dialog {
+                &__content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                &__left {
+                    width: auto;
+                }
+
+                &__center {
+                    border: none;
+                    border-top: $border;
+                    border-bottom: $border;
+                }
+
+                &__center,
+                &__right {
+                    padding: 1em 0;
+                }
             }
         }
     }
