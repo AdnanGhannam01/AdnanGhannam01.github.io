@@ -1,46 +1,60 @@
-<div class="container">
-    <header class="article__header">
-        <h1 class="article__title">Getting Started With JavaScript</h1>
-        <p-button 
-            icon="pi pi-ellipsis-v" 
-            styleClass="p-button-rounded p-button-text"
-            (onClick)="menu.toggle($event)"
-        ></p-button>
-    </header>
-    <p class="article__desc">
-        JavaScript is a popular programming language that has a wide range of applications.
-        JavaScript was previously used mainly for making webpages interactive such as form validation, animation, etc. Nowadays, JavaScript is also used in many other areas such as server-side development, mobile app development and so on.
-    </p>
-
-    <p-divider></p-divider>
-
-    <!-- TODO add markdown viewer -->
-    <div class="article__content">
-        <h2>...Content...</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates ut debitis illum quidem aperiam quibusdam voluptate doloribus quam laudantium perspiciatis, pariatur asperiores ad, perferendis quo quisquam, blanditiis nesciunt! Accusantium, distinctio.</p>
-    </div>
-
-    <p-divider></p-divider>
-
-    <div class="article__footer">
-        <!-- TODO edit -->
-        <small class="article__footer__views">
-            <span class="pi pi-eye"></span>
-            10 Views
-        </small>
-        <!-- TODO update buttons -->
-        <div class="article__footer__btns">
+<div class="container docs-with-sidebar">
+    <aside>
+        <p-tree [value]="nodes" [filter]="true" filterPlaceholder="Search...">
+            <ng-template let-node pTemplate="url">
+                <a class="docs-link" docs-list-item [routerLink]="node.data" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    {{ node.label }}
+                </a>
+            </ng-template>
+            <ng-template let-node pTemplate="default">
+                <strong>{{ node.label }}</strong>
+            </ng-template>
+        </p-tree>
+    </aside>
+    <section>
+        <header class="article__header">
+            <h1 class="article__title">Getting Started With JavaScript</h1>
             <p-button 
-                icon="pi pi-thumbs-up" 
-                label="Like"
-                styleClass="p-button-success"
+                icon="pi pi-ellipsis-v" 
+                styleClass="p-button-rounded p-button-text"
+                (onClick)="menu.toggle($event)"
             ></p-button>
-            <p-button icon="pi pi-thumbs-down" 
-                label="Dislike"
-                styleClass="p-button-danger"
-            ></p-button>
+        </header>
+        <p class="article__desc">
+            JavaScript is a popular programming language that has a wide range of applications.
+            JavaScript was previously used mainly for making webpages interactive such as form validation, animation, etc. Nowadays, JavaScript is also used in many other areas such as server-side development, mobile app development and so on.
+        </p>
+
+        <p-divider></p-divider>
+
+        <!-- TODO add markdown viewer -->
+        <div class="article__content">
+            <h2>...Content...</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates ut debitis illum quidem aperiam quibusdam voluptate doloribus quam laudantium perspiciatis, pariatur asperiores ad, perferendis quo quisquam, blanditiis nesciunt! Accusantium, distinctio.</p>
         </div>
-    </div>
+
+        <p-divider></p-divider>
+
+        <div class="article__footer">
+            <!-- TODO edit -->
+            <small class="article__footer__views">
+                <span class="pi pi-eye"></span>
+                10 Views
+            </small>
+            <!-- TODO update buttons -->
+            <div class="article__footer__btns">
+                <p-button 
+                    icon="pi pi-thumbs-up" 
+                    label="Like"
+                    styleClass="p-button-success"
+                ></p-button>
+                <p-button icon="pi pi-thumbs-down" 
+                    label="Dislike"
+                    styleClass="p-button-danger"
+                ></p-button>
+            </div>
+        </div>
+    </section>
 </div>
 
 <p-menu #menu [model]="optionsMenu" [popup]="true"></p-menu>
