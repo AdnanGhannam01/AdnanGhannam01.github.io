@@ -1,0 +1,57 @@
+<form>
+    <docs-card [flex]="true" title="Profile Information">
+        <div class="form-input">
+            <strong><label htmlFor="name">Username</label></strong>
+            <p *ngIf="!editMode">{{ name }}</p>
+            <input
+                [value]="name"
+                pInputText 
+                id="name" 
+                name="name"
+                [required]="true"
+                type="email"
+                [style]="{ width: '100%' }"
+                *ngIf="editMode"
+                aria-describedby="name-help" />
+            <small id="name-help"></small>
+        </div>
+
+        <div class="form-input">
+            <strong><label htmlFor="email">Email</label></strong>
+            <p *ngIf="!editMode">{{ email }}</p>
+            <input
+                [value]="email"
+                pInputText 
+                id="email" 
+                name="email"
+                [required]="true"
+                [style]="{ width: '100%' }"
+                *ngIf="editMode"
+                aria-describedby="email-help" />
+            <small id="email-help"></small>
+        </div>
+
+        <div class="info__btns">
+            <p-button
+                label="Edit"
+                icon="pi pi-pencil"
+                (onClick)="editMode = true"
+                *ngIf="!editMode"
+            ></p-button>
+            <p-button
+                label="Save"
+                icon="pi pi-check"
+                styleClass="p-button-success"
+                (onClick)="exit(true)"
+                *ngIf="editMode"
+            ></p-button>
+            <p-button
+                label="Cancel"
+                icon="pi pi-times"
+                styleClass="p-button-danger"
+                (onClick)="exit(false)"
+                *ngIf="editMode"
+            ></p-button>
+        </div>
+    </docs-card>
+</form>

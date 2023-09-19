@@ -11,6 +11,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PreventLoggedInAccessGuard } from './guards/prevent-logged-in-access.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { InformationComponent } from './pages/profile/information/information.component';
+import { CollectionComponent } from './pages/profile/collection/collection.component';
+import { ChangePasswordComponent } from './pages/profile/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -35,7 +38,15 @@ const routes: Routes = [
         ]
       },
       { path: "article/:id", component: ArticleComponent },
-      { path: "profile", component: ProfileComponent },
+      {
+        path: "profile",
+        component: ProfileComponent,
+        children: [
+          { path: "", component: InformationComponent },
+          { path: "collection", component: CollectionComponent },
+          { path: "change-password", component: ChangePasswordComponent },
+        ]
+      },
       { path: "", component: HomeComponent},
     ]
   }

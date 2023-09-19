@@ -1,0 +1,11 @@
+@use "../../../utilities/mixin.scss";
+
+:host {
+    .info {
+        &__btns {
+            @include mixin.flex(flex-end);
+            gap: 1em;
+            padding: 1em 0;
+        }
+    }
+}

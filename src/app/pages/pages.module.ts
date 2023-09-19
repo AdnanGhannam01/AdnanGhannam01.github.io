@@ -20,6 +20,9 @@ import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { ConfirmationService } from 'primeng/api';
+import { InformationComponent } from './profile/information/information.component';
+import { CollectionComponent } from './profile/collection/collection.component';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 
 
 
@@ -32,7 +35,10 @@ import { ConfirmationService } from 'primeng/api';
     TutorialsComponent,
     ReferencesComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    InformationComponent,
+    CollectionComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
