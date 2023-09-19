@@ -14,7 +14,9 @@ interface Toolkits {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  sidebarVisible = false;
   visible = false;
+
   toolkits: Toolkits = {
     lang: "Languages",
     lib: "Libraries",

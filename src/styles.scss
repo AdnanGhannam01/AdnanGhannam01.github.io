@@ -1,4 +1,5 @@
 @use "./app/utilities/mixin.scss";
+@use "./app/utilities/mediaQuery.scss";
 @import "./app/utilities/primeNG.custom.scss";
 @import "primeng/resources/themes/bootstrap4-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
@@ -57,6 +58,10 @@ body {
     font-family: var(--ff-primary);
     font-size: 16px;
     color: rgb(var(--blue-800));
+
+    @include mediaQuery.Tablets {
+        font-size: 14px;
+    }
 }
 
 .container {

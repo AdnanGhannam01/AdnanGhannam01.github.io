@@ -1,7 +1,13 @@
 <div class="container">
+    <p-button
+        icon="pi pi-bars"
+        styleClass="p-button-text"
+        class="navbar__menu-btn"
+        (onClick)="sidebarVisible = true"
+    ></p-button>
     <a class="docs-logo" routerLink="/"></a>
 
-    <ul class="docs-list">
+    <ul class="docs-list navbar__list">
         <li (click)="showDialog('lang')" class="docs-list__item">Languages</li>
         <li (click)="showDialog('lib')" class="docs-list__item">Libraries</li>
         <li (click)="showDialog('frame')" class="docs-list__item">Frameworks</li>
@@ -83,3 +89,11 @@
         </div>
     </div>
 </p-dialog>
+
+<p-sidebar [(visible)]="sidebarVisible">
+    <ul class="docs-list">
+        <li docs-list-item (click)="showDialog('lang'); sidebarVisible = false" class="docs-list__item">Languages</li>
+        <li docs-list-item (click)="showDialog('lib'); sidebarVisible = false" class="docs-list__item">Libraries</li>
+        <li docs-list-item (click)="showDialog('frame'); sidebarVisible = false" class="docs-list__item">Frameworks</li>
+    </ul>
+</p-sidebar>

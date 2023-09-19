@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TabmenuComponent } from './tabmenu/tabmenu.component';
 import { ToolkitSearchComponent } from './toolkit-search/toolkit-search.component';
 import { CardComponent } from './card/card.component';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 
@@ -29,7 +30,8 @@ import { CardComponent } from './card/card.component';
     AppRoutingModule,
     DialogModule,
     MenuModule,
-    ButtonModule
+    ButtonModule,
+    SidebarModule
   ],
   exports: [
     LogoComponent,

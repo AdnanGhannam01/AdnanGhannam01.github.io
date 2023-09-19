@@ -1,4 +1,5 @@
 @use "../../utilities/mixin.scss";
+@use "../../utilities/mediaQuery.scss";
 
 :host {
     display: block;
@@ -6,17 +7,33 @@
     padding: 1em;
     
     .container {
-        @include mixin.flex;
+        @include mixin.flex(space-between);
         gap: 1.5em;
     }
 
-    .docs-list {
-        @include mixin.flex(flex-start);
-        gap: 1em;
-        flex: 1;
+    .navbar {
+        &__list {
+            @include mixin.flex(flex-start);
+            gap: 1em;
+            flex: 1;
+
+            @include mediaQuery.Tablets {
+                display: none;
+            }
+        }
     }
 
     ::ng-deep {
+        .navbar {
+            &__menu-btn {
+                display: none;
+
+                @include mediaQuery.Tablets {
+                    display: block;
+                }
+            }
+        }
+
         .dialog {
             &__content {
                 @include mixin.flex(stretch, stretch);
