@@ -3,7 +3,6 @@
 :host {
     @include mixin.flex(center, stretch);
     background-color: var(--bg-primary);
-    box-sizing: var(--bs-primary);
     border: 1px solid var(--clr-border);
     border-radius: 5px;
     overflow: hidden;
@@ -21,6 +20,7 @@
         &__input {
             all: unset;
             flex: 1;
+            min-width: 0;
         }
 
         &__label,
