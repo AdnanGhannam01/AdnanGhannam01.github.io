@@ -1,6 +1,16 @@
+@use "../../utilities/mixin.scss";
+
 :host {
-    display: block;
+    @include mixin.flex(flex-start);
+    overflow: auto;
+    white-space: nowrap;
     border-bottom: 1px solid var(--clr-border);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     .tabmenu {
         &__item {
