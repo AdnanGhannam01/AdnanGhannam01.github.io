@@ -24,6 +24,7 @@ import { InformationComponent } from './profile/information/information.componen
 import { CollectionComponent } from './profile/collection/collection.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { TableModule } from "primeng/table";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -39,7 +40,8 @@ import { TableModule } from "primeng/table";
     RegisterComponent,
     InformationComponent,
     CollectionComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

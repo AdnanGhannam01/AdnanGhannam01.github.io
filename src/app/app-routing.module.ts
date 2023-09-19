@@ -14,6 +14,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { InformationComponent } from './pages/profile/information/information.component';
 import { CollectionComponent } from './pages/profile/collection/collection.component';
 import { ChangePasswordComponent } from './pages/profile/change-password/change-password.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,8 @@ const routes: Routes = [
           { path: "change-password", component: ChangePasswordComponent },
         ]
       },
-      { path: "", component: HomeComponent},
+      { path: "", component: HomeComponent },
+      { path: "**", component: NotFoundComponent }
     ]
   }
 ];
