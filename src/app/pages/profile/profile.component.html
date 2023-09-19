@@ -1,1 +1,39 @@
-<p>profile works!</p>
+<div class="container">
+    <header class="profile__header">
+        <h1 class="profile__title">Personal Profile</h1>
+        <p-button 
+            icon="pi pi-ellipsis-v" 
+            styleClass="p-button-rounded p-button-text"
+            (onClick)="menu.toggle($event)"
+        ></p-button>
+    </header>
+    <div class="profile__main docs-with-sidebar">
+        <div class="profile__sidebar">
+            <docs-card>
+                <a class="docs-link" docs-list-item routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    Profile
+                </a>
+                <a class="docs-link" docs-list-item routerLink="./collection" routerLinkActive="active">
+                    Collection
+                </a>
+                <a class="docs-link" docs-list-item routerLink="./change-password" routerLinkActive="active">
+                    Change Password
+                </a>
+            </docs-card>
+        </div>
+        <div class="profile__content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<p-menu #menu [model]="optionsMenu" [popup]="true"></p-menu>
+<p-confirmDialog #deleteConfirm [style]="{'max-width': '50vw'}">
+    <ng-template pTemplate="header">
+        <h3>Header Content</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="No" (click)="deleteConfirm.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="deleteConfirm.accept()"></button>
+    </ng-template>
+</p-confirmDialog>

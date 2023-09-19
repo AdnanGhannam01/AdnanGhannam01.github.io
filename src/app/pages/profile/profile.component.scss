@@ -1,0 +1,11 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    .profile {
+        &__header {
+            @include mixin.flex(space-between);
+            gap: 1em;
+            padding: 2em 0;
+        }
+    }
+}

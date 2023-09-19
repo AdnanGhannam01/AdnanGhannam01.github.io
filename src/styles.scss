@@ -151,4 +151,19 @@ body {
     }
 }
 
+.docs-with-sidebar {
+    @include mixin.flex(flex-start, flex-start, row, wrap);
+    gap: 2em;
+    
+    >*:first-child {
+        flex-basis: 300px;
+        flex-grow: 1;
+    }
+
+    >*:last-child {
+        flex-basis: 500px;
+        flex-grow: 9999;
+    }
+}
+
 h1, h2, h3, h4, h5, h6, strong { font-weight: 500 }

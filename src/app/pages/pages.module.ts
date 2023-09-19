@@ -18,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { ConfirmationService } from 'primeng/api';
 
 
 
@@ -43,7 +45,9 @@ import { PasswordModule } from "primeng/password";
     InputTextareaModule,
     DividerModule,
     InputTextModule,
-    PasswordModule
-  ]
+    PasswordModule,
+    ConfirmDialogModule
+  ],
+  providers: [ConfirmationService]
 })
 export class PagesModule { }

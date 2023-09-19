@@ -10,6 +10,7 @@ import { MainComponent } from './templates/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PreventLoggedInAccessGuard } from './guards/prevent-logged-in-access.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
         ]
       },
       { path: "article/:id", component: ArticleComponent },
+      { path: "profile", component: ProfileComponent },
       { path: "", component: HomeComponent},
     ]
   }
