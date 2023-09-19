@@ -1,1 +1,33 @@
-<p>collection works!</p>
+<p-table #table 
+    [value]="[1, 2, 3]"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [globalFilterFields]="['title', 'description', 'toolkit', 'section']">
+    <ng-template pTemplate="caption">
+        <input #search pInputText type="text" (input)="onSearch(table, search)" placeholder="Search..." />
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
+            <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+            <th pSortableColumn="toolkit">Toolkit <p-sortIcon field="toolkit"></p-sortIcon></th>
+            <th pSortableColumn="section">Section <p-sortIcon field="section"></p-sortIcon></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>
+                <a routerLink="#" class="docs-link">Javscript async/await</a>
+            </td>
+            <td class="collection__desc-cell"
+                title="We use the async keyword with a function to represent that the function is an asynchronous function. The async function returns a promise.">
+                We use the async keyword with a function to represent that the function is an asynchronous function. The async function returns a promise.
+            </td>
+            <td>
+                <a routerLink="#" class="docs-link">JavaScript</a>
+            </td>
+            <td>
+                <a routerLink="#" class="docs-link">JavaScript Asynchronous</a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -23,6 +23,7 @@ import { ConfirmationService } from 'primeng/api';
 import { InformationComponent } from './profile/information/information.component';
 import { CollectionComponent } from './profile/collection/collection.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
+import { TableModule } from "primeng/table";
 
 
 
@@ -52,7 +53,8 @@ import { ChangePasswordComponent } from './profile/change-password/change-passwo
     DividerModule,
     InputTextModule,
     PasswordModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    TableModule
   ],
   providers: [ConfirmationService]
 })
