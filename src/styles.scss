@@ -10,18 +10,18 @@
     --ff-primary: 'Poppins', sans-serif;
 
     --white: #fff;
-    --light-blue: #e0f0fc;
-    --blue: 5, 86, 243;
-    --alpha-blue: rgba(var(--blue), .2);
-    --dark-blue: #03338f;
-    --darker-blue: 37, 38, 95;
-    --alpha-darker-blue: rgba(var(--darker-blue), 0.702);
-    --light-gray: #d3dce6;
-    --gray: #a8a8bf;
+    --blue-100: #e0f0fc;
+    --blue-400: 5, 86, 243;
+    --blue-400-a: rgba(var(--blue-400), .2);
+    --blue-600: #03338f;
+    --blue-800: 37, 38, 95;
+    --blue-800-a: rgba(var(--blue-800), 0.702);
+    --gray-200: #d3dce6;
+    --gray-400: #a8a8bf;
 
-    --clr-border: var(--light-gray);
-    --clr-border-active: rgb(var(--blue));
-    --clr-rounded-border: rgb(var(--blue));
+    --clr-border: var(--gray-200);
+    --clr-border-active: rgb(var(--blue-400));
+    --clr-rounded-border: rgb(var(--blue-400));
     --bg-primary: var(--white);
 
     --bs-primary: 0px 4px 12px rgba(37,38,94,.06);
@@ -29,16 +29,16 @@
 
     --bg-footer: #2b324d;
     --clr-footer: var(--white);
-    --clr-footer-link: var(--light-gray);
+    --clr-footer-link: var(--gray-200);
     --clr-footer-link-hover: var(--white);
 
-    --clr-link-hover: rgb(var(--blue));
+    --clr-link-hover: rgb(var(--blue-400));
 
-    --clr-list-item-hover: rgb(var(--blue));
-    --bg-list-item-hover: var(--alpha-blue);
-    --clr-list-item: var(--alpha-darker-blue);
+    --clr-list-item-hover: rgb(var(--blue-400));
+    --bg-list-item-hover: var(--blue-400-a);
+    --clr-list-item: var(--blue-800-a);
 
-    --bg-toolkit-header: var(--light-blue);
+    --bg-toolkit-header: var(--blue-100);
 }
 
 html {
@@ -56,7 +56,7 @@ html {
 body {
     font-family: var(--ff-primary);
     font-size: 16px;
-    color: rgb(var(--darker-blue));
+    color: rgb(var(--blue-800));
 }
 
 .container {
