@@ -38,7 +38,7 @@ const routes: Routes = [
           { path: "references", component: ReferencesComponent }
         ]
       },
-      { path: "article/:id", component: ArticleComponent },
+      { path: "articles/:id", component: ArticleComponent },
       {
         path: "profile",
         component: ProfileComponent,
