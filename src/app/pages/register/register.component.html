@@ -1,4 +1,4 @@
-<form (submit)="register()">
+<form (submit)="register(name.value, email.value, password.value)">
     <div class="form-input">
         <label htmlFor="name">Username</label>
         <input #name
@@ -14,7 +14,7 @@
 
     <div class="form-input">
         <label htmlFor="email">Email</label>
-        <input #name
+        <input #email
             pInputText 
             id="email" 
             name="email"
@@ -35,8 +35,11 @@
         <small id="password-help"></small>
     </div>
     <p-button
+        type="submit"
         label="Register"
         styleClass="p-button-success"
         [style]="{ width: '100%' }"
     ></p-button>
 </form>
+
+<p-toast></p-toast>
