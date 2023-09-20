@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuItem, TreeNode } from 'primeng/api';
-import { Article } from 'src/app/services';
+import { MenuItem, MessageService, TreeNode } from 'primeng/api';
+import { Article, Section } from 'src/app/services';
 import { ArticleService } from 'src/app/services/article.service';
+import { SectionService } from 'src/app/services/section.service';
 
 @Component({
   selector: 'docs-article',
@@ -11,6 +12,7 @@ import { ArticleService } from 'src/app/services/article.service';
 })
 export class ArticleComponent {
   article?: Article;
+  sections: Section[] = [];
 
   feedbackVisible = false;
 
@@ -31,36 +33,15 @@ export class ArticleComponent {
     }
   ]
 
-  nodes!: TreeNode[];
+  nodes: TreeNode[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
+    // private sectionService: SectionService,
+    private messageService: MessageService,
     private articleService: ArticleService) { }
 
   ngOnInit() {
-    this.nodes = [
-      {
-        key: '0',
-        label: 'Introduction',
-        children: [
-          { key: '0-0', label: 'What is Angular', data: './', type: 'url' },
-          { key: '0-1', label: 'Getting Started', data: 'https://angular.io/guide/setup-local', type: 'url' },
-          { key: '0-2', label: 'Learn and Explore', data: 'https://angular.io/guide/architecture', type: 'url' },
-          { key: '0-3', label: 'Take a Look', data: 'https://angular.io/start', type: 'url' }
-        ]
-      },
-      {
-        key: '1',
-        label: 'Components In-Depth',
-        children: [
-          { key: '1-0', label: 'Component Registration', data: 'https://angular.io/guide/component-interaction', type: 'url' },
-          { key: '1-1', label: 'User Input', data: 'https://angular.io/guide/user-input', type: 'url' },
-          { key: '1-2', label: 'Hooks', data: 'https://angular.io/guide/lifecycle-hooks', type: 'url' },
-          { key: '1-3', label: 'Attribute Directives', data: 'https://angular.io/guide/attribute-directives', type: 'url' }
-        ]
-      }
-    ];
-
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get("id");
 
@@ -69,6 +50,10 @@ export class ArticleComponent {
           .subscribe({
             next: ({ data }) => {
               this.article = data;
+              // TODO fetch sections
+              // this.nodes = this.sectionService.getAll(data.toolkit, data.type).map(section => {
+              //   return this.sectionService.convertToTree(section);
+              // });
             },
             error: err => {
               this.router.navigate(["/not-found"]);
@@ -83,6 +68,19 @@ export class ArticleComponent {
   }
 
   sendFeedback(el: HTMLTextAreaElement) {
-    // TODO send
+    if (this.article) {
+      this.articleService.sendFeedback(this.article?._id, el.value)
+        .subscribe({
+          next: () => {
+            this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Feedback sent' });
+            this.feedbackVisible = false;
+          },
+          error: err => {
+            err.error.errors.forEach(
+              (error: any) => 
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+          }
+        });
+    }
   }
 }

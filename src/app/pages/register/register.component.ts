@@ -25,7 +25,6 @@ export class RegisterComponent {
           }, 1500);
         },
         error: err => {
-          console.log(err.error.errors)
           err.error.errors.forEach(
             (error: any) => 
               this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));

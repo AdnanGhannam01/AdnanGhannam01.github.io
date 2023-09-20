@@ -13,6 +13,9 @@ export interface Login {
   providedIn: 'root'
 })
 export class AuthService {
+  get token() {
+    return localStorage.getItem("token")
+  }
 
   constructor(private http: HttpClient) { }
 

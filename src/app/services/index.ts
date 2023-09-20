@@ -10,6 +10,9 @@ export interface Article {
     description: string;
     content: string;
     createdAt: number;
+    type: string;
+    toolkit: string;
+    section: string;
 };
 
 export interface Section {
