@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem, TreeNode } from 'primeng/api';
+import { Article } from 'src/app/services';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'docs-article',
@@ -7,6 +10,8 @@ import { MenuItem, TreeNode } from 'primeng/api';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent {
+  article?: Article;
+
   feedbackVisible = false;
 
   optionsMenu: MenuItem[] = [
@@ -27,6 +32,10 @@ export class ArticleComponent {
   ]
 
   nodes!: TreeNode[];
+
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private articleService: ArticleService) { }
 
   ngOnInit() {
     this.nodes = [
@@ -51,6 +60,22 @@ export class ArticleComponent {
         ]
       }
     ];
+
+    this.activatedRoute.paramMap.subscribe(params => {
+      const id = params.get("id");
+
+      if (id) {
+        this.articleService.getOne(id)
+          .subscribe({
+            next: ({ data }) => {
+              this.article = data;
+            },
+            error: err => {
+              this.router.navigate(["/not-found"]);
+            }
+          });
+      }
+    });
   }
 
   async copyLink() {

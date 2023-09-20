@@ -1,4 +1,5 @@
 <div class="container docs-with-sidebar">
+    <!-- TODO -->
     <aside>
         <p-tree [value]="nodes" [filter]="true" filterPlaceholder="Search...">
             <ng-template let-node pTemplate="url">
@@ -11,27 +12,21 @@
             </ng-template>
         </p-tree>
     </aside>
-    <section>
+    <section *ngIf="article">
         <header class="article__header">
-            <h1 class="article__title">Getting Started With JavaScript</h1>
+            <h1 class="article__title">{{ article.title }}</h1>
             <p-button 
                 icon="pi pi-ellipsis-v" 
                 styleClass="p-button-rounded p-button-text"
                 (onClick)="menu.toggle($event)"
             ></p-button>
         </header>
-        <p class="article__desc">
-            JavaScript is a popular programming language that has a wide range of applications.
-            JavaScript was previously used mainly for making webpages interactive such as form validation, animation, etc. Nowadays, JavaScript is also used in many other areas such as server-side development, mobile app development and so on.
-        </p>
+        <p class="article__desc">{{ article.description }}</p>
 
         <p-divider></p-divider>
 
         <!-- TODO add markdown viewer -->
-        <div class="article__content">
-            <h2>...Content...</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates ut debitis illum quidem aperiam quibusdam voluptate doloribus quam laudantium perspiciatis, pariatur asperiores ad, perferendis quo quisquam, blanditiis nesciunt! Accusantium, distinctio.</p>
-        </div>
+        <div class="article__content">{{ article.content }}</div>
 
         <p-divider></p-divider>
 
@@ -48,7 +43,6 @@
                     styleClass="p-button-danger"
                 ></p-button>
             </div>
-            <!-- TODO edit -->
             <div class="article__footer__info">
                 <small class="article__footer__views">
                     <span class="pi pi-eye"></span>
