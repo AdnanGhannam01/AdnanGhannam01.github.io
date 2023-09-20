@@ -42,7 +42,7 @@ export class NavbarComponent {
     {
       label: "Logout", 
       icon: "pi pi-sign-out",
-      command: () => { }
+      command: () => { this.authService.logout(); location.reload() }
     }
   ];
 

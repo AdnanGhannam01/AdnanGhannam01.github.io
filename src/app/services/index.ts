@@ -4,6 +4,12 @@ export interface ApiResponse<T> {
     errors: string[];
 };
 
+export interface Reaction {
+    type: "like" | "dislike";
+    user: string;
+    article: string;
+};
+
 export interface Article {
     _id: string;
     title: string;
@@ -13,6 +19,7 @@ export interface Article {
     type: string;
     toolkit: string;
     section: string;
+    reactions: Reaction[];
 };
 
 export interface Section {

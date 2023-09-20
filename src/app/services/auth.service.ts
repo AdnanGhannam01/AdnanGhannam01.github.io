@@ -7,6 +7,7 @@ export interface Login {
   token: string;
   privilege: string;
   expiresIn: number;
+  id: string;
 };
 
 @Injectable({
@@ -36,12 +37,16 @@ export class AuthService {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     localStorage.setItem('token', authResult.token);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem("id", authResult.id);
+    localStorage.setItem("privilege", authResult.privilege);
   }
 
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("expires_at");
+    localStorage.removeItem("id");
+    localStorage.removeItem("privilege");
   }
 
   public isLoggedIn() {

@@ -83,4 +83,42 @@ export class ArticleComponent {
         });
     }
   }
+
+  liked() {
+    const id = localStorage.getItem("id");
+
+    if (id && this.article) {
+      const reacted = this.article.reactions.find(reaction => reaction.user == id);
+
+      if (!reacted) return null;
+
+      return reacted.type == 'like';
+    }
+
+    return null;
+  }
+
+  like() {
+    if (this.liked()) {
+      this.articleService.unreactToArticle(this.article!._id)
+        .subscribe();
+
+      return;
+    }
+
+    this.articleService.reactToArticle(this.article!._id, "like")
+      .subscribe();
+  }
+
+  dislike() {
+    if (this.liked() === false) {
+      this.articleService.unreactToArticle(this.article!._id)
+        .subscribe();
+
+      return;
+    }
+
+    this.articleService.reactToArticle(this.article!._id, "dislike")
+      .subscribe();
+  }
 }

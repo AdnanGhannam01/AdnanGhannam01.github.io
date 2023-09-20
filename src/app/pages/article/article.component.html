@@ -34,12 +34,15 @@
             <!-- TODO update buttons -->
             <div class="article__footer__btns">
                 <p-button 
-                    icon="pi pi-thumbs-up" 
+                    [icon]="liked() === true ? 'pi pi-thumbs-up-fill' : 'pi pi-thumbs-up'" 
                     label="Like"
+                    (onClick)="like()"
                     styleClass="p-button-success"
                 ></p-button>
-                <p-button icon="pi pi-thumbs-down" 
+                <p-button 
+                    [icon]="liked() === false ? 'pi pi-thumbs-down-fill' : 'pi pi-thumbs-down'" 
                     label="Dislike"
+                    (onClick)="dislike()"
                     styleClass="p-button-danger"
                 ></p-button>
             </div>

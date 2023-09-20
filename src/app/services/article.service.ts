@@ -21,4 +21,14 @@ export class ArticleService {
       { text },
       { headers });
   }
+
+  reactToArticle(id: string, type: string) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.post<any>(`/react/articles/${id}?type=${type}`, {}, { headers });
+  }
+
+  unreactToArticle(id: string) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.delete<any>(`/react/articles/${id}`, { headers });
+  }
 }
