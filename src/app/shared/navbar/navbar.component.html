@@ -23,9 +23,11 @@
     </div>
 
     <p-button
+        *ngIf="!isLoggedIn"
         styleClass="p-button-text p-button-success"
         label="Login"
         icon="pi pi-sign-in"
+        routerLink="/s/login"
     ></p-button>
 </div>
 

@@ -19,7 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { InformationComponent } from './profile/information/information.component';
 import { CollectionComponent } from './profile/collection/collection.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
@@ -27,6 +27,7 @@ import { TableModule } from "primeng/table";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TreeModule } from 'primeng/tree';
 import { TooltipModule } from "primeng/tooltip";
+import { ToastModule } from "primeng/toast";
 
 
 
@@ -60,8 +61,9 @@ import { TooltipModule } from "primeng/tooltip";
     ConfirmDialogModule,
     TableModule,
     TreeModule,
-    TooltipModule
+    TooltipModule,
+    ToastModule
   ],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService, MessageService]
 })
 export class PagesModule { }
