@@ -1,10 +1,10 @@
-<form>
+<form *ngIf="user">
     <docs-card [flex]="true" title="Profile Information">
         <div class="form-input">
             <strong><label htmlFor="name">Username</label></strong>
-            <p *ngIf="!editMode">{{ name }}</p>
+            <p *ngIf="!editMode">{{ user.name }}</p>
             <input
-                [value]="name"
+                [value]="user.name"
                 pInputText 
                 id="name" 
                 name="name"
@@ -18,9 +18,9 @@
 
         <div class="form-input">
             <strong><label htmlFor="email">Email</label></strong>
-            <p *ngIf="!editMode">{{ email }}</p>
+            <p *ngIf="!editMode">{{ user.email }}</p>
             <input
-                [value]="email"
+                [value]="user.email"
                 pInputText 
                 id="email" 
                 name="email"

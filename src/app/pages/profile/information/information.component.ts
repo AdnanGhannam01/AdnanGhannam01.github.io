@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/services';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'docs-information',
@@ -7,8 +9,16 @@ import { Component } from '@angular/core';
 })
 export class InformationComponent {
   editMode = false;
-  name = "Adnan Ghannam";
-  email = "adnan@gmail.com";
+  user?: User;
+
+  constructor(private userService: UserService) { }
+
+  ngOnInit() {
+    this.userService.getProfile()
+      .subscribe(({ data }) => {
+        this.user = data;
+      });
+  }
 
   exit(save: boolean) {
     this.editMode = false;
