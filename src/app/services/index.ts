@@ -4,6 +4,15 @@ export interface ApiResponse<T> {
     errors: string[];
 };
 
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  privilege: string;
+  userCollection: string;
+  joinedAt: number,
+};
+
 export interface Reaction {
     type: "like" | "dislike";
     user: string;
@@ -16,6 +25,7 @@ export interface Article {
     description: string;
     content: string;
     createdAt: number;
+    creators: User[];
     type: string;
     toolkit: string;
     section: string;

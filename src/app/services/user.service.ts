@@ -1,16 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiResponse } from '.';
+import { ApiResponse, User } from '.';
 import { Nullable } from 'primeng/ts-helpers';
-
-export interface User {
-  _id: string;
-  name: string;
-  email: string;
-  privilege: string;
-  userCollection: string;
-  joinedAt: number,
-};
 
 @Injectable({
   providedIn: 'root'

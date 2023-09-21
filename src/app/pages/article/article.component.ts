@@ -15,6 +15,7 @@ export class ArticleComponent {
   sections: Section[] = [];
 
   feedbackVisible = false;
+  creatorsVisible = false;
 
   optionsMenu: MenuItem[] = [
     {
@@ -29,6 +30,13 @@ export class ArticleComponent {
       icon: "pi pi-comment",
       command: () => {
         this.feedbackVisible = true
+      }
+    },
+    {
+      label: "View Creators",
+      icon: "pi pi-user-edit",
+      command: () => {
+        this.creatorsVisible = true;
       }
     }
   ]

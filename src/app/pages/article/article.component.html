@@ -85,4 +85,19 @@
     </form>
 </p-dialog>
 
+<p-dialog header="Article Creators" 
+    [(visible)]="creatorsVisible"
+    position="top" 
+    [modal]="true" 
+    [draggable]="false"
+    [style]="{ 'min-width': '30vw' }">
+    <a 
+        *ngFor="let creator of article!.creators"
+        class="docs-link" 
+        docs-list-item>
+        <span class="pi pi-user" [style]="{ 'margin-inline-end': '1em' }"></span>
+        {{ creator.name }}
+    </a>
+</p-dialog>
+
 <p-toast></p-toast>
