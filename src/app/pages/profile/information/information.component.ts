@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class InformationComponent {
   editMode = false;
   user?: User;
+  loading = false;
 
   constructor(private userService: UserService,
               private messageService: MessageService) { }
@@ -24,13 +25,16 @@ export class InformationComponent {
 
   exit(save: boolean) {
     if (save && this.user) {
+      this.loading = true;
       this.userService.updateProfile(this.user.name, this.user.email)
         .subscribe({
           next: () => {
+            this.loading = false;
             this.editMode = false;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Information updated' });
           },
           error: err => {
+            this.loading = false;
             err.error.errors.forEach(
               (error: any) => 
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
