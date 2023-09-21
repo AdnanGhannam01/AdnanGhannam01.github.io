@@ -28,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { TreeModule } from 'primeng/tree';
 import { TooltipModule } from "primeng/tooltip";
 import { ToastModule } from "primeng/toast";
+import { BreadcrumbModule } from "primeng/breadcrumb";
 
 
 
@@ -62,7 +63,8 @@ import { ToastModule } from "primeng/toast";
     TableModule,
     TreeModule,
     TooltipModule,
-    ToastModule
+    ToastModule,
+    BreadcrumbModule
   ],
   providers: [ConfirmationService, MessageService]
 })

@@ -13,6 +13,8 @@
         </p-tree>
     </aside>
     <section *ngIf="article">
+        <!-- TODO -->
+        <!-- <p-breadcrumb class="max-w-full" [model]="breadcrumbItems" [home]="home"></p-breadcrumb> -->
         <header class="article__header">
             <h1 class="article__title">{{ article.title }}</h1>
             <p-button 
@@ -32,7 +34,6 @@
         <p-divider></p-divider>
 
         <div class="article__footer">
-            <!-- TODO update buttons -->
             <div class="article__footer__btns">
                 <p-button 
                     [icon]="liked() === true ? 'pi pi-thumbs-up-fill' : 'pi pi-thumbs-up'" 

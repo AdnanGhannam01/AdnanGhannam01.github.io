@@ -52,7 +52,10 @@ export class ArticleComponent {
         this.creatorsVisible = true;
       }
     }
-  ]
+  ];
+
+  breadcrumbItems: MenuItem[] | undefined;
+  home: MenuItem | undefined;
 
   nodes: TreeNode[] = [];
 
@@ -74,6 +77,12 @@ export class ArticleComponent {
           .subscribe({
             next: ({ data }) => {
               this.article = data;
+
+              this.breadcrumbItems = [
+                { label: this.article.toolkit.name, url: `/toolkits/${this.article.toolkit._id}` },
+                { label: this.article.section.title },
+              ];
+
               // TODO fetch sections
               // this.nodes = this.sectionService.getAll(data.toolkit, data.type).map(section => {
               //   return this.sectionService.convertToTree(section);
