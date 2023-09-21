@@ -27,8 +27,8 @@ export interface Article {
     createdAt: number;
     creators: User[];
     type: string;
-    toolkit: string;
-    section: string;
+    toolkit: Toolkit;
+    section: Section;
     reactions: Reaction[];
 };
 
@@ -48,4 +48,10 @@ export interface Toolkit {
     company: string;
     createdAt: number;
     sections: Section[];
+}
+
+export interface Collection {
+    _id: string;
+    articles: Article[];
+    lastModifyAt: number;
 }
