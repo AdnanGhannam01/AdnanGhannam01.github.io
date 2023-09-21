@@ -29,7 +29,7 @@ export class NavbarComponent {
     {
       label: "View My Profile",
       icon: "pi pi-user",
-      url: "/user",
+      url: "/profile",
     },
     {
       label: "View Collection",

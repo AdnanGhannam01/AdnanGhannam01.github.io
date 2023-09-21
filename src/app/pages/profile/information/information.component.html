@@ -4,7 +4,7 @@
             <strong><label htmlFor="name">Username</label></strong>
             <p *ngIf="!editMode">{{ user.name }}</p>
             <input
-                [value]="user.name"
+                [(ngModel)]="user.name"
                 pInputText 
                 id="name" 
                 name="name"
@@ -20,7 +20,7 @@
             <strong><label htmlFor="email">Email</label></strong>
             <p *ngIf="!editMode">{{ user.email }}</p>
             <input
-                [value]="user.email"
+                [(ngModel)]="user.email"
                 pInputText 
                 id="email" 
                 name="email"
@@ -55,3 +55,5 @@
         </div>
     </docs-card>
 </form>
+
+<p-toast></p-toast>
