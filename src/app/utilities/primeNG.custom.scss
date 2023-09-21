@@ -1,3 +1,5 @@
+@use './mixin.scss';
+
 docs-root {
     .p-component {
         font-family: inherit;
@@ -7,5 +9,29 @@ docs-root {
     p-password .p-password,
     p-password .p-password .p-inputtext {
         width: 100%;
+    }
+
+    .p-tree {
+        .p-treenode-label {
+            width: 100%;
+        }
+    }
+}
+
+.p-toast {
+    .p-toast-message {
+        .p-toast-message-content {
+            padding: 1em 1.25em;
+            align-items: center;
+            gap: 1.5em;
+
+            .p-toast-message-icon {
+                display: flex;
+            }
+
+            .p-toast-message-text {
+                margin: 0;
+            }
+        }
     }
 }
