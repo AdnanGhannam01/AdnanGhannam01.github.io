@@ -27,6 +27,7 @@ export interface Article {
     createdAt: number;
     creators: User[];
     type: string;
+    views: number;
     toolkit: Toolkit;
     section: Section;
     reactions: Reaction[];
@@ -38,6 +39,7 @@ export interface Section {
     type: string;
     createdAt: number;
     articles: Article[];
+    toolkit: string;
 };
 
 export interface Toolkit {

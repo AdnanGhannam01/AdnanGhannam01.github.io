@@ -61,7 +61,7 @@ export class ArticleComponent {
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    // private sectionService: SectionService,
+    private sectionService: SectionService,
     private authService: AuthService,
     private messageService: MessageService,
     private articleService: ArticleService,
@@ -83,10 +83,12 @@ export class ArticleComponent {
                 { label: this.article.section.title },
               ];
 
-              // TODO fetch sections
-              // this.nodes = this.sectionService.getAll(data.toolkit, data.type).map(section => {
-              //   return this.sectionService.convertToTree(section);
-              // });
+              this.sectionService.getAll(data.toolkit + "", data.type)
+                .subscribe(({ data }) => {
+                  this.nodes = data.map(section => {
+                    return this.sectionService.convertToTree(section);
+                  });
+                });
             },
             error: err => {
               this.router.navigate(["/not-found"]);
