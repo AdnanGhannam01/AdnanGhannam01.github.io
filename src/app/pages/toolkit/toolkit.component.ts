@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Toolkit } from 'src/app/services';
 import { ToolkitService } from 'src/app/services/toolkit.service';
@@ -21,24 +21,24 @@ export class ToolkitComponent implements OnInit {
   ];
 
   constructor(private activedRoute: ActivatedRoute,
-              private messageService: MessageService,
+              private router: Router,
               private toolkitService: ToolkitService) { }
 
   ngOnInit() {
     this.activedRoute.paramMap.subscribe(params => {
       const id = params.get("id");
       
-      if (id) {
-        this.toolkitService.getOne(id)
-          .subscribe({
-            next: ({ data }) => {
-              this.toolkit = data;
-            },
-            error: err => {
-              console.error("FETCHING ERROR", err.error);
-            }
-          })
-      }
+      if (!id) return;
+
+      this.toolkitService.getOne(id)
+        .subscribe({
+          next: ({ data }) => {
+            this.toolkit = data;
+          },
+          error: err => {
+            this.router.navigate(['not-found']);
+          }
+        })
     });
   }
 }

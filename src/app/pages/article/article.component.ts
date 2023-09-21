@@ -72,29 +72,29 @@ export class ArticleComponent {
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get("id");
 
-      if (id) {
-        this.articleService.getOne(id)
-          .subscribe({
-            next: ({ data }) => {
-              this.article = data;
+      if (!id) return;
 
-              this.breadcrumbItems = [
-                { label: this.article.toolkit.name, url: `/toolkits/${this.article.toolkit._id}` },
-                { label: this.article.section.title },
-              ];
+      this.articleService.getOne(id)
+        .subscribe({
+          next: ({ data }) => {
+            this.article = data;
 
-              this.sectionService.getAll(data.toolkit + "", data.type)
-                .subscribe(({ data }) => {
-                  this.nodes = data.map(section => {
-                    return this.sectionService.convertToTree(section);
-                  });
+            this.breadcrumbItems = [
+              { label: this.article.toolkit.name, url: `/toolkits/${this.article.toolkit._id}` },
+              { label: this.article.section.title },
+            ];
+
+            this.sectionService.getAll(data.toolkit + "", data.type)
+              .subscribe(({ data }) => {
+                this.nodes = data.map(section => {
+                  return this.sectionService.convertToTree(section);
                 });
-            },
-            error: err => {
-              this.router.navigate(["/not-found"]);
-            }
-          });
-      }
+              });
+          },
+          error: err => {
+            this.router.navigate(["/not-found"]);
+          }
+        });
     });
   }
 
