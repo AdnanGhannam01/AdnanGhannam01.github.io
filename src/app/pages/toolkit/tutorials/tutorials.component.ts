@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Section } from 'src/app/services';
 import { SectionService } from 'src/app/services/section.service';
 
@@ -15,6 +15,7 @@ export class TutorialsComponent {
   sections: Section[] = [];
 
   constructor(private activedRoute: ActivatedRoute,
+              private router: Router,
               private sectionService: SectionService) { }
 
   ngOnInit() {
@@ -33,5 +34,9 @@ export class TutorialsComponent {
           });
       }
     });
+  }
+
+  navigateToFragment(fragment: string): void {
+    this.router.navigate([], { fragment: fragment });
   }
 }

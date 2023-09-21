@@ -1,7 +1,10 @@
-<header class="toolkit__header">
+<header class="toolkit__header" *ngIf="toolkit">
     <div class="container">
-        <h1 class="toolkit__name">{{ toolkit?.name }}</h1>
-        <p class="toolkit__desc">{{ toolkit?.description }}</p>
+        <div class="toolkit__title">
+            <h1 class="toolkit__name">{{ toolkit.name }}</h1>
+            <small>(A {{ toolkit.type }} made by {{ toolkit.company }})</small>
+        </div>
+        <p class="toolkit__desc">{{ toolkit.description }}</p>
         <docs-tabmenu [items]="tabMenuItems"></docs-tabmenu>
         <form class="toolkit__search" docs-toolkit-search></form>
     </div>

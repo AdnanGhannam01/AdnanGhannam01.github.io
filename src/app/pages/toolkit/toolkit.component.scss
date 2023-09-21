@@ -1,9 +1,16 @@
+@use "../../utilities/mixin.scss";
+
 :host {
     .toolkit {
         &__header {
             padding: 1em 0;
             background-color: var(--bg-toolkit-header);
             margin-bottom: 2em;
+        }
+
+        &__title {
+            @include mixin.flex(flex-start, baseline);
+            gap: .5em;
         }
 
         &__name,

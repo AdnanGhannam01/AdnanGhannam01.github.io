@@ -1,18 +1,17 @@
 <div class="tutorials__sidebar">
-    <!-- TODO fetch -->
     <docs-card
-        title="Sections">
-        <a *ngFor="let section of sections"
-            class="docs-link active" 
+        [title]="'Sections (' + sections.length + ')'">
+        <a *ngFor="let section of sections; index as i"
+            class="docs-link" 
             docs-list-item
-            routerLink="#"
+            (click)="navigateToFragment('section-' + i)"
         >{{ section.title }}</a>
     </docs-card>
 </div>
 <div class="tutorials__main">
-    <!-- TODO fetch -->
-    <docs-card *ngFor="let section of sections"
+    <docs-card *ngFor="let section of sections; index as i"
         [title]="section.title"
+        [id]="'section-' + i"
         [flex]="true">
         <a *ngFor="let article of section.articles" 
             class="docs-link"
