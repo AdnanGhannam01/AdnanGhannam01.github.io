@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem, MessageService, TreeNode } from 'primeng/api';
 import { Article, Section } from 'src/app/services';
 import { ArticleService } from 'src/app/services/article.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { SectionService } from 'src/app/services/section.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'docs-article',
@@ -13,6 +15,7 @@ import { SectionService } from 'src/app/services/section.service';
 export class ArticleComponent {
   article?: Article;
   sections: Section[] = [];
+  isLoggedIn = false;
 
   feedbackVisible = false;
   creatorsVisible = false;
@@ -22,7 +25,17 @@ export class ArticleComponent {
       label: "Save To Collection",
       icon: "pi pi-database",
       command: () => {
-
+        this.userService.addToCollection(this.article!._id)
+          .subscribe({
+            next: () => {
+              this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Saved' });
+            },
+            error: err => {
+              err.error.errors.forEach(
+                (error: any) => 
+                  this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+            }
+          });
       }
     },
     {
@@ -46,10 +59,13 @@ export class ArticleComponent {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     // private sectionService: SectionService,
+    private authService: AuthService,
     private messageService: MessageService,
-    private articleService: ArticleService) { }
+    private articleService: ArticleService,
+    private userService: UserService) { }
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get("id");
 

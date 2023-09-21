@@ -16,6 +16,7 @@
         <header class="article__header">
             <h1 class="article__title">{{ article.title }}</h1>
             <p-button 
+                *ngIf="isLoggedIn"
                 icon="pi pi-ellipsis-v" 
                 styleClass="p-button-rounded p-button-text"
                 (onClick)="menu.toggle($event)"
@@ -86,13 +87,14 @@
 </p-dialog>
 
 <p-dialog header="Article Creators" 
+    *ngIf="article"
     [(visible)]="creatorsVisible"
     position="top" 
     [modal]="true" 
     [draggable]="false"
     [style]="{ 'min-width': '30vw' }">
     <a 
-        *ngFor="let creator of article!.creators"
+        *ngFor="let creator of article.creators"
         class="docs-link" 
         docs-list-item>
         <span class="pi pi-user" [style]="{ 'margin-inline-end': '1em' }"></span>
