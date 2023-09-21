@@ -25,6 +25,11 @@ export class UserService {
     return this.http.put<any>("/user", { name, email }, { headers });
   }
 
+  changePassword(password: string, newPassword: string) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.put<any>("/user/change-password", { password, newPassword }, { headers });
+  }
+
   getCollection() {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
     return this.http.get<ApiResponse<Collection>>("/collection", { headers });

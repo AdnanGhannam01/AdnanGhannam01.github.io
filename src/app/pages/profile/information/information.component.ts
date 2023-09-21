@@ -23,7 +23,6 @@ export class InformationComponent {
   }
 
   exit(save: boolean) {
-    console.log(this.user)
     if (save && this.user) {
       this.userService.updateProfile(this.user.name, this.user.email)
         .subscribe({
