@@ -11,7 +11,7 @@ export class SectionService {
   constructor(private http: HttpClient) { }
 
   getAll(toolkitId: string, type: string) {
-    return this.http.get<ApiResponse<Section[]>>(`/sections/${toolkitId}?type=${type}`);
+    return this.http.get<ApiResponse<Section[]>>(`/toolkits/section/${toolkitId}?type=${type}`);
   }
 
   convertToTree(section: Section): TreeNode {

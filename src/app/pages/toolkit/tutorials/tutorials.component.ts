@@ -26,6 +26,7 @@ export class TutorialsComponent {
         this.sectionService.getAll(id, "tutorial")
           .subscribe({
             next: ({ data }) => {
+              console.log(data)
               this.sections = data;
             },
             error: err => {

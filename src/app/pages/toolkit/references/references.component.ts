@@ -15,7 +15,7 @@ export class ReferencesComponent {
               private sectionService: SectionService) { }
 
   ngOnInit() {
-    this.activedRoute.paramMap.subscribe(params => {
+    this.activedRoute.parent?.paramMap.subscribe(params => {
       const id = params.get("id");
       
       if (id) {
@@ -23,6 +23,7 @@ export class ReferencesComponent {
           .subscribe({
             next: ({ data }) => {
               this.sections = data;
+              console.log(data)
             },
             error: err => {
               console.error("FETCHING ERROR", err.error);
