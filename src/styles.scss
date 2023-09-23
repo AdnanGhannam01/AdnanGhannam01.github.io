@@ -19,10 +19,12 @@
     --blue-800-a: rgba(var(--blue-800), 0.75);
     --gray-200: #d3dce6;
     --gray-400: #a8a8bf;
+    --gray-600: #535353;
 
     --clr-border: var(--gray-200);
     --clr-border-active: rgb(var(--blue-400));
     --clr-rounded-border: rgb(var(--blue-400));
+    --clr-faded: var(--gray-600);
     --bg-primary: var(--white);
 
     --bs-primary: 0px 4px 12px rgba(37,38,94,.06);
