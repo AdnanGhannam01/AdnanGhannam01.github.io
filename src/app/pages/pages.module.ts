@@ -33,6 +33,7 @@ import { QuestionsComponent } from './toolkit/questions/questions.component';
 import { QuestionComponent } from './question/question.component';
 import { DataViewModule } from "primeng/dataview";
 import { DropdownModule } from "primeng/dropdown";
+import { MyQuestionsComponent } from './profile/my-questions/my-questions.component';
 
 
 
@@ -51,7 +52,8 @@ import { DropdownModule } from "primeng/dropdown";
     ChangePasswordComponent,
     NotFoundComponent,
     QuestionsComponent,
-    QuestionComponent
+    QuestionComponent,
+    MyQuestionsComponent
   ],
   imports: [
     CommonModule,

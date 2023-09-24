@@ -17,6 +17,7 @@ import { ChangePasswordComponent } from './pages/profile/change-password/change-
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { QuestionsComponent } from './pages/toolkit/questions/questions.component';
 import { QuestionComponent } from './pages/question/question.component';
+import { MyQuestionsComponent } from './pages/profile/my-questions/my-questions.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
           { path: "", component: InformationComponent },
           { path: "collection", component: CollectionComponent },
           { path: "change-password", component: ChangePasswordComponent },
+          { path: "my-questions", component: MyQuestionsComponent },
         ]
       },
       { path: "", component: HomeComponent },

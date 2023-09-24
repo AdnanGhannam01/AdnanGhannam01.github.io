@@ -1,0 +1,41 @@
+<p-table #table 
+    [value]="questions"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [globalFilterFields]="['title', 'description', 'toolkit', 'section']">
+    <ng-template pTemplate="caption">
+        <input #search pInputText type="text" (input)="onSearch(table, search)" placeholder="Search..." />
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="title" style="width:40%">Title <p-sortIcon field="title"></p-sortIcon></th>
+            <th pSortableColumn="createdAt" style="width:20%">Time <p-sortIcon field="createdAt"></p-sortIcon></th>
+            <th pSortableColumn="votes" style="width:20%">Votes <p-sortIcon field="votes"></p-sortIcon></th>
+            <th pSortableColumn="views" style="width:20%">Views <p-sortIcon field="views"></p-sortIcon></th>
+            <th pSortableColumn="answers" style="width:20%">Answers <p-sortIcon field="answers"></p-sortIcon></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-question>
+        <tr>
+            <td>
+                <a [routerLink]="'/questions/' + question._id" class="docs-link">
+                    <h3 class="question__title">{{question.title}}</h3>
+                </a>
+                <small>By adnan</small>
+            </td>
+            <td>{{question.createdAt | date: 'dd/MM/yyyy'}}</td>
+            <td>{{question.votes}}</td>
+            <td>{{question.views}}</td>
+            <td>{{question.answers.length}}</td>
+            <td>
+                <p-button
+                    (onClick)="remove(question._id)"
+                    icon="pi pi-trash"
+                    styleClass="p-button-danger"
+                ></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-toast></p-toast>
