@@ -29,6 +29,8 @@ import { TreeModule } from 'primeng/tree';
 import { TooltipModule } from "primeng/tooltip";
 import { ToastModule } from "primeng/toast";
 import { BreadcrumbModule } from "primeng/breadcrumb";
+import { QuestionsComponent } from './toolkit/questions/questions.component';
+import { QuestionComponent } from './question/question.component';
 
 
 
@@ -45,7 +47,9 @@ import { BreadcrumbModule } from "primeng/breadcrumb";
     InformationComponent,
     CollectionComponent,
     ChangePasswordComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    QuestionsComponent,
+    QuestionComponent
   ],
   imports: [
     CommonModule,

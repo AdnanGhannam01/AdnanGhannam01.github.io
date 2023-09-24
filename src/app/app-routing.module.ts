@@ -15,6 +15,8 @@ import { InformationComponent } from './pages/profile/information/information.co
 import { CollectionComponent } from './pages/profile/collection/collection.component';
 import { ChangePasswordComponent } from './pages/profile/change-password/change-password.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { QuestionsComponent } from './pages/toolkit/questions/questions.component';
+import { QuestionComponent } from './pages/question/question.component';
 
 const routes: Routes = [
   {
@@ -35,10 +37,12 @@ const routes: Routes = [
         component: ToolkitComponent,
         children: [
           { path: "", component: TutorialsComponent },
-          { path: "references", component: ReferencesComponent }
+          { path: "references", component: ReferencesComponent },
+          { path: "questions", component: QuestionsComponent }
         ]
       },
       { path: "articles/:id", component: ArticleComponent },
+      { path: "questions/:id", component: QuestionComponent },
       {
         path: "profile",
         component: ProfileComponent,

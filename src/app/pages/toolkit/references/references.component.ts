@@ -23,7 +23,6 @@ export class ReferencesComponent {
           .subscribe({
             next: ({ data }) => {
               this.sections = data;
-              console.log(data)
             },
             error: err => {
               console.error("FETCHING ERROR", err.error);

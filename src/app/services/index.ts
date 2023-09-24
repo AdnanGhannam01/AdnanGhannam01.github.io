@@ -57,3 +57,25 @@ export interface Collection {
     articles: Article[];
     lastModifyAt: number;
 }
+
+export interface Answer {
+    _id: string;
+    user: User;
+    content: string;
+    createdAt: number;
+    lastModifyAt: number;
+    votes: number;
+    isCorrect: boolean;
+}
+
+export interface Question {
+    _id: string;
+    title: string;
+    content: string;
+    createdAt: number;
+    lastModifyAt: number;
+    user?: User;
+    views: number;
+    votes: number;
+    answers: Answer[];
+}

@@ -1,0 +1,15 @@
+:host {
+    display: block;
+    padding: 2em 0;
+
+    ::ng-deep {
+        .question {
+            &__title {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 300px;
+            }
+        }
+    }
+}

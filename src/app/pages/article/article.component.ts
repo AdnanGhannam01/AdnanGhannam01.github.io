@@ -92,7 +92,7 @@ export class ArticleComponent {
               });
           },
           error: err => {
-            // this.router.navigate(["/not-found"]);
+            this.router.navigate(["/not-found"]);
           }
         });
     });

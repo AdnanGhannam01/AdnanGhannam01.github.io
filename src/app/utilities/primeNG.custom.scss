@@ -62,4 +62,11 @@ docs-root {
             }
         }
     }
+
+    .p-datatable-table {
+        .p-datatable-thead {
+            font-size: .9em;
+            white-space: nowrap;
+        }
+    }
 }
