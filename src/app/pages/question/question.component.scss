@@ -1,0 +1,33 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+    padding: 2em 0;
+
+    .question {
+        &__card {
+            @include mixin.flex(stretch, flex-start);
+            gap: 1em;
+            padding: 1em;
+            border: 1px solid var(--clr-border) !important;
+
+            &:not:last-child {
+                border-bottom: 0;
+            }
+            
+            &.question {
+                margin-bottom: 1em;
+                border-radius: 5px;
+            }
+
+            &.write {
+                margin-top: 1em;
+            }
+        }
+
+        &__votes {
+            @include mixin.flex(center, center, column);
+            gap: .1em;
+        }
+    }
+}

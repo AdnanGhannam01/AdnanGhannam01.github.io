@@ -1,1 +1,53 @@
-<p>question works!</p>
+<div class="container">
+    <div class="question__card question">
+        <div class="question__votes">
+            <p-button icon="pi pi-angle-up" styleClass="p-button-rounded p-button-primary p-button-text"></p-button>
+            <strong>10</strong>
+            <p-button icon="pi pi-angle-down" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+        </div>
+        <div class="question__content">
+            <div class="question__header">
+                <h3>Q: New to the community? Introduce yourself here! [January 2021]</h3>
+                <small>Posted by adnan from 2 years, 7 months ago | 5 Answers</small>
+            </div>
+            <p-divider></p-divider>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae voluptate eum at vero cumque quibusdam quae deserunt temporibus in? Et, delectus illum. Magnam rem fugit nulla architecto, ducimus fugiat esse labore itaque aspernatur necessitatibus non maiores incidunt eveniet consectetur. Repellat rem labore iure dolore numquam odio laboriosam nihil. Sint molestias voluptate voluptatibus commodi tenetur pariatur earum modi, a quam, laborum, similique dignissimos? Consequuntur porro reprehenderit similique enim molestias assumenda cupiditate, error iure praesentium ipsam aut nihil dolore et tenetur neque velit quia sit repellat nostrum nulla fuga consectetur animi. Quisquam labore commodi saepe eum omnis pariatur sit numquam quos tempore.
+        </div>
+    </div>
+
+    <p-dataView [value]="answers"  [sortField]="sortField" [sortOrder]="sortOrder">
+        <ng-template pTemplate="header">
+            <div class="p-dataview-header--flex">
+                <h4>Answers ({{ answers.length }})</h4>
+                <p-dropdown [options]="sortOptions" placeholder="Sort By Votes" (onChange)="onSortChange($event)"></p-dropdown>
+            </div>
+        </ng-template>
+        <ng-template let-answer pTemplate="listItem">
+            <div class="question__card">
+                <div class="question__votes">
+                    <p-button icon="pi pi-angle-up" styleClass="p-button-rounded p-button-primary p-button-text"></p-button>
+                    <strong>{{answer.votes}}</strong>
+                    <p-button icon="pi pi-angle-down" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+                </div>
+                <div class="question__content">
+                    <div class="question__header">
+                        <p>Answered by {{ answer.user?.name}} from 2 years, 7 months ago</p>
+                    </div>
+                    <p-divider></p-divider>
+                    {{ answer.content }}
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+
+    <div class="question__card write">
+        <div>
+            <h3>Write your answer:</h3>
+            <!-- TODO text editor -->
+            <p-button
+                label="Submit"
+                styleClass="p-button-success"
+            ></p-button>
+        </div>
+    </div>
+</div>

@@ -31,6 +31,8 @@ import { ToastModule } from "primeng/toast";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 import { QuestionsComponent } from './toolkit/questions/questions.component';
 import { QuestionComponent } from './question/question.component';
+import { DataViewModule } from "primeng/dataview";
+import { DropdownModule } from "primeng/dropdown";
 
 
 
@@ -68,7 +70,9 @@ import { QuestionComponent } from './question/question.component';
     TreeModule,
     TooltipModule,
     ToastModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    DataViewModule,
+    DropdownModule
   ],
   providers: [ConfirmationService, MessageService]
 })

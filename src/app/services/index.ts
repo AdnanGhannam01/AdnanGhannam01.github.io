@@ -60,12 +60,12 @@ export interface Collection {
 
 export interface Answer {
     _id: string;
-    user: User;
+    user?: User;
     content: string;
     createdAt: number;
     lastModifyAt: number;
     votes: number;
-    isCorrect: boolean;
+    isCorrect?: boolean;
 }
 
 export interface Question {

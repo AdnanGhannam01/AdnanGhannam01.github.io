@@ -69,4 +69,13 @@ docs-root {
             white-space: nowrap;
         }
     }
+
+    .p-dataview {
+        .p-dataview-header {
+            &--flex {
+                @include mixin.flex(space-between);
+                gap: 1em;
+            }
+        }
+    }
 }
