@@ -156,11 +156,4 @@ export class ArticleComponent {
     this.articleService.reactToArticle(this.article!._id, "dislike")
       .subscribe();
   }
-
-  open() {
-    this.messageService.add({ severity: 'warn', life: 100000000, summary: 'Error', detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni voluptate qui maxime, ex dolores." });
-    this.messageService.add({ severity: 'info', life: 100000000, summary: 'Error', detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni voluptate qui maxime, ex dolores." });
-    this.messageService.add({ severity: 'success', life: 100000000, summary: 'Error', detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni voluptate qui maxime, ex dolores." });
-    this.messageService.add({ severity: 'error', life: 100000000, summary: 'Error', detail: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni voluptate qui maxime, ex dolores." });
-  }
 }

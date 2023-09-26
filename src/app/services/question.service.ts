@@ -16,4 +16,22 @@ export class QuestionService {
 
     return this.http.post<ApiResponse<Question>>("/questions/toolkits/" + toolkitId, { title, content }, { headers });
   }
+
+  getAll(toolkitId: string) {
+    return this.http.get<ApiResponse<Question[]>>("/questions/toolkits/" + toolkitId);
+  }
+
+  getOne(id: string) {
+    return this.http.get<ApiResponse<Question>>("/questions/" + id);
+  }
+
+  remove(id: string) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.delete<any>("/questions/" + id, { headers });
+  }
+
+  sendAnswer(id: string, content: string) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.post<any>('/questions/answer/' + id, { content }, { headers });
+  }
 }

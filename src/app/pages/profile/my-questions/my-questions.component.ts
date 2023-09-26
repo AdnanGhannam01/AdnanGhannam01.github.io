@@ -10,28 +10,7 @@ import { QuestionService } from 'src/app/services/question.service';
   styleUrls: ['./my-questions.component.scss']
 })
 export class MyQuestionsComponent {
-  questions: Question[] = [
-    {
-      _id: "",
-      title: "How to use angular cli",
-      content: "",
-      answers: [],
-      createdAt: Date.now(),
-      lastModifyAt: Date.now(),
-      views: 10,
-      votes: -3
-    },
-    {
-      _id: "",
-      title: "How to use angular cli How to use angular cli 22How to use angular cli 2",
-      content: "",
-      answers: [],
-      createdAt: Date.now(),
-      lastModifyAt: Date.now(),
-      views: 100,
-      votes: 22 
-    }
-  ];
+  questions: Question[] = []; 
 
   constructor(private questionService: QuestionService,
               private messageService: MessageService) { }

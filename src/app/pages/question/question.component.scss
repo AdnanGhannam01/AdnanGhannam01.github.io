@@ -25,9 +25,21 @@
             }
         }
 
+        &__header {
+            @include mixin.flex(space-between);
+        }
+
+        &__content {
+            flex: 1;
+        }
+
         &__votes {
             @include mixin.flex(center, center, column);
             gap: .1em;
+        }
+
+        &__editor {
+            margin: 1em 0;
         }
     }
 }

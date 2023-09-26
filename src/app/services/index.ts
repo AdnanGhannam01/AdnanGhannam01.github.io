@@ -60,7 +60,7 @@ export interface Collection {
 
 export interface Answer {
     _id: string;
-    user?: User;
+    user: User;
     content: string;
     createdAt: number;
     lastModifyAt: number;
@@ -74,7 +74,7 @@ export interface Question {
     content: string;
     createdAt: number;
     lastModifyAt: number;
-    user?: User;
+    user: User;
     views: number;
     votes: number;
     answers: Answer[];

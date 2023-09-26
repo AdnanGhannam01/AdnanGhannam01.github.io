@@ -1,4 +1,4 @@
-<p-table [value]="questions" [tableStyle]="{'min-width': '60rem', 'border-bottom': '1px solid var(--clr-border)'}">
+<p-table [value]="questions" [tableStyle]="{'min-width': '60rem', 'border-bottom': '1px solid var(--clr-border)'}" [loading]="loading">
     <ng-template pTemplate="caption">
         <div class="docs-flex">
             <h4>Questions ({{ questions.length }})</h4>

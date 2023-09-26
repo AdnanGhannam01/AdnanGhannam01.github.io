@@ -67,4 +67,14 @@ export class AuthService {
 
     return null;
   }    
+
+  isOwner(id: string) {
+    if (this.isLoggedOut()) return false;
+
+    const userId = localStorage.getItem("id");
+
+    if (id != userId) return false;
+
+    return true;
+  }
 }
