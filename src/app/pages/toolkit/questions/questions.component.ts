@@ -19,10 +19,10 @@ export class QuestionsComponent {
 
   ngOnInit() {
     this.activedRoute.parent?.paramMap.subscribe(params => {
-      const id = params.get("id");
+      this.id = params.get("id") ?? "";
 
-      if (id) {
-        this.questionService.getAll(id)
+      if (this.id) {
+        this.questionService.getAll(this.id)
           .subscribe({
             next: ({ data }) => {
               this.loading = false;

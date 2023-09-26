@@ -73,6 +73,9 @@ export class QuestionComponent {
         next: () => {
           this.loading = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Answer Sent' });
+          setTimeout(() => {
+            location.reload();
+          }, 1500);
         },
         error: (err) => {
           this.loading = false;
@@ -92,6 +95,23 @@ export class QuestionComponent {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Question deleted' });
           setTimeout(() => {
             this.router.navigate(['/']);
+          }, 1500);
+        },
+        error: (err) => {
+          err.error.errors.forEach(
+            (error: any) => 
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+        }
+      });
+  }
+
+  deleteAnswer(id: string) {
+    this.questionService.removeAnswer(id)
+      .subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Answer deleted' });
+          setTimeout(() => {
+            location.reload();
           }, 1500);
         },
         error: (err) => {

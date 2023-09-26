@@ -31,6 +31,11 @@
 
         &__content {
             flex: 1;
+            overflow: auto;
+            
+            &__text {
+                overflow: auto;
+            }
         }
 
         &__votes {

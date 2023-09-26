@@ -27,7 +27,7 @@
                 </div>
             </div>
             <p-divider></p-divider>
-            <p [innerHTML]="question.content"></p>
+            <p class="question__content__text" [innerHTML]="question.content"></p>
         </div>
     </div>
 
@@ -56,13 +56,14 @@
                         <p>Answered by {{ answer.user.name}} at {{ question.createdAt | date:'dd/MM/yyyy' }}</p>
                         <div *ngIf="isOwner(answer.user._id)">
                             <p-button
+                                (onClick)="deleteAnswer(answer._id)"
                                 icon="pi pi-trash"
                                 styleClass="p-button-danger p-button-text"
                             ></p-button>
                         </div>
                     </div>
                     <p-divider></p-divider>
-                    <p [innerHTML]="answer.content"></p>
+                    <p class="question__content__text" [innerHTML]="answer.content"></p>
                 </div>
             </div>
         </ng-template>
