@@ -9,6 +9,8 @@ import { QuestionService } from 'src/app/services/question.service';
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent {
+  id = "";
+
   questions: Question[] = [
     {
       _id: "",
@@ -37,9 +39,9 @@ export class QuestionsComponent {
 
   ngOnInit() {
     this.activedRoute.parent?.paramMap.subscribe(params => {
-      const id = params.get("id");
+      this.id = params.get("id") ?? "";
       
-      if (id) {
+      if (this.id) {
         // this.sectionService.getAll(id, "reference")
         //   .subscribe({
         //     next: ({ data }) => {

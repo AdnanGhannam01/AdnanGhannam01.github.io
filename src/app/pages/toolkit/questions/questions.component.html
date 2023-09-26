@@ -1,4 +1,14 @@
 <p-table [value]="questions" [tableStyle]="{'min-width': '60rem', 'border-bottom': '1px solid var(--clr-border)'}">
+    <ng-template pTemplate="caption">
+        <div class="docs-flex">
+            <h4>Questions ({{ questions.length }})</h4>
+            <p-button
+                label="Ask a question"
+                [routerLink]="'/ask-question/' + id"
+                styleClass="p-button-primaryj"
+            ></p-button>
+        </div>
+    </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th pSortableColumn="title" style="width:40%">Title <p-sortIcon field="title"></p-sortIcon></th>

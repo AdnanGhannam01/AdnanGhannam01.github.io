@@ -1,0 +1,17 @@
+<div class="container">
+    <form (submit)="onSubmit()">
+        <h2>Write your question:</h2>
+        <div class="ask-question__editor">
+            <input type="text" placeholder="Title..." name="title" pInputText [(ngModel)]="title" />
+            <p-editor name="editor" [(ngModel)]="content" [style]="{ height: '320px' }"></p-editor>
+        </div>
+        <p-button
+            [loading]="loading"
+            label="Submit"
+            type="submit"
+            styleClass="p-button-success"
+        ></p-button>
+    </form>
+</div>
+
+<p-toast></p-toast>

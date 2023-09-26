@@ -18,6 +18,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { QuestionsComponent } from './pages/toolkit/questions/questions.component';
 import { QuestionComponent } from './pages/question/question.component';
 import { MyQuestionsComponent } from './pages/profile/my-questions/my-questions.component';
+import { AskQuestionComponent } from './pages/ask-question/ask-question.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,7 @@ const routes: Routes = [
           { path: "my-questions", component: MyQuestionsComponent },
         ]
       },
+      { path: "ask-question/:id", component: AskQuestionComponent },
       { path: "", component: HomeComponent },
       { path: "**", component: NotFoundComponent }
     ]

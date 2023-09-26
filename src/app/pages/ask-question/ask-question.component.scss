@@ -1,0 +1,14 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+    padding: 2em 0;
+    
+    .ask-question {
+        &__editor {
+            @include mixin.flex(stretch, stretch, column);
+            gap: 1em;
+            margin: 1em 0;
+        }
+    }
+}

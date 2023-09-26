@@ -34,6 +34,8 @@ import { QuestionComponent } from './question/question.component';
 import { DataViewModule } from "primeng/dataview";
 import { DropdownModule } from "primeng/dropdown";
 import { MyQuestionsComponent } from './profile/my-questions/my-questions.component';
+import { AskQuestionComponent } from './ask-question/ask-question.component';
+import { EditorModule } from "primeng/editor";
 
 
 
@@ -53,7 +55,8 @@ import { MyQuestionsComponent } from './profile/my-questions/my-questions.compon
     NotFoundComponent,
     QuestionsComponent,
     QuestionComponent,
-    MyQuestionsComponent
+    MyQuestionsComponent,
+    AskQuestionComponent
   ],
   imports: [
     CommonModule,
@@ -74,7 +77,8 @@ import { MyQuestionsComponent } from './profile/my-questions/my-questions.compon
     ToastModule,
     BreadcrumbModule,
     DataViewModule,
-    DropdownModule
+    DropdownModule,
+    EditorModule
   ],
   providers: [ConfirmationService, MessageService]
 })
