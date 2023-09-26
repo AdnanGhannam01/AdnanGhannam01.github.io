@@ -10,6 +10,7 @@ import { PagesModule } from './pages/pages.module';
 import { TemplatesModule } from './templates/templates.module';
 import { PreventLoggedInAccessGuard } from './guards/prevent-logged-in-access.guard';
 import { ApiPrefixInterceptor } from './interceptors/http.interceptor';
+import { PreventUnauthenticateAccessGuard } from './guards/prevent-unauthenticate-access.guard';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ApiPrefixInterceptor } from './interceptors/http.interceptor';
   ],
   providers: [
     PreventLoggedInAccessGuard,
+    PreventUnauthenticateAccessGuard,
     { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

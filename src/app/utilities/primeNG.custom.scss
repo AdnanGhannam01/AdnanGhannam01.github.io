@@ -68,6 +68,15 @@ docs-root {
             font-size: .9em;
             white-space: nowrap;
         }
+
+        &.overflow-text {
+            td {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 300px;
+            }
+        }
     }
 
     .p-dataview {

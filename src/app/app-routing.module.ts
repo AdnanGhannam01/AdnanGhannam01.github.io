@@ -19,6 +19,7 @@ import { QuestionsComponent } from './pages/toolkit/questions/questions.componen
 import { QuestionComponent } from './pages/question/question.component';
 import { MyQuestionsComponent } from './pages/profile/my-questions/my-questions.component';
 import { AskQuestionComponent } from './pages/ask-question/ask-question.component';
+import { PreventUnauthenticateAccessGuard } from './guards/prevent-unauthenticate-access.guard';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
       {
         path: "profile",
         component: ProfileComponent,
+        canActivate: [PreventUnauthenticateAccessGuard],
         children: [
           { path: "", component: InformationComponent },
           { path: "collection", component: CollectionComponent },
@@ -55,7 +57,11 @@ const routes: Routes = [
           { path: "my-questions", component: MyQuestionsComponent },
         ]
       },
-      { path: "ask-question/:id", component: AskQuestionComponent },
+      { 
+        path: "ask-question/:id", 
+        component: AskQuestionComponent,
+        canActivate: [PreventUnauthenticateAccessGuard]
+      },
       { path: "", component: HomeComponent },
       { path: "**", component: NotFoundComponent }
     ]
