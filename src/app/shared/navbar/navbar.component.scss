@@ -6,6 +6,10 @@
     display: block;
     box-shadow: var(--bs-primary);
     padding: 1em;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--bg-primary);
     
     .container {
         @include mixin.flex(space-between);
