@@ -12,6 +12,7 @@ import { TabmenuComponent } from './tabmenu/tabmenu.component';
 import { ToolkitSearchComponent } from './toolkit-search/toolkit-search.component';
 import { CardComponent } from './card/card.component';
 import { SidebarModule } from 'primeng/sidebar';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -28,6 +29,7 @@ import { SidebarModule } from 'primeng/sidebar';
   imports: [
     CommonModule,
     AppRoutingModule,
+    FormsModule,
     DialogModule,
     MenuModule,
     ButtonModule,

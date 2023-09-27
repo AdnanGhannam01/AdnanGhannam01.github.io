@@ -9,7 +9,7 @@
     </docs-card>
 </div>
 <div class="tutorials__main">
-    <docs-card *ngFor="let section of sections; index as i"
+    <docs-card *ngFor="let section of visibleSections; index as i"
         [title]="section.title"
         [id]="'section-' + i"
         [flex]="true">
@@ -20,4 +20,5 @@
             {{ article.title }}
         </a>
     </docs-card>
+    <p *ngIf="!visibleSections.length">No Results</p>
 </div>

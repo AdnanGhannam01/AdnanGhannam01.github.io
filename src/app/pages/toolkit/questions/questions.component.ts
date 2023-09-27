@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Question } from 'src/app/services';
 import { AuthService } from 'src/app/services/auth.service';
 import { QuestionService } from 'src/app/services/question.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'docs-questions',
@@ -15,10 +16,12 @@ export class QuestionsComponent {
   isLoggedIn = false;
 
   questions: Question[] = [];
+  visibleQuestions: Question[] = [];
 
   constructor(private activedRoute: ActivatedRoute,
               private auth: AuthService,
-              private questionService: QuestionService) { }
+              private questionService: QuestionService,
+              private searchService: SearchService) { }
 
   ngOnInit() {
     this.isLoggedIn = this.auth.isLoggedIn();
@@ -32,10 +35,15 @@ export class QuestionsComponent {
             next: ({ data }) => {
               this.loading = false;
               this.questions = data;
+              this.visibleQuestions = this.questions;
             },
             error: (err) => { this.loading = false }
           });
       }
+    });
+
+    this.searchService.valueChange.subscribe(val => {
+      this.visibleQuestions = this.questions.filter(question => question.title.toLowerCase().includes(val.toLowerCase()));
     });
   }
 }

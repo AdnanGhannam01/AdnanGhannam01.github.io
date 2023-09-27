@@ -1,11 +1,12 @@
 <p-table 
-    [value]="questions" 
+    *ngIf="visibleQuestions.length"
+    [value]="visibleQuestions" 
     tableStyleClass="overflow-text"
     [tableStyle]="{'min-width': '60rem', 'border-bottom': '1px solid var(--clr-border)'}" 
     [loading]="loading">
     <ng-template pTemplate="caption">
         <div class="docs-flex">
-            <h4>Questions ({{ questions.length }})</h4>
+            <h4>Questions ({{ visibleQuestions.length }})</h4>
             <p-button
                 *ngIf="isLoggedIn"
                 label="Ask a question"
@@ -38,3 +39,5 @@
         </tr>
     </ng-template>
 </p-table>
+
+<p *ngIf="!visibleQuestions.length">No Results</p>

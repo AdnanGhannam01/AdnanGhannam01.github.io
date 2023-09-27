@@ -1,9 +1,13 @@
-<div class="references__section" *ngFor="let section of sections">
-    <h2 class="references__section__title">{{ section.title }}</h2>
-    <div class="references__article" *ngFor="let article of section.articles">
-        <h3 class="references__article__title">
-            <a class="docs-link" routerLink="#">{{ article.title }}</a>
-        </h3>
-        <small class="references__article__desc">{{ article.description }}</small>
+<div class="references__container" *ngFor="let section of visibleSections">
+    <div *ngIf="section.articles.length" class="references__section">
+        <h2 class="references__section__title">{{ section.title }}</h2>
+        <div class="references__article" *ngFor="let article of section.articles">
+            <h3 class="references__article__title">
+                <a class="docs-link" routerLink="#">{{ article.title }}</a>
+            </h3>
+            <small class="references__article__desc">{{ article.description }}</small>
+        </div>
     </div>
 </div>
+
+<p *ngIf="!visibleSections.length">No Results</p>
