@@ -13,6 +13,8 @@ import { SectionService } from 'src/app/services/section.service';
   styleUrls: ['./tutorials.component.scss']
 })
 export class TutorialsComponent {
+  loading = true;
+
   sections: Section[] = [];
   visibleSections: Section[] = [];
 
@@ -29,10 +31,14 @@ export class TutorialsComponent {
         this.sectionService.getAll(id, "tutorial")
           .subscribe({
             next: ({ data }) => {
+              setTimeout(() => {
+              this.loading = false;
               this.sections = data;
               this.visibleSections = this.sections;
+              }, 2000);
             },
             error: err => {
+              this.loading = false;
               console.error("FETCHING ERROR", err.error);
             }
           });

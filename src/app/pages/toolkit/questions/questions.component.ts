@@ -16,7 +16,7 @@ export class QuestionsComponent {
   isLoggedIn = false;
 
   questions: Question[] = [];
-  visibleQuestions: Question[] = [];
+  visibleQuestions?: Question[];
 
   constructor(private activedRoute: ActivatedRoute,
               private auth: AuthService,

@@ -10,6 +10,8 @@ import { SectionService } from 'src/app/services/section.service';
   styleUrls: ['./references.component.scss']
 })
 export class ReferencesComponent {
+  loading = true;
+
   sections: Section[] = [];
   visibleSections: Section[] = [];
 
@@ -25,10 +27,12 @@ export class ReferencesComponent {
         this.sectionService.getAll(id, "reference")
           .subscribe({
             next: ({ data }) => {
+              this.loading = false;
               this.sections = data;
               this.visibleSections = this.sections;
             },
             error: err => {
+              this.loading = false;
               console.error("FETCHING ERROR", err.error);
             }
           });

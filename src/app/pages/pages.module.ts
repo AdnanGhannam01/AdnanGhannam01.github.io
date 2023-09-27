@@ -36,6 +36,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { MyQuestionsComponent } from './profile/my-questions/my-questions.component';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { EditorModule } from "primeng/editor";
+import { SkeletonModule } from "primeng/skeleton";
 
 
 
@@ -78,7 +79,8 @@ import { EditorModule } from "primeng/editor";
     BreadcrumbModule,
     DataViewModule,
     DropdownModule,
-    EditorModule
+    EditorModule,
+    SkeletonModule
   ],
   providers: [ConfirmationService, MessageService]
 })

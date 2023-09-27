@@ -1,3 +1,16 @@
+<div class="references__container" *ngFor="let i of [1, 2]">
+    <div *ngIf="loading" class="references__section">
+        <h2 class="references__section__title">
+            <p-skeleton height="2rem"></p-skeleton>
+        </h2>
+        <div class="references__article" *ngFor="let j of [1, 2, 3]">
+            <p-skeleton height="1rem"></p-skeleton>
+            <br>
+            <p-skeleton height="1rem"></p-skeleton>
+        </div>
+    </div>
+</div>
+
 <div class="references__container" *ngFor="let section of visibleSections">
     <div *ngIf="section.articles.length" class="references__section">
         <h2 class="references__section__title">{{ section.title }}</h2>
@@ -10,4 +23,4 @@
     </div>
 </div>
 
-<p *ngIf="!visibleSections.length">No Results</p>
+<p *ngIf="!visibleSections.length && !loading">No Results</p>

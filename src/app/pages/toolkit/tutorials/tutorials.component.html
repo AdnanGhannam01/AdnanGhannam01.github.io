@@ -1,5 +1,11 @@
 <div class="tutorials__sidebar">
+    <docs-card *ngIf="loading"
+        title="Loading Sections"
+        [flex]="true">
+        <p-skeleton *ngFor="let i of [1, 2]"></p-skeleton>
+    </docs-card>
     <docs-card
+        *ngIf="!loading"
         [title]="'Sections (' + sections.length + ')'">
         <a *ngFor="let section of sections; index as i"
             class="docs-link" 
@@ -8,7 +14,19 @@
         >{{ section.title }}</a>
     </docs-card>
 </div>
+
 <div class="tutorials__main">
+    <docs-card *ngIf="loading"
+        title="Loading..."
+        [flex]="true">
+        <p-skeleton *ngFor="let i of [1, 2, 3]"></p-skeleton>
+    </docs-card>
+    <docs-card *ngIf="loading"
+        title="Loading..."
+        [flex]="true">
+        <p-skeleton *ngFor="let i of [1, 2, 3]"></p-skeleton>
+    </docs-card>
+
     <docs-card *ngFor="let section of visibleSections; index as i"
         [title]="section.title"
         [id]="'section-' + i"
@@ -20,5 +38,6 @@
             {{ article.title }}
         </a>
     </docs-card>
-    <p *ngIf="!visibleSections.length">No Results</p>
+
+    <p *ngIf="!visibleSections.length && !loading">No Results</p>
 </div>
