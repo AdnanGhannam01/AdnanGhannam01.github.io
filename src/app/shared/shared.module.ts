@@ -13,6 +13,8 @@ import { ToolkitSearchComponent } from './toolkit-search/toolkit-search.componen
 import { CardComponent } from './card/card.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { FormsModule } from '@angular/forms';
+import { LoadingComponent } from './loading/loading.component';
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 
 
 
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     TabmenuComponent,
     ToolkitSearchComponent,
-    CardComponent
+    CardComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     DialogModule,
     MenuModule,
     ButtonModule,
-    SidebarModule
+    SidebarModule,
+    ProgressSpinnerModule
   ],
   exports: [
     LogoComponent,
@@ -42,7 +46,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     TabmenuComponent,
     ToolkitSearchComponent,
-    CardComponent
+    CardComponent,
+    LoadingComponent
   ],
 })
 export class SharedModule { }

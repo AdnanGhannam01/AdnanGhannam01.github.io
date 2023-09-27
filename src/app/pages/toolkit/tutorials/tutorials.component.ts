@@ -31,11 +31,9 @@ export class TutorialsComponent {
         this.sectionService.getAll(id, "tutorial")
           .subscribe({
             next: ({ data }) => {
-              setTimeout(() => {
               this.loading = false;
               this.sections = data;
               this.visibleSections = this.sections;
-              }, 2000);
             },
             error: err => {
               this.loading = false;

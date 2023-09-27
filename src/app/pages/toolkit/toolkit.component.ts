@@ -12,6 +12,7 @@ import { TabMenuItem } from 'src/app/shared/tabmenu/tabmenu.component';
   styleUrls: ['./toolkit.component.scss']
 })
 export class ToolkitComponent implements OnInit {
+  loading = true;
   toolkit?: Toolkit;
   
   tabMenuItems: TabMenuItem[] = [
@@ -34,9 +35,11 @@ export class ToolkitComponent implements OnInit {
       this.toolkitService.getOne(id)
         .subscribe({
           next: ({ data }) => {
+            this.loading = false;
             this.toolkit = data;
           },
           error: err => {
+            this.loading = false;
             this.router.navigate(['not-found']);
           }
         })
