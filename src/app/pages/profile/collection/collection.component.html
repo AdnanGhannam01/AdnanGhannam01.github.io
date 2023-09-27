@@ -1,5 +1,5 @@
 <p-table #table 
-    [value]="collection?.articles || []"
+    [value]="collection?.articles || [1, 2, 3]"
     [tableStyle]="{ 'min-width': '50rem' }"
     tableStyleClass="overflow-text"
     [globalFilterFields]="['title', 'description', 'toolkit', 'section']">
@@ -16,7 +16,13 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-article>
-        <tr>
+        <tr *ngIf="loading">
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+        </tr>
+        <tr *ngIf="!loading">
             <td>
                 <a 
                     [title]="article.title"

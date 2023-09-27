@@ -34,7 +34,7 @@ export class NavbarComponent {
     {
       label: "View Collection",
       icon: "pi pi-bookmark",
-      url: "/collection",
+      url: "/profile/collection",
     },
     {
       separator: true

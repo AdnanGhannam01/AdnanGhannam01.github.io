@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./collection.component.scss']
 })
 export class CollectionComponent {
+  loading = true;
   collection?: Collection;
 
   constructor(private userService: UserService,
@@ -18,6 +19,7 @@ export class CollectionComponent {
   ngOnInit() {
     this.userService.getCollection()
       .subscribe(({ data }) => {
+        this.loading = false;
         this.collection = data;
       });
   }

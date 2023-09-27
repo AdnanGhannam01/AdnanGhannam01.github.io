@@ -10,7 +10,8 @@ import { QuestionService } from 'src/app/services/question.service';
   styleUrls: ['./my-questions.component.scss']
 })
 export class MyQuestionsComponent {
-  questions: Question[] = []; 
+  loading = true;
+  questions?: Question[];
 
   constructor(private questionService: QuestionService,
               private messageService: MessageService) { }

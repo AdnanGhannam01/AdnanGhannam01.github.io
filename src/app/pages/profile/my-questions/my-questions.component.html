@@ -1,6 +1,7 @@
 <p-table #table 
-    [value]="questions"
+    [value]="questions|| [1, 2, 3]"
     [tableStyle]="{ 'min-width': '50rem' }"
+    tableStyleClass="overflow-text"
     [globalFilterFields]="['title', 'description', 'toolkit', 'section']">
     <ng-template pTemplate="caption">
         <input #search pInputText type="text" (input)="onSearch(table, search)" placeholder="Search..." />
@@ -16,7 +17,14 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-question>
-        <tr>
+        <tr *ngIf="loading">
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+        </tr>
+        <tr *ngIf="!loading">
             <td>
                 <a [routerLink]="'/questions/' + question._id" class="docs-link">
                     <h3 class="question__title">{{question.title}}</h3>

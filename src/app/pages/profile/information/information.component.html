@@ -1,8 +1,9 @@
-<form *ngIf="user">
+<form>
     <docs-card [flex]="true" title="Profile Information">
         <div class="form-input">
             <strong><label htmlFor="name">Username</label></strong>
-            <p *ngIf="!editMode">{{ user.name }}</p>
+            <p-skeleton width="10rem" height="1.5rem" *ngIf="loading"></p-skeleton>
+            <p *ngIf="!editMode">{{ user?.name }}</p>
             <input
                 [(ngModel)]="user.name"
                 pInputText 
@@ -11,14 +12,15 @@
                 [required]="true"
                 type="email"
                 [style]="{ width: '100%' }"
-                *ngIf="editMode"
+                *ngIf="user && editMode"
                 aria-describedby="name-help" />
             <small id="name-help"></small>
         </div>
 
         <div class="form-input">
             <strong><label htmlFor="email">Email</label></strong>
-            <p *ngIf="!editMode">{{ user.email }}</p>
+            <p-skeleton width="10rem" height="1.5rem" *ngIf="loading"></p-skeleton>
+            <p *ngIf="!editMode">{{ user?.email }}</p>
             <input
                 [(ngModel)]="user.email"
                 pInputText 
@@ -26,7 +28,7 @@
                 name="email"
                 [required]="true"
                 [style]="{ width: '100%' }"
-                *ngIf="editMode"
+                *ngIf="user && editMode"
                 aria-describedby="email-help" />
             <small id="email-help"></small>
         </div>
@@ -44,7 +46,7 @@
                 styleClass="p-button-success"
                 (onClick)="exit(true)"
                 *ngIf="editMode"
-                [loading]="loading"
+                [loading]="sending"
             ></p-button>
             <p-button
                 label="Cancel"

@@ -9,9 +9,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./information.component.scss']
 })
 export class InformationComponent {
+  loading = true;
   editMode = false;
   user?: User;
-  loading = false;
+  sending = false;
 
   constructor(private userService: UserService,
               private messageService: MessageService) { }
@@ -19,22 +20,23 @@ export class InformationComponent {
   ngOnInit() {
     this.userService.getProfile()
       .subscribe(({ data }) => {
+        this.loading = false;
         this.user = data;
       });
   }
 
   exit(save: boolean) {
     if (save && this.user) {
-      this.loading = true;
+      this.sending = true;
       this.userService.updateProfile(this.user.name, this.user.email)
         .subscribe({
           next: () => {
-            this.loading = false;
+            this.sending = false;
             this.editMode = false;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Information updated' });
           },
           error: err => {
-            this.loading = false;
+            this.sending = false;
             err.error.errors.forEach(
               (error: any) => 
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
