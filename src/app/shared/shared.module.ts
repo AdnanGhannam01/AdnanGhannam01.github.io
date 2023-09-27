@@ -15,6 +15,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from './loading/loading.component';
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { DividerModule } from 'primeng/divider';
 
 
 
@@ -37,7 +38,8 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
     MenuModule,
     ButtonModule,
     SidebarModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DividerModule
   ],
   exports: [
     LogoComponent,

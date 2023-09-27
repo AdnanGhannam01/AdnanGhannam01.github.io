@@ -13,7 +13,6 @@
     
     .container {
         @include mixin.flex(space-between);
-        gap: 1.5em;
     }
 
     .navbar {
@@ -35,6 +34,12 @@
 
                 @include mediaQuery.Tablets {
                     display: block;
+                }
+            }
+
+            &__divider {
+                @include mediaQuery.Tablets {
+                    display: none;
                 }
             }
         }

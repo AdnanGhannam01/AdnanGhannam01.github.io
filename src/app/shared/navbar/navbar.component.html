@@ -5,7 +5,8 @@
         class="navbar__menu-btn"
         (onClick)="sidebarVisible = true"
     ></p-button>
-    <a class="docs-logo" routerLink="/"></a>
+    <a class="docs-logo docs-link" routerLink="/"></a>
+    <p-divider class="navbar__divider" layout="vertical"></p-divider>
 
     <ul class="docs-list navbar__list">
         <li (click)="showDialog('lang')" class="docs-list__item">Languages</li>

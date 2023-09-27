@@ -1,4 +1,16 @@
+@use "../../utilities/mixin.scss";
+
 :host {
-    display: block;
-    width: 84px;
+    @include mixin.flex(flex-start);
+    gap: .75em;
+
+    .logo {
+        &__img {
+            height: 40px;
+        }
+
+        &__bold {
+            font-weight: 700;
+        }
+    }
 }
