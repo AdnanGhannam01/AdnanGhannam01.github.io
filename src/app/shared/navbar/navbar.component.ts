@@ -15,7 +15,7 @@ interface Toolkits {
 })
 export class NavbarComponent {
   sidebarVisible = false;
-  visible = false;
+  visible = true;
 
   toolkits: Toolkits = {
     lang: "Languages",

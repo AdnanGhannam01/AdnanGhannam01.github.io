@@ -8,7 +8,7 @@
     padding: 1em;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1200;
     background-color: var(--bg-primary);
     
     .container {
@@ -50,16 +50,16 @@
 
             &__center,
             &__right {
-                padding: 0 1em;
+                padding: .5em 1.5em;
                 flex: 1;
 
                 .title {
-                    margin-bottom: .75em;
+                    margin-bottom: 1.25em;
                     font-size: 1.4em;
                 }
 
                 .docs-link {
-                    margin-bottom: .5em;
+                    margin-bottom: 1em;
                     display: block;
                 }
             }
@@ -92,6 +92,7 @@
                     padding: 1em 0;
                 }
             }
+            .docs-link  { text-align: center !important }
         }
     }
 }
