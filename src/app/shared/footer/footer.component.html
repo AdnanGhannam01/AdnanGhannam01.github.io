@@ -1,21 +1,26 @@
 <div class="container">
-    <div class="footer__section">
+    <div class="footer__section" *ngIf="toolkitsList">
         <h4 class="footer__section__title">Languages</h4>
-        <a routerLink="#" class="docs-link">Python</a>
-        <a routerLink="#" class="docs-link">Javascript</a>
-        <a routerLink="#" class="docs-link">C#</a>
-        <a routerLink="#" class="docs-link">C++</a>
-        <a routerLink="#" class="docs-link">Java</a>
+        <a 
+            [routerLink]="'/toolkits/' + lang._id" 
+            class="docs-link" 
+            *ngFor="let lang of toolkitsList.lang.value"
+        >{{ lang.name }}</a>
     </div>
-    <div class="footer__section">
+    <div class="footer__section" *ngIf="toolkitsList">
         <h4 class="footer__section__title">Libraries</h4>
-        <a routerLink="#" class="docs-link">ReactJS</a>
+        <a 
+            [routerLink]="'/toolkits/' + lib._id" 
+            class="docs-link" 
+            *ngFor="let lib of toolkitsList.lib.value"
+        >{{ lib.name }}</a>
     </div>
-    <div class="footer__section">
+    <div class="footer__section" *ngIf="toolkitsList">
         <h4 class="footer__section__title">Frameworks</h4>
-        <a routerLink="#" class="docs-link">Asp.Net</a>
-        <a routerLink="#" class="docs-link">Asp.Net Core</a>
-        <a routerLink="#" class="docs-link">ExpressJS</a>
-        <a routerLink="#" class="docs-link">NestJS</a>
+        <a 
+            [routerLink]="'/toolkits/' + frame._id" 
+            class="docs-link" 
+            *ngFor="let frame of toolkitsList.frame.value"
+        >{{ frame.name }}</a>
     </div>
 </div>

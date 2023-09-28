@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Section, Toolkit } from 'src/app/services';
 import { AuthService } from 'src/app/services/auth.service';
-
-interface Toolkits {
-  lang: string;
-  lib: string;
-  frame: string;
-}
+import { ToolkitItem, ToolkitService, ToolkitsList } from 'src/app/services/toolkit.service';
 
 @Component({
   selector: 'docs-navbar',
@@ -17,13 +13,11 @@ export class NavbarComponent {
   sidebarVisible = false;
   visible = false;
 
-  toolkits: Toolkits = {
-    lang: "Languages",
-    lib: "Libraries",
-    frame: "Frameworks"
-  }
-
-  selectedToolkit?: string;
+  selectedList?: ToolkitItem;
+  toolkitsList?: ToolkitsList;
+  selectedToolkitId = "";
+  selectedTutorials: Section[] = [];
+  selectedReferences: Section[] = [];
 
   userMenuItems: MenuItem[] = [
     {
@@ -42,18 +36,33 @@ export class NavbarComponent {
     {
       label: "Logout", 
       icon: "pi pi-sign-out",
-      command: () => { this.authService.logout(); location.reload() }
-    }
+      command: () => { this.authService.logout(); location.reload() },
+   }
   ];
 
-  isLoggedIn: boolean;
+  isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService) {
-    this.isLoggedIn = authService.isLoggedIn();
+  constructor(private authService: AuthService,
+              private toolkitService: ToolkitService) { } 
+
+  ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn();
+    this.toolkitsList = this.toolkitService.getAllGrouped();
   }
 
-  showDialog(toolkit: keyof Toolkits) {
-    this.selectedToolkit = this.toolkits[toolkit];
-    this.visible = true;
+  showDialog(toolkit: keyof ToolkitsList) {
+    if (this.toolkitsList)  {
+      this.selectedList = this.toolkitsList[toolkit];
+      this.changeSelected(this.selectedList.value.at(0));
+      this.visible = true;
+    }
+  }
+
+  changeSelected(toolkit?: Toolkit) {
+    if (toolkit) {
+      this.selectedToolkitId = toolkit._id;
+      this.selectedTutorials = toolkit.sections.filter(section => section.type == 'tutorial');
+      this.selectedReferences = toolkit.sections.filter(section => section.type == 'reference');
+    }
   }
 }

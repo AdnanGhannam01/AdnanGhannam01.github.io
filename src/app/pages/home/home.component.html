@@ -12,41 +12,11 @@
             <p>Choose which one you want to start with.</p>
         </div>
         <div class="home__toolkits__items">
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Javascript
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Asp.NET
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                C++
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Angular
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Javascript
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Asp.NET
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                C++
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Angular
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Javascript
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Asp.NET
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                C++
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                Angular
+            <a [routerLink]="'/toolkits/' + toolkit._id"
+                class="docs-link" 
+                docs-home-list-item 
+                *ngFor="let toolkit of toolkits">
+                {{ toolkit.name }}
             </a>
         </div>
     </div>
