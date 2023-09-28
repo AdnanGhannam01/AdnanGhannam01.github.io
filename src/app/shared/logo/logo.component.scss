@@ -1,7 +1,7 @@
 @use "../../utilities/mixin.scss";
 
 :host {
-    @include mixin.flex(flex-start);
+    @include mixin.flex(center);
     gap: .75em;
 
     .logo {
