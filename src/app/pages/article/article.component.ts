@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem, MessageService, TreeNode } from 'primeng/api';
 import { Article, Section } from 'src/app/services';
@@ -65,6 +66,7 @@ export class ArticleComponent {
     private authService: AuthService,
     private messageService: MessageService,
     private articleService: ArticleService,
+    private titleService: Title,
     private userService: UserService) { }
 
   ngOnInit() {
@@ -78,6 +80,7 @@ export class ArticleComponent {
         .subscribe({
           next: ({ data }) => {
             this.article = data;
+            this.titleService.setTitle("TechStack - " + data.title);
 
             this.breadcrumbItems = [
               { label: this.article.toolkit.name, url: `/toolkits/${this.article.toolkit._id}` },

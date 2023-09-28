@@ -27,8 +27,16 @@ const routes: Routes = [
     component: SignComponent,
     canActivate: [PreventLoggedInAccessGuard],
     children: [
-      { path: "login", component: LoginComponent },
-      { path: "register", component: RegisterComponent }
+      {
+        path: "login",
+        component: LoginComponent,
+        title: "Login"
+      },
+      {
+        path: "register",
+        component: RegisterComponent,
+        title: "Register"
+      }
     ]
   },
   {
@@ -51,10 +59,26 @@ const routes: Routes = [
         component: ProfileComponent,
         canActivate: [PreventUnauthenticateAccessGuard],
         children: [
-          { path: "", component: InformationComponent },
-          { path: "collection", component: CollectionComponent },
-          { path: "change-password", component: ChangePasswordComponent },
-          { path: "my-questions", component: MyQuestionsComponent },
+          {
+            path: "",
+            component: InformationComponent,
+            title: "Profile - Information"
+          },
+          {
+            path: "collection", 
+            component: CollectionComponent,
+            title: "Profile - Collection"
+          },
+          {
+            path: "change-password",
+            component: ChangePasswordComponent,
+            title: "Profile - Change Password"
+          },
+          {
+            path: "my-questions",
+            component: MyQuestionsComponent,
+            title: "Profile - My Questions"
+          },
         ]
       },
       { 
@@ -62,7 +86,11 @@ const routes: Routes = [
         component: AskQuestionComponent,
         canActivate: [PreventUnauthenticateAccessGuard]
       },
-      { path: "", component: HomeComponent },
+      {
+        path: "",
+        component: HomeComponent,
+        title: "TechStack - Home"
+      },
       { path: "**", component: NotFoundComponent }
     ]
   }

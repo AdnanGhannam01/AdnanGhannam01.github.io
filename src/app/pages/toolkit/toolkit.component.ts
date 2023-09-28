@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Toolkit } from 'src/app/services';
@@ -24,6 +25,7 @@ export class ToolkitComponent implements OnInit {
 
   constructor(private activedRoute: ActivatedRoute,
               private router: Router,
+              private titleService: Title,
               private toolkitService: ToolkitService) { }
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class ToolkitComponent implements OnInit {
           next: ({ data }) => {
             this.loading = false;
             this.toolkit = data;
+            this.titleService.setTitle("TechStack - " + data.name);
           },
           error: err => {
             this.loading = false;
