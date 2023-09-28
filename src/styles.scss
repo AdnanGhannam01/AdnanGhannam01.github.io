@@ -17,6 +17,7 @@
     --blue-600: #03338f;
     --blue-800: 37, 38, 95;
     --blue-800-a: rgba(var(--blue-800), 0.75);
+    --gray-100: #f9f8f9;
     --gray-200: #d3dce6;
     --gray-400: #a8a8bf;
     --gray-600: #535353;
@@ -26,9 +27,12 @@
     --clr-rounded-border: rgb(var(--blue-400));
     --clr-faded: var(--gray-600);
     --bg-primary: var(--white);
+    --bg-section: var(--gray-100);
 
     --bs-primary: 0px 4px 12px rgba(37,38,94,.06);
     --bs-secondary: 0px 4px 20px rgba(37,38,94,.1);
+
+    --bg-home-header: var(--blue-100);
 
     --bg-footer: #2b324d;
     --clr-footer: var(--white);

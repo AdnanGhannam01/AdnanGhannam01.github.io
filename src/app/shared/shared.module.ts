@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from './loading/loading.component';
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { DividerModule } from 'primeng/divider';
+import { HomeListItemComponent } from './home-list-item/home-list-item.component';
 
 
 
@@ -28,7 +29,8 @@ import { DividerModule } from 'primeng/divider';
     TabmenuComponent,
     ToolkitSearchComponent,
     CardComponent,
-    LoadingComponent
+    LoadingComponent,
+    HomeListItemComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { DividerModule } from 'primeng/divider';
     TabmenuComponent,
     ToolkitSearchComponent,
     CardComponent,
-    LoadingComponent
+    LoadingComponent,
+    HomeListItemComponent
   ],
 })
 export class SharedModule { }

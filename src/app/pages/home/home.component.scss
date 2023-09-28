@@ -1,0 +1,85 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    .home {
+        &__header {
+            @include mixin.flex(center, flex-start, column);
+            gap: 1em;
+            min-height: 60dvh;
+            background-color: var(--bg-home-header);
+        }
+
+        &__section {
+            padding: 4em 0;
+
+            &__title {
+                margin-bottom: .75em;
+                font-weight: 600;
+            }
+        }
+
+        &__toolkits {
+            .container {
+                @include mixin.flex(space-between, flex-start);
+                gap: 2em;
+            }
+
+            &__items {
+                @include mixin.flex(center, center, row, wrap);
+                gap: 1em;
+                flex: 1;
+
+                .docs-link {
+                    flex: 1;
+                    flex-basis: 100px;
+                }
+            }
+        }
+
+        &__articles {
+            background-color: var(--bg-section);
+
+            .home__section__title {
+                text-align: center;
+            }
+
+            &__items {
+                .docs-link {
+                    display: block;
+                    margin: 1em auto;
+                }
+
+                .desc {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        &__questions {
+            .container {
+                @include mixin.flex(space-between, flex-start);
+                gap: 2em;
+            }
+
+            &__items {
+                flex: 1;
+            }
+        }
+
+        &__features {
+            background-color: var(--bg-section);
+            text-align: center;
+
+            &__items {
+                @include mixin.grid(1fr, repeat(auto-fit, minmax(300px, 1fr)), 2em, 2em);
+
+                .title {
+                    font-weight: 600;
+                    margin-bottom: .5em;
+                }
+            }
+        }
+    }
+}
