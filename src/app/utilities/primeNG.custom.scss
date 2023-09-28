@@ -88,3 +88,7 @@ docs-root {
         }
     }
 }
+
+.p-component-overlay {
+    z-index: 1099 !important;
+}
