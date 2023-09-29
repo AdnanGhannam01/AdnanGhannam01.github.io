@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { ApiResponse } from './index';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 export interface Login {
   token: string;
@@ -18,7 +19,7 @@ export class AuthService {
     return localStorage.getItem("token")
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(name: string, password: string, 
       next?: ((value: ApiResponse<Login>) => void), 
@@ -33,7 +34,7 @@ export class AuthService {
       });
   }
 
-  private setSession(authResult: Login) {
+  setSession(authResult: Login) {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     localStorage.setItem('token', authResult.token);
@@ -47,6 +48,7 @@ export class AuthService {
     localStorage.removeItem("expires_at");
     localStorage.removeItem("id");
     localStorage.removeItem("privilege");
+    this.router.navigate(['/']);
   }
 
   public isLoggedIn() {

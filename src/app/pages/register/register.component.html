@@ -34,11 +34,15 @@
         ></p-password>
         <small id="password-help"></small>
     </div>
+    <small>
+        Already have an account?
+        <a routerLink="/s/login" class="docs-link">Login</a>
+    </small>
     <p-button
         type="submit"
         label="Register"
         styleClass="p-button-success"
-        [style]="{ width: '100%' }"
+        [style]="{ width: '100%', 'margin-top': '1em' }"
         [loading]="loading"
     ></p-button>
 </form>

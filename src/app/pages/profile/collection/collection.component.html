@@ -1,61 +1,63 @@
-<p-table #table 
-    [value]="collection?.articles || [1, 2, 3]"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    tableStyleClass="overflow-text"
-    [globalFilterFields]="['title', 'description', 'toolkit', 'section']">
-    <ng-template pTemplate="caption">
-        <input #search pInputText type="text" (input)="onSearch(table, search)" placeholder="Search..." />
-    </ng-template>
-    <ng-template pTemplate="header">
-        <tr>
-            <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
-            <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
-            <th pSortableColumn="toolkit">Toolkit <p-sortIcon field="toolkit.name"></p-sortIcon></th>
-            <th pSortableColumn="section">Section <p-sortIcon field="section.title"></p-sortIcon></th>
-            <th></th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-article>
-        <tr *ngIf="loading">
-            <td><p-skeleton></p-skeleton></td>
-            <td><p-skeleton></p-skeleton></td>
-            <td><p-skeleton></p-skeleton></td>
-            <td><p-skeleton></p-skeleton></td>
-        </tr>
-        <tr *ngIf="!loading">
-            <td>
-                <a 
-                    [title]="article.title"
-                    [routerLink]="'/articles/' + article._id" 
-                    class="docs-link"
-                >{{ article.title }}</a>
-            </td>
-            <td class="collection__desc-cell"
-                [title]="article.description">
-                {{ article.description }}
-            </td>
-            <td>
-                <a
-                    [title]="article.toolkit.name"
-                    [routerLink]="'/toolkits/' + article.toolkit._id" 
-                    class="docs-link"
-                >{{ article.toolkit.name }}</a>
-            </td>
-            <td>
-                <a
-                    [title]="article.section.title"
-                    class="docs-link"
-                >{{ article.section.title }}</a>
-            </td>
-            <td>
-                <p-button
-                    (onClick)="remove(article._id)"
-                    icon="pi pi-trash"
-                    styleClass="p-button-danger"
-                ></p-button>
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
-
+<div [style]="{ 'overflow': 'auto' }">
+    <p-table #table 
+        [value]="collection?.articles || [1, 2, 3]"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        tableStyleClass="overflow-text"
+        [globalFilterFields]="['title', 'description', 'toolkit', 'section']">
+        <ng-template pTemplate="caption">
+            <input #search pInputText type="text" (input)="onSearch(table, search)" placeholder="Search..." />
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
+                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                <th pSortableColumn="toolkit">Toolkit <p-sortIcon field="toolkit.name"></p-sortIcon></th>
+                <th pSortableColumn="section">Section <p-sortIcon field="section.title"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-article>
+            <tr *ngIf="loading">
+                <td><p-skeleton></p-skeleton></td>
+                <td><p-skeleton></p-skeleton></td>
+                <td><p-skeleton></p-skeleton></td>
+                <td><p-skeleton></p-skeleton></td>
+            </tr>
+            <tr *ngIf="!loading">
+                <td>
+                    <a 
+                        [title]="article.title"
+                        [routerLink]="'/articles/' + article._id" 
+                        class="docs-link"
+                    >{{ article.title }}</a>
+                </td>
+                <td class="collection__desc-cell"
+                    [title]="article.description">
+                    {{ article.description }}
+                </td>
+                <td>
+                    <a
+                        [title]="article.toolkit.name"
+                        [routerLink]="'/toolkits/' + article.toolkit._id" 
+                        class="docs-link"
+                    >{{ article.toolkit.name }}</a>
+                </td>
+                <td>
+                    <a
+                        [title]="article.section.title"
+                        class="docs-link"
+                    >{{ article.section.title }}</a>
+                </td>
+                <td>
+                    <p-button
+                        (onClick)="remove(article._id)"
+                        icon="pi pi-trash"
+                        styleClass="p-button-danger"
+                    ></p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p *ngIf="!collection?.articles?.length">No Articles in Your Collection</p>
+</div>
 <p-toast></p-toast>

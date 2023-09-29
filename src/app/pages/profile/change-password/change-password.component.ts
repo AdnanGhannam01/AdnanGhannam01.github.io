@@ -27,7 +27,7 @@ export class ChangePasswordComponent {
             this.loading = false;
             err.error.errors.forEach(
               (error: any) => 
-                this.messageService.add({ life: 10000000, severity: 'error', summary: 'Error', detail: error.message }));
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
           }
         });
     }

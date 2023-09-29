@@ -32,7 +32,7 @@ export class CollectionComponent {
     this.userService.removeFromCollection(id)
       .subscribe(() => {
         this.collection!.articles = this.collection!.articles.filter(article => article._id != id);
-        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Article Deleted' });
+        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Article Deleted From Your Collection' });
       });
   }
 }

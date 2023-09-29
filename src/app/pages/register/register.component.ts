@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Nullable } from 'primeng/ts-helpers';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class RegisterComponent {
 
   constructor(private userService: UserService,
     private messageService: MessageService,
+    private authService: AuthService,
     private router: Router) { }
 
 
@@ -24,6 +26,7 @@ export class RegisterComponent {
         next: ({ data }) => {
           this.loading = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register Success' });
+          this.authService.setSession(data);
           setTimeout(() => {
             this.router.navigate(['/']);
           }, 1500);

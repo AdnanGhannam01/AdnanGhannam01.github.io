@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiResponse, Collection, User } from '.';
 import { Nullable } from 'primeng/ts-helpers';
-import { AuthService } from './auth.service';
+import { AuthService, Login } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class UserService {
               private authService: AuthService) { }
 
   register(name: string, email: string, password: Nullable<string>) {
-    return this.http.post<ApiResponse<User>>("/register", { name, email, password })
+    return this.http.post<ApiResponse<Login>>("/register", { name, email, password })
   }
 
   getProfile() {
@@ -23,6 +23,11 @@ export class UserService {
   updateProfile(name: string, email: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
     return this.http.put<any>("/user", { name, email }, { headers });
+  }
+
+  removeAccount() {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.delete<any>("/user", { headers });
   }
 
   changePassword(password: string, newPassword: string) {

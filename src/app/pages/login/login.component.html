@@ -21,13 +21,18 @@
         ></p-password>
         <small id="password-help"></small>
     </div>
+    <small>
+        Don't have an account?
+        <a routerLink="/s/register" class="docs-link">Create an account</a>
+    </small>
     <p-button
         type="submit"
         label="Login"
         styleClass="p-button-success"
-        [style]="{ width: '100%' }"
+        [style]="{ width: '100%', 'margin-top': '1em' }"
         [loading]="loading"
     ></p-button>
+
 </form>
 
 <p-toast></p-toast>
