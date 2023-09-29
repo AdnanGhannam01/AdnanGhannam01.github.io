@@ -43,12 +43,27 @@ export class AuthService {
     localStorage.setItem("privilege", authResult.privilege);
   }
 
+  getSession() {
+    this.isLoggedIn();
+
+    return {
+      token: localStorage.getItem("token"),
+      expires_at: localStorage.getItem("expires_at"),
+      id: localStorage.getItem("id"),
+      privilege: localStorage.getItem("privilege")
+    };
+  }
+
   logout() {
+    this.clearLocalStorage();
+    this.router.navigate(['/']);
+  }
+
+  clearLocalStorage() {
     localStorage.removeItem("token");
     localStorage.removeItem("expires_at");
     localStorage.removeItem("id");
     localStorage.removeItem("privilege");
-    this.router.navigate(['/']);
   }
 
   public isLoggedIn() {
@@ -67,6 +82,7 @@ export class AuthService {
       return moment(expiresAt);
     }
 
+    this.clearLocalStorage();
     return null;
   }    
 

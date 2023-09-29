@@ -22,8 +22,9 @@ export class ArticleService {
       { headers });
   }
 
-  reactToArticle(id: string, type: string) {
+  reactToArticle(id: string, like: boolean) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    const type = like ? "like" : "dislike";
     return this.http.post<any>(`/react/articles/${id}?type=${type}`, {}, { headers });
   }
 

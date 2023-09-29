@@ -14,6 +14,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent {
+  liked: boolean | null = null;
+
   article?: Article;
   sections: Section[] = [];
   isLoggedIn = false;
@@ -81,6 +83,10 @@ export class ArticleComponent {
           next: ({ data }) => {
             this.article = data;
             this.titleService.setTitle("TechStack - " + data.title);
+            const userId = this.authService.getSession().id;
+            const reaction = data.reactions.find(item => item.user == userId);
+
+            if (reaction) this.liked = reaction.type == "like" ? true : false;
 
             this.breadcrumbItems = [
               { label: this.article.toolkit.name, url: `/toolkits/${this.article.toolkit._id}` },
@@ -122,41 +128,18 @@ export class ArticleComponent {
     }
   }
 
-  liked() {
-    const id = localStorage.getItem("id");
+  toggle(option: boolean) {
+    this.liked = this.liked === option ? null : option;
 
-    if (id && this.article) {
-      const reacted = this.article.reactions.find(reaction => reaction.user == id);
+    if (this.article) {
+      if (this.liked === null) {
+        this.articleService.unreactToArticle(this.article._id)
+          .subscribe(() => console.info("Unreacted"));
+        return;
+      }
 
-      if (!reacted) return null;
-
-      return reacted.type == 'like';
+      this.articleService.reactToArticle(this.article._id, this.liked)
+        .subscribe(() => console.info("Reacted"));
     }
-
-    return null;
-  }
-
-  like() {
-    if (this.liked()) {
-      this.articleService.unreactToArticle(this.article!._id)
-        .subscribe();
-
-      return;
-    }
-
-    this.articleService.reactToArticle(this.article!._id, "like")
-      .subscribe();
-  }
-
-  dislike() {
-    if (this.liked() === false) {
-      this.articleService.unreactToArticle(this.article!._id)
-        .subscribe();
-
-      return;
-    }
-
-    this.articleService.reactToArticle(this.article!._id, "dislike")
-      .subscribe();
   }
 }

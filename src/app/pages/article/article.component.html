@@ -35,18 +35,24 @@
 
         <div class="article__footer">
             <div class="article__footer__btns">
-                <p-button 
-                    [icon]="liked() === true ? 'pi pi-thumbs-up-fill' : 'pi pi-thumbs-up'" 
-                    label="Like"
-                    (onClick)="like()"
-                    styleClass="p-button-success"
-                ></p-button>
-                <p-button 
-                    [icon]="liked() === false ? 'pi pi-thumbs-down-fill' : 'pi pi-thumbs-down'" 
-                    label="Dislike"
-                    (onClick)="dislike()"
-                    styleClass="p-button-danger"
-                ></p-button>
+                <div>
+                    <p-button
+                        [icon]="liked ? 'pi pi-thumbs-up-fill' : 'pi pi-thumbs-up'"
+                        styleClass="p-button-success"
+                        for="like"
+                        (onClick)="toggle(true)"
+                        label="Like">
+                    </p-button>
+                </div>
+                <div>
+                    <p-button
+                        [icon]="liked === false ? 'pi pi-thumbs-down-fill' : 'pi pi-thumbs-down'"
+                        styleClass="p-button-danger"
+                        for="dislike"
+                        (onClick)="toggle(false)"
+                        label="Dislike">
+                    </p-button>
+                </div>
             </div>
             <div class="article__footer__info">
                 <small class="article__footer__views">

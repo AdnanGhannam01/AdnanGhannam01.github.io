@@ -24,6 +24,10 @@
                 @include mixin.flex;
                 gap: .5em;
             }
+
+            &__btns {
+                input[type=radio] { display: none }
+            }
         }
     }
 }
