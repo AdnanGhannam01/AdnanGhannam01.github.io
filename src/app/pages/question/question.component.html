@@ -15,10 +15,27 @@
         <div class="question__content">
             <div class="question__header">
                 <div>
-                    <h3>Q: {{ question.title }}</h3>
+                    <h3>Q: 
+                        <span *ngIf="!editingQuestion">{{ question.title }}</span>
+                        <span *ngIf="editingQuestion">
+                            <input pInputText [(ngModel)]="question.title"/>
+                        </span>
+                    </h3>
                     <small>Posted by {{ question.user.name }} at {{ question.createdAt | date:'dd/MM/yyyy' }} | {{ question.answers.length }} Answers</small>
                 </div>
                 <div *ngIf="isOwner(question.user._id)">
+                    <p-button
+                        *ngIf="!editingQuestion"
+                        (onClick)="editingQuestion = true"
+                        icon="pi pi-pencil"
+                        styleClass="p-button-primary p-button-text"
+                    ></p-button>
+                    <p-button
+                        *ngIf="editingQuestion"
+                        (onClick)="editQuestion()"
+                        icon="pi pi-check"
+                        styleClass="p-button-primary p-button-text"
+                    ></p-button>
                     <p-button
                         (onClick)="deleteQuestion()"
                         icon="pi pi-trash"
@@ -27,7 +44,8 @@
                 </div>
             </div>
             <p-divider></p-divider>
-            <p class="question__content__text" [innerHTML]="question.content"></p>
+            <p *ngIf="!editingQuestion" class="question__content__text" [innerHTML]="question.content"></p>
+            <p-editor #editor *ngIf="editingQuestion" [(ngModel)]="question.content" [style]="{ height: '320px' }"></p-editor>
         </div>
     </div>
 
@@ -38,7 +56,7 @@
                 <p-dropdown [disabled]="question.answers.length == 0" [options]="sortOptions" placeholder="Sort By Votes" (onChange)="onSortChange($event)"></p-dropdown>
             </div>
         </ng-template>
-        <ng-template let-answer pTemplate="listItem">
+        <ng-template let-answer let-index="rowIndex" pTemplate="listItem">
             <div class="question__card">
                 <div class="question__votes">
                     <p-button icon="pi pi-angle-up" 
@@ -56,6 +74,18 @@
                         <p>Answered by {{ answer.user.name}} at {{ question.createdAt | date:'dd/MM/yyyy' }}</p>
                         <div *ngIf="isOwner(answer.user._id)">
                             <p-button
+                                *ngIf="editingAnswerIndex != index"
+                                (onClick)="editingAnswerIndex = index"
+                                icon="pi pi-pencil"
+                                styleClass="p-button-primary p-button-text"
+                            ></p-button>
+                            <p-button
+                                *ngIf="editingAnswerIndex == index"
+                                (onClick)="editAnswer(answer._id)"
+                                icon="pi pi-check"
+                                styleClass="p-button-primary p-button-text"
+                            ></p-button>
+                            <p-button
                                 (onClick)="deleteAnswer(answer._id)"
                                 icon="pi pi-trash"
                                 styleClass="p-button-danger p-button-text"
@@ -63,7 +93,8 @@
                         </div>
                     </div>
                     <p-divider></p-divider>
-                    <p class="question__content__text" [innerHTML]="answer.content"></p>
+                    <p *ngIf="editingAnswerIndex != index" class="question__content__text" [innerHTML]="answer.content"></p>
+                    <p-editor *ngIf="editingAnswerIndex == index" [(ngModel)]="answer.content" [style]="{ height: '320px' }"></p-editor>
                 </div>
             </div>
         </ng-template>

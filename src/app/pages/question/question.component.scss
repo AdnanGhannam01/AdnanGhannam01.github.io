@@ -10,11 +10,8 @@
             gap: 1em;
             padding: 1em;
             border: 1px solid var(--clr-border) !important;
+            margin: .25em 0;
 
-            &:not:last-child {
-                border-bottom: 0;
-            }
-            
             &.question {
                 margin-bottom: 1em;
                 border-radius: 5px;

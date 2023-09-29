@@ -24,6 +24,9 @@ export class QuestionComponent {
   question?: Question;
   answer = "";
 
+  editingQuestion = false;
+  editingAnswerIndex = -1; // index of editing answer otherwise -1 (not editing)
+
   constructor(private activedRoute: ActivatedRoute,
               private questionService: QuestionService,
               private authService: AuthService,
@@ -88,6 +91,23 @@ export class QuestionComponent {
 
   isOwner(id: string) { return this.authService.isOwner(id) }
 
+  editQuestion() {
+    if (this.question) {
+      this.questionService.update(this.id, this.question.title, this.question.content)
+        .subscribe({
+          next: () => {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Question updated' });
+            this.editingQuestion = false;
+          },
+          error: (err) => {
+            err.error.errors.forEach(
+              (error: any) => 
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+          }
+        });
+    }
+  }
+
   deleteQuestion() {
     this.questionService.remove(this.id)
       .subscribe({
@@ -103,6 +123,25 @@ export class QuestionComponent {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
         }
       });
+  }
+
+  editAnswer(id: string) {
+    const answer = this.question?.answers.at(this.editingAnswerIndex);
+
+    if (answer) {
+      this.questionService.updateAnswer(id, answer.content)
+        .subscribe({
+          next: () => {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Answer updated' });
+            this.editingAnswerIndex = -1;
+          },
+          error: (err) => {
+            err.error.errors.forEach(
+              (error: any) => 
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+          }
+        });
+    }
   }
 
   deleteAnswer(id: string) {

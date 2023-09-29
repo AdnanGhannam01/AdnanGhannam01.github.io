@@ -25,6 +25,11 @@ export class QuestionService {
     return this.http.get<ApiResponse<Question>>("/questions/" + id);
   }
 
+  update(id: string, title?: string, content?: string) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.put<any>("/questions/" + id, { title, content }, { headers });
+  }
+
   remove(id: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
     return this.http.delete<any>("/questions/" + id, { headers });
@@ -33,6 +38,11 @@ export class QuestionService {
   sendAnswer(id: string, content: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
     return this.http.post<any>('/questions/answer/' + id, { content }, { headers });
+  }
+
+  updateAnswer(id: string, content: string) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`);
+    return this.http.put<any>('/answers/' + id, { content }, { headers });
   }
 
   removeAnswer(id: string) {
