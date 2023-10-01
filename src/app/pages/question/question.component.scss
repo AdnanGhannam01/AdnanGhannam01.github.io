@@ -42,7 +42,7 @@
 
         &__votes {
             @include mixin.flex(center, center, column);
-            gap: .1em;
+            gap: .5em;
         }
 
         &__edit-form {

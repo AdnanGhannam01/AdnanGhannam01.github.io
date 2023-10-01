@@ -57,7 +57,6 @@ export class QuestionComponent {
               this.question.answers.forEach(answer => {
                 answer.up = this.didVote(answer, 1);
               });
-              console.log(this.question)
 
               this.highlightCodes();
             },

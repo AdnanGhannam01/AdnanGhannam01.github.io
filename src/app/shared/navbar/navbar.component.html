@@ -15,7 +15,7 @@
     </ul>
 
     <div *ngIf="isLoggedIn">
-        <p-menu #menu [model]="userMenuItems" [popup]="true"></p-menu>
+        <p-menu #menu [model]="userMenuItems" [popup]="true" appendTo="body"></p-menu>
         <p-button type="butto" 
             (onClick)="menu.toggle($event)" 
             icon="pi pi-user" 
