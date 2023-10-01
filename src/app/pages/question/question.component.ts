@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuItem, MessageService, SelectItem } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { Answer, Question } from 'src/app/services';
 import { AuthService } from 'src/app/services/auth.service';
 import { QuestionService } from 'src/app/services/question.service';
@@ -24,13 +24,14 @@ export class QuestionComponent {
   question?: Question;
   answer = "";
 
-  editingQuestion = false;
-  editingAnswerIndex = -1; // index of editing answer otherwise -1 (not editing)
+  editingQuestion?: Question;
+  editingAnswer?: Answer;
 
   constructor(private activedRoute: ActivatedRoute,
               private questionService: QuestionService,
               private authService: AuthService,
               private messageService: MessageService,
+              private confirmationService: ConfirmationService,
               private router: Router) { }
 
   ngOnInit() {
@@ -91,21 +92,32 @@ export class QuestionComponent {
 
   isOwner(id: string) { return this.authService.isOwner(id) }
 
-  editQuestion() {
-    if (this.question) {
-      this.questionService.update(this.id, this.question.title, this.question.content)
-        .subscribe({
-          next: () => {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Question updated' });
-            this.editingQuestion = false;
-          },
-          error: (err) => {
-            err.error.errors.forEach(
-              (error: any) => 
-                this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
-          }
-        });
-    }
+  startEditingQuestion(item: Question) {
+    this.editingQuestion = { ...item };
+    this.confirmationService.confirm({
+      key: "question",
+      accept: () => {
+        this.editQuestion(this.editingQuestion!.title, this.editingQuestion!.content);
+        this.editingQuestion = undefined;
+      },
+    });
+  }
+
+  editQuestion(title: string, content: string) {
+    this.questionService.update(this.id, title, content)
+      .subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Question updated' });
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        },
+        error: (err) => {
+          err.error.errors.forEach(
+            (error: any) => 
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+        }
+      });
   }
 
   deleteQuestion() {
@@ -125,15 +137,26 @@ export class QuestionComponent {
       });
   }
 
-  editAnswer(id: string) {
-    const answer = this.question?.answers.at(this.editingAnswerIndex);
+  startEditingAnswer(item: Answer) {
+    this.editingAnswer = { ...item };
+    this.confirmationService.confirm({
+      key: "answer",
+      accept: () => {
+        this.editAnswer();
+        this.editingAnswer = undefined;
+      },
+    });
+  }
 
-    if (answer) {
-      this.questionService.updateAnswer(id, answer.content)
+  editAnswer() {
+    if (this.editingAnswer) {
+      this.questionService.updateAnswer(this.editingAnswer._id, this.editingAnswer.content)
         .subscribe({
           next: () => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Answer updated' });
-            this.editingAnswerIndex = -1;
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
           },
           error: (err) => {
             err.error.errors.forEach(

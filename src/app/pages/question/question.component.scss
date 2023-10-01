@@ -19,6 +19,11 @@
 
             &.write {
                 margin-top: 1em;
+
+                .question__content {
+                    @include mixin.flex(stretch, stretch, column);
+                    gap: 1em;
+                }
             }
         }
 
@@ -40,8 +45,9 @@
             gap: .1em;
         }
 
-        &__editor {
-            margin: 1em 0;
+        &__edit-form {
+            @include mixin.flex(stretch, stretch, column);
+            gap: 1em;
         }
     }
 }

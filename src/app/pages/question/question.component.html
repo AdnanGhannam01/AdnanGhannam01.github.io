@@ -16,24 +16,14 @@
             <div class="question__header">
                 <div>
                     <h3>Q: 
-                        <span *ngIf="!editingQuestion">{{ question.title }}</span>
-                        <span *ngIf="editingQuestion">
-                            <input pInputText [(ngModel)]="question.title"/>
-                        </span>
+                        <span>{{ question.title }}</span>
                     </h3>
                     <small>Posted by {{ question.user.name }} at {{ question.createdAt | date:'dd/MM/yyyy' }} | {{ question.answers.length }} Answers</small>
                 </div>
                 <div *ngIf="isOwner(question.user._id)">
                     <p-button
-                        *ngIf="!editingQuestion"
-                        (onClick)="editingQuestion = true"
+                        (onClick)="startEditingQuestion(question)"
                         icon="pi pi-pencil"
-                        styleClass="p-button-primary p-button-text"
-                    ></p-button>
-                    <p-button
-                        *ngIf="editingQuestion"
-                        (onClick)="editQuestion()"
-                        icon="pi pi-check"
                         styleClass="p-button-primary p-button-text"
                     ></p-button>
                     <p-button
@@ -44,8 +34,7 @@
                 </div>
             </div>
             <p-divider></p-divider>
-            <p *ngIf="!editingQuestion" class="question__content__text" [innerHTML]="question.content"></p>
-            <p-editor #editor *ngIf="editingQuestion" [(ngModel)]="question.content" [style]="{ height: '320px' }"></p-editor>
+            <p class="question__content__text" [innerHTML]="question.content"></p>
         </div>
     </div>
 
@@ -57,7 +46,7 @@
             </div>
         </ng-template>
         <ng-template let-answer let-index="rowIndex" pTemplate="listItem">
-            <div class="question__card">
+            <div class="question__card" *ngIf="answer.user">
                 <div class="question__votes">
                     <p-button icon="pi pi-angle-up" 
                         [disabled]="!isLoggedIn"
@@ -74,15 +63,8 @@
                         <p>Answered by {{ answer.user.name}} at {{ question.createdAt | date:'dd/MM/yyyy' }}</p>
                         <div *ngIf="isOwner(answer.user._id)">
                             <p-button
-                                *ngIf="editingAnswerIndex != index"
-                                (onClick)="editingAnswerIndex = index"
+                                (onClick)="startEditingAnswer(answer)"
                                 icon="pi pi-pencil"
-                                styleClass="p-button-primary p-button-text"
-                            ></p-button>
-                            <p-button
-                                *ngIf="editingAnswerIndex == index"
-                                (onClick)="editAnswer(answer._id)"
-                                icon="pi pi-check"
                                 styleClass="p-button-primary p-button-text"
                             ></p-button>
                             <p-button
@@ -93,8 +75,7 @@
                         </div>
                     </div>
                     <p-divider></p-divider>
-                    <p *ngIf="editingAnswerIndex != index" class="question__content__text" [innerHTML]="answer.content"></p>
-                    <p-editor *ngIf="editingAnswerIndex == index" [(ngModel)]="answer.content" [style]="{ height: '320px' }"></p-editor>
+                    <p class="question__content__text" [innerHTML]="answer.content"></p>
                 </div>
             </div>
         </ng-template>
@@ -116,5 +97,47 @@
     </form>
 </div>
 
+<p-confirmDialog #cd [style]="{ 'min-width': '50vw' }" key="question" *ngIf="editingQuestion">
+    <ng-template pTemplate="header">
+        <h3>Edit your question</h3>
+    </ng-template>
+    <ng-template pTemplate="message">
+        <form class="question__edit-form">
+            <input type="text" 
+                placeholder="Write question title here..." 
+                name="title" 
+                [(ngModel)]="editingQuestion.title"
+                pInputText />
+            <p-editor 
+                name="editor" 
+                [(ngModel)]="editingQuestion.content"
+                [style]="{ height: '320px' }"
+            ></p-editor>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
+
+<p-confirmDialog #cd [style]="{ 'min-width': '50vw' }" key="answer" *ngIf="editingAnswer">
+    <ng-template pTemplate="header">
+        <h3>Edit your question</h3>
+    </ng-template>
+    <ng-template pTemplate="message">
+        <form class="question__edit-form">
+            <p-editor 
+                name="editor" 
+                [(ngModel)]="editingAnswer.content"
+                [style]="{ height: '320px' }"
+            ></p-editor>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
 
 <p-toast></p-toast>

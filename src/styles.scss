@@ -1,6 +1,6 @@
 @use "./app/utilities/mixin.scss";
 @use "./app/utilities/mediaQuery.scss";
-@import "./app/utilities/primeNG.custom.scss";
+// @import "./app/utilities/primeNG.custom.scss";
 @import "primeng/resources/themes/bootstrap4-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
@@ -55,15 +55,17 @@ html {
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
+
+body, 
 
 body {
     font-family: var(--ff-primary);
     font-size: 16px;
     color: rgb(var(--blue-800));
+    margin: 0;
+    padding: 0;
 
     @include mediaQuery.Tablets {
         font-size: 14px;
@@ -140,4 +142,12 @@ body {
     gap: 1em;
 }
 
-h1, h2, h3, h4, h5, h6, strong { font-weight: 500 }
+h1, h2, h3, h4, h5, h6, strong { 
+    font-weight: 500;
+    margin: 0
+}
+
+p, ul, ol, li {
+    padding: 0;
+    margin: 0;
+}
