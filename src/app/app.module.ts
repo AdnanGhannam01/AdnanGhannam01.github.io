@@ -11,6 +11,7 @@ import { TemplatesModule } from './templates/templates.module';
 import { PreventLoggedInAccessGuard } from './guards/prevent-logged-in-access.guard';
 import { ApiPrefixInterceptor } from './interceptors/http.interceptor';
 import { PreventUnauthenticateAccessGuard } from './guards/prevent-unauthenticate-access.guard';
+import { BlockNavigationIfChangeGuard } from './guards/block-navigation-if-change.guard';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PreventUnauthenticateAccessGuard } from './guards/prevent-unauthenticat
   providers: [
     PreventLoggedInAccessGuard,
     PreventUnauthenticateAccessGuard,
+    BlockNavigationIfChangeGuard,
     { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

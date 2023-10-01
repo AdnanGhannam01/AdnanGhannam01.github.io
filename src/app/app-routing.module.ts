@@ -20,6 +20,7 @@ import { QuestionComponent } from './pages/question/question.component';
 import { MyQuestionsComponent } from './pages/profile/my-questions/my-questions.component';
 import { AskQuestionComponent } from './pages/ask-question/ask-question.component';
 import { PreventUnauthenticateAccessGuard } from './guards/prevent-unauthenticate-access.guard';
+import { BlockNavigationIfChangeGuard } from './guards/block-navigation-if-change.guard';
 
 const routes: Routes = [
   {
@@ -84,7 +85,8 @@ const routes: Routes = [
       { 
         path: "ask-question/:id", 
         component: AskQuestionComponent,
-        canActivate: [PreventUnauthenticateAccessGuard]
+        canActivate: [PreventUnauthenticateAccessGuard],
+        canDeactivate: [BlockNavigationIfChangeGuard]
       },
       {
         path: "",

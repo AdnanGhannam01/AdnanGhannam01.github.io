@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
+import { FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Subject } from 'rxjs';
 import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
@@ -13,11 +15,27 @@ export class AskQuestionComponent {
   content = "";
   loading = false;
 
+  @ViewChild("editForm") editForm?: NgForm;
+
   constructor(private questionService: QuestionService,
               private activedRoute: ActivatedRoute,
               private messageService: MessageService,
               private router: Router) { }
 
+  hasChanged() {
+    const form = this.editForm?.form;
+
+    if (form) return form.dirty;
+
+    return false;
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (this.hasChanged()) {
+      $event.returnValue = true;
+    }
+  }
 
   onSubmit() {
     this.activedRoute.paramMap.subscribe(params => {

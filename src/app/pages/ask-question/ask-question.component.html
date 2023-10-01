@@ -8,7 +8,7 @@
             <li>Review your question and post it.</li>
         </ul>
     </div>
-    <form (submit)="onSubmit()">
+    <form (submit)="onSubmit()" #editForm="ngForm">
         <div class="ask-question__card">
             <h4 class="ask-question__card__title">Title:</h4>
             <input type="text" 
