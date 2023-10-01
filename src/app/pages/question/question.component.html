@@ -34,7 +34,7 @@
                 </div>
             </div>
             <p-divider></p-divider>
-            <p class="question__content__text" [innerHTML]="question.content"></p>
+            <p class="question__content__text block" [innerHTML]="question.content"></p>
         </div>
     </div>
 
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <p-divider></p-divider>
-                    <p class="question__content__text" [innerHTML]="answer.content"></p>
+                    <p class="question__content__text block" [innerHTML]="answer.content"></p>
                 </div>
             </div>
         </ng-template>
@@ -139,5 +139,6 @@
         <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
     </ng-template>
 </p-confirmDialog>
+
 
 <p-toast></p-toast>

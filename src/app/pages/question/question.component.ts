@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import hljs from 'highlight.js';
 import { ConfirmEventType, ConfirmationService, MenuItem, MessageService, SelectItem } from 'primeng/api';
+import { Editor } from 'primeng/editor';
 import { Answer, Question } from 'src/app/services';
 import { AuthService } from 'src/app/services/auth.service';
 import { QuestionService } from 'src/app/services/question.service';
+import Quill from "quill";
 
 @Component({
   selector: 'docs-question',
@@ -50,6 +53,7 @@ export class QuestionComponent {
           .subscribe({
             next: ({ data }) => {
               this.question = data;
+              this.highlightCodes();
             },
             error: err => {
               this.router.navigate(["/not-found"]);
@@ -57,6 +61,15 @@ export class QuestionComponent {
           });
       }
     });
+  }
+
+  highlightCodes() {
+    setTimeout(() => {
+      const preTags = document.querySelectorAll(".block pre");
+      preTags.forEach(pre => {
+        hljs.highlightBlock(pre as HTMLElement);
+      });
+    }, 0);
   }
 
   onSortChange(event: any) {

@@ -1,9 +1,10 @@
 @use "./app/utilities/mixin.scss";
 @use "./app/utilities/mediaQuery.scss";
-// @import "./app/utilities/primeNG.custom.scss";
+@import "./app/utilities/primeNG.custom.scss";
 @import "primeng/resources/themes/bootstrap4-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
+@import 'highlight.js/scss/stackoverflow-dark.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
@@ -150,4 +151,8 @@ h1, h2, h3, h4, h5, h6, strong {
 p, ul, ol, li {
     padding: 0;
     margin: 0;
+}
+
+pre {
+    padding: .5em;
 }
