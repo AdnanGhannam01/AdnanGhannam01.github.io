@@ -1,16 +1,32 @@
 <div class="container">
+    <div class="ask-question__steps ask-question__card">
+        <h4>Write a good question</h4>
+        <ul class="ask-question__steps__list">
+            <li>Summarize you problem in one-line title.</li>
+            <li>Describe you problem in more details.</li>
+            <li>Try to describe you tried and what you expected to happen.</li>
+            <li>Review your question and post it.</li>
+        </ul>
+    </div>
     <form (submit)="onSubmit()">
-        <h2>Write your question:</h2>
-        <div class="ask-question__editor">
-            <input type="text" placeholder="Title..." name="title" pInputText [(ngModel)]="title" />
-            <p-editor name="editor" [(ngModel)]="content" [style]="{ height: '320px' }"></p-editor>
+        <div class="ask-question__card">
+            <h4 class="ask-question__card__title">Title:</h4>
+            <input type="text" 
+                placeholder="Write question title here..." 
+                name="title" 
+                pInputText 
+                [(ngModel)]="title" />
         </div>
-        <p-button
-            [loading]="loading"
-            label="Submit"
-            type="submit"
-            styleClass="p-button-success"
-        ></p-button>
+        <div class="ask-question__card">
+            <h4 class="ask-question__card__title">Question details:</h4>
+            <p-editor name="editor" [(ngModel)]="content" [style]="{ height: '320px' }"></p-editor>
+            <p-button
+                [loading]="loading"
+                label="Submit"
+                type="submit"
+                styleClass="p-button-success"
+            ></p-button>
+        </div>
     </form>
 </div>
 

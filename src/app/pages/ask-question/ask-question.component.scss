@@ -5,10 +5,22 @@
     padding: 2em 0;
     
     .ask-question {
-        &__editor {
+        &__steps {
+
+            &__list {
+                font-size: .85em;
+                margin-inline-start: 1.5em;
+            }
+        }
+
+        &__card {
             @include mixin.flex(stretch, stretch, column);
             gap: 1em;
-            margin: 1em 0;
+            padding: 1em;
+            border: 1px solid var(--clr-border);
+            border-radius: 5px;
+            margin-bottom: 1em;
+            background-color: var(--bg-section);
         }
     }
 }
