@@ -58,13 +58,19 @@ export interface Collection {
     lastModifyAt: number;
 }
 
+export interface Vote {
+    user: string; // Id
+    value: number; // -1 or 1
+}
+
 export interface Answer {
     _id: string;
     user: User;
     content: string;
     createdAt: number;
     lastModifyAt: number;
-    votes: number;
+    votes: Vote[];
+    up: boolean | null;
     isCorrect?: boolean;
 }
 
@@ -76,6 +82,7 @@ export interface Question {
     lastModifyAt: number;
     user: User;
     views: number;
-    votes: number;
+    votes: Vote[];
+    up: boolean | null;
     answers: Answer[];
 }

@@ -53,6 +53,12 @@ export class QuestionComponent {
           .subscribe({
             next: ({ data }) => {
               this.question = data;
+              this.question.up = this.didVote(this.question, 1);
+              this.question.answers.forEach(answer => {
+                answer.up = this.didVote(answer, 1);
+              });
+              console.log(this.question)
+
               this.highlightCodes();
             },
             error: err => {
@@ -67,7 +73,7 @@ export class QuestionComponent {
     setTimeout(() => {
       const preTags = document.querySelectorAll(".block pre");
       preTags.forEach(pre => {
-        hljs.highlightBlock(pre as HTMLElement);
+        hljs.highlightElement(pre as HTMLElement);
       });
     }, 0);
   }
@@ -82,6 +88,32 @@ export class QuestionComponent {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  getVotes(item: Question | Answer) {
+    return item.votes.reduce((total, vote) => total += vote.value, 0);
+  }
+
+  didVote(item: Question | Answer, value: 1 | -1) {
+    const userId = this.authService.getSession().id;
+    const vote = item.votes.find(vote => vote.user == userId)
+
+    if (!vote) return null;
+
+    return vote.value == value;
+  }
+
+  voteChange(item: Question | Answer, option: boolean) {
+    item.up = item.up === option ? null : option;
+
+    if (item.up == null) {
+      this.questionService.unvote(item)
+        .subscribe(() => console.info("Unvoted"));
+      return;
+    }
+
+    this.questionService.vote(item, item.up)
+      .subscribe(() => console.info("Voted"));
   }
 
   sendAnswer() {

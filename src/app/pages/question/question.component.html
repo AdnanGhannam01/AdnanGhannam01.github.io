@@ -2,14 +2,17 @@
     <div class="question__card question">
         <div class="question__votes">
             <p-button icon="pi pi-angle-up" 
+                *ngIf="!isOwner(question.user._id)"
                 [disabled]="!isLoggedIn"
-                styleClass="p-button-rounded p-button-primary p-button-text"
+                (onClick)="voteChange(question, true)"
+                [styleClass]="'p-button-rounded p-button-primary' + (question.up ? '': ' p-button-outlined')"
             ></p-button>
-            <!-- TODO fix this -->
-            <strong>10</strong>
+            <strong>{{ getVotes(question) }}</strong>
             <p-button icon="pi pi-angle-down" 
+                *ngIf="!isOwner(question.user._id)"
                 [disabled]="!isLoggedIn"
-                styleClass="p-button-rounded p-button-danger p-button-text"
+                (onClick)="voteChange(question, false)"
+                [styleClass]="'p-button-rounded p-button-danger' + (question.up === false ? '': ' p-button-outlined')"
             ></p-button>
         </div>
         <div class="question__content">
@@ -49,13 +52,17 @@
             <div class="question__card" *ngIf="answer.user">
                 <div class="question__votes">
                     <p-button icon="pi pi-angle-up" 
+                        *ngIf="!isOwner(answer.user._id)"
                         [disabled]="!isLoggedIn"
-                        styleClass="p-button-rounded p-button-primary p-button-text"
+                        (onClick)="voteChange(answer, true)"
+                        [styleClass]="'p-button-rounded p-button-primary' + (answer.up ? '': ' p-button-outlined')"
                     ></p-button>
-                    <strong>{{ answer.votes }}</strong>
+                    <strong>{{ getVotes(answer) }}</strong>
                     <p-button icon="pi pi-angle-down" 
+                        *ngIf="!isOwner(answer.user._id)"
                         [disabled]="!isLoggedIn"
-                        styleClass="p-button-rounded p-button-danger p-button-text"
+                        (onClick)="voteChange(answer, false)"
+                        [styleClass]="'p-button-rounded p-button-danger' + (answer.up === false ? '': ' p-button-outlined')"
                     ></p-button>
                 </div>
                 <div class="question__content">
@@ -66,7 +73,7 @@
                                 (onClick)="startEditingAnswer(answer)"
                                 icon="pi pi-pencil"
                                 styleClass="p-button-primary p-button-text"
-                            ></p-button>
+                            ></p-button>j
                             <p-button
                                 (onClick)="deleteAnswer(answer._id)"
                                 icon="pi pi-trash"

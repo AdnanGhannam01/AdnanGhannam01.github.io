@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiResponse, Question } from '.';
+import { Answer, ApiResponse, Question } from '.';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -48,5 +48,17 @@ export class QuestionService {
   removeAnswer(id: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`);
     return this.http.delete<any>('/answers/' + id, { headers });
+  }
+
+  vote(item: Question | Answer, up: boolean) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`);
+    const base = 'answers' in item ? 'questions': 'answers';
+    return this.http.post<any>(`/${base}/vote/${item._id}?vote=${up ? "up" : "down"}`, {}, { headers });
+  }
+
+  unvote(item: Question | Answer) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`);
+    const base = 'answers' in item ? 'questions': 'answers';
+    return this.http.delete<any>(`/${base}/vote/${item._id}`, { headers });
   }
 }
