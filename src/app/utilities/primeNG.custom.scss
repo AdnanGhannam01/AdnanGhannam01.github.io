@@ -104,6 +104,20 @@ docs-root {
             }
         }
     }
+
+    p-editor {
+        .p-editor-container {
+            .p-editor-toolbar.ql-snow {
+                .ql-picker.ql-expanded {
+                    .ql-picker-options {
+                        .ql-picker-item.ql-primary {
+                            @include mixin.size(1em);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .p-menu {
