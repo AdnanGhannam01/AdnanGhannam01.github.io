@@ -1,5 +1,5 @@
+<docs-loading *ngIf="loading"></docs-loading>
 <div class="container docs-with-sidebar">
-    <!-- TODO -->
     <aside>
         <p-tree [value]="nodes" [filter]="true" filterPlaceholder="Search...">
             <ng-template let-node pTemplate="url">

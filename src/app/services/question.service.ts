@@ -25,6 +25,10 @@ export class QuestionService {
     return this.http.get<ApiResponse<Question>>("/questions/" + id);
   }
 
+  getTop() {
+    return this.http.get<ApiResponse<Question[]>>("/populare/questions");
+  }
+
   update(id: string, title?: string, content?: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
     return this.http.put<any>("/questions/" + id, { title, content }, { headers });

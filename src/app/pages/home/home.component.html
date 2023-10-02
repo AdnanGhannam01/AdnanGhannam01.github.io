@@ -1,3 +1,5 @@
+<docs-loading *ngIf="fetchedData < obs$.length"></docs-loading>
+
 <header class="home__header home__section">
     <div class="container">
         <h1 class="home__section__title">Learn and Use Any Technology with Ease</h1>
@@ -28,17 +30,12 @@
             <h3 class="home__section__title">Read Our Popular Articles</h3>
         </div>
         <div class="home__articles__items">
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                <strong class="title">How to use @Input() in angular</strong>
-                <p class="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, magnam alias, sequi asperiores corrupti cum ad quas consequuntur adipisci placeat aperiam illo. Recusandae, temporibus iure enim tenetur, officia reiciendis quaerat illo earum modi aut aliquid! Odit corrupti quidem placeat perferendis consequatur dicta facilis modi est veritatis sint delectus officia libero ea numquam nihil fugit adipisci rerum, iure corporis molestiae? Aliquid reiciendis, quisquam nulla aliquam velit expedita minima vel ipsum omnis eum! Dolor necessitatibus illum consectetur! Consequuntur dolores eos cumque rerum odit officia quod facilis dolorem suscipit est inventore, sit tempora molestiae magni modi provident doloribus quos ullam atque, hic alias.</p>
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                <strong class="title">How to use @Input() in angular</strong>
-                <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, mollitia?</p>
-            </a>
-            <a routerLink="#" class="docs-link" docs-home-list-item>
-                <strong class="title">How to use @Input() in angular</strong>
-                <p class="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, magnam alias, sequi asperiores corrupti cum ad quas consequuntur adipisci placeat aperiam illo. Recusandae, temporibus iure enim tenetur, officia reiciendis quaerat illo earum modi aut aliquid! Odit corrupti quidem placeat perferendis consequatur dicta facilis modi est veritatis sint delectus officia libero ea numquam nihil fugit adipisci rerum, iure corporis molestiae? Aliquid reiciendis, quisquam nulla aliquam velit expedita minima vel ipsum omnis eum! Dolor necessitatibus illum consectetur! Consequuntur dolores eos cumque rerum odit officia quod facilis dolorem suscipit est inventore, sit tempora molestiae magni modi provident doloribus quos ullam atque, hic alias.</p>
+            <a *ngFor="let article of topArticles"
+                [routerLink]="'/articles/' + article._id"
+                class="docs-link" 
+                docs-home-list-item>
+                <strong class="title">{{ article.title }}</strong>
+                <p class="desc">{{ article.description }}</p>
             </a>
         </div>
     </div>
@@ -47,7 +44,9 @@
 <section class="home__section home__questions">
     <div class="container">
         <div class="home__questions__items"> 
-            ...
+            <a
+                *ngFor="let question of topQuestions"
+            >{{ question.title }}</a>
         </div>
         <div>
             <h3 class="home__section__title">Ask Questions</h3>

@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ArticleComponent {
   liked: boolean | null = null;
+  loading = true;
 
   article?: Article;
   sections: Section[] = [];
@@ -99,6 +100,8 @@ export class ArticleComponent {
                   return this.sectionService.convertToTree(section);
                 });
               });
+            
+            this.loading = false;
           },
           error: err => {
             this.router.navigate(["/not-found"]);

@@ -14,6 +14,10 @@ export class ArticleService {
     return this.http.get<ApiResponse<Article>>(`/articles/${id}`);
   }
 
+  getTop() {
+    return this.http.get<ApiResponse<Article[]>>("/populare/articles");
+  }
+
   sendFeedback(id: string, text: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
 
