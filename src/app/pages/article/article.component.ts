@@ -89,12 +89,20 @@ export class ArticleComponent {
 
             if (reaction) this.liked = reaction.type == "like" ? true : false;
 
+            this.home = { icon: 'pi pi-home', routerLink: '/' };
             this.breadcrumbItems = [
-              { label: this.article.toolkit.name, url: `/toolkits/${this.article.toolkit._id}` },
-              { label: this.article.section.title },
+              {
+                label: this.article.toolkit.name, 
+                url: `/toolkits/${this.article.toolkit._id}` 
+              },
+              { 
+                label: this.article.section.title, 
+                url: `/toolkits/${this.article.toolkit._id}#${this.article.section._id}` 
+              },
+              { label: this.article.title }
             ];
 
-            this.sectionService.getAll(data.toolkit + "", data.type)
+            this.sectionService.getAll(data.toolkit._id, data.type)
               .subscribe(({ data }) => {
                 this.nodes = data.map(section => {
                   return this.sectionService.convertToTree(section);
@@ -102,6 +110,7 @@ export class ArticleComponent {
               });
             
             this.loading = false;
+            console.log(data)
           },
           error: err => {
             this.router.navigate(["/not-found"]);

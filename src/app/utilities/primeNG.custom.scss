@@ -87,7 +87,23 @@ docs-root {
             }
         }
     }
+    
+    .p-breadcrumb {
+        background-color: transparent;
+        padding: 1em 0;
 
+        .p-breadcrumb-list {
+            @include mixin.flex(flex-start, center);
+            gap: .5em;
+
+            .p-menuitem-separator {
+                .p-icon {
+                    width: 12px;
+                    height: 12px;
+                }
+            }
+        }
+    }
 }
 
 .p-menu {
