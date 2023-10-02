@@ -67,7 +67,11 @@ export class AuthService {
   }
 
   public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+    const stillLogged = moment().isBefore(this.getExpiration());
+
+    if (!stillLogged) this.clearLocalStorage();
+
+    return stillLogged;
   }
 
   isLoggedOut() {
@@ -82,7 +86,6 @@ export class AuthService {
       return moment(expiresAt);
     }
 
-    this.clearLocalStorage();
     return null;
   }    
 
