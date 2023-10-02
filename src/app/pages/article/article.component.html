@@ -27,8 +27,7 @@
 
         <p-divider></p-divider>
 
-        <!-- TODO add markdown viewer -->
-        <div class="article__content">{{ article.content }}</div>
+        <div class="article__content editor-block" [innerHTML]="article.content"></div>
 
         <p-divider></p-divider>
 

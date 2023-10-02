@@ -5,6 +5,7 @@ import { MenuItem, MessageService, TreeNode } from 'primeng/api';
 import { Article, Section } from 'src/app/services';
 import { ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { HighlightService } from 'src/app/services/highlight.service';
 import { SectionService } from 'src/app/services/section.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -70,6 +71,7 @@ export class ArticleComponent {
     private messageService: MessageService,
     private articleService: ArticleService,
     private titleService: Title,
+    private highlightService: HighlightService,
     private userService: UserService) { }
 
   ngOnInit() {
@@ -109,8 +111,8 @@ export class ArticleComponent {
                 });
               });
             
+            this.highlightService.apply();
             this.loading = false;
-            console.log(data)
           },
           error: err => {
             this.router.navigate(["/not-found"]);
