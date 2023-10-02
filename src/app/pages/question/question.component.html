@@ -73,7 +73,7 @@
                                 (onClick)="startEditingAnswer(answer)"
                                 icon="pi pi-pencil"
                                 styleClass="p-button-primary p-button-text"
-                            ></p-button>j
+                            ></p-button>
                             <p-button
                                 (onClick)="deleteAnswer(answer._id)"
                                 icon="pi pi-trash"
@@ -118,8 +118,11 @@
             <p-editor 
                 name="editor" 
                 [(ngModel)]="editingQuestion.content"
-                [style]="{ height: '320px' }"
-            ></p-editor>
+                [style]="{ height: '320px' }">
+                <ng-template pTemplate="header">
+                    <docs-editor-controls></docs-editor-controls>
+                </ng-template>
+            </p-editor>
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
@@ -137,8 +140,11 @@
             <p-editor 
                 name="editor" 
                 [(ngModel)]="editingAnswer.content"
-                [style]="{ height: '320px' }"
-            ></p-editor>
+                [style]="{ height: '320px' }">
+                <ng-template pTemplate="header">
+                    <docs-editor-controls></docs-editor-controls>
+                </ng-template>
+            </p-editor>
         </form>
     </ng-template>
     <ng-template pTemplate="footer">

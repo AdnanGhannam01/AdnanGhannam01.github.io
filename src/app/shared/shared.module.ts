@@ -17,6 +17,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { DividerModule } from 'primeng/divider';
 import { HomeListItemComponent } from './home-list-item/home-list-item.component';
+import { EditorControlsComponent } from './editor-controls/editor-controls.component';
 
 
 
@@ -30,7 +31,8 @@ import { HomeListItemComponent } from './home-list-item/home-list-item.component
     ToolkitSearchComponent,
     CardComponent,
     LoadingComponent,
-    HomeListItemComponent
+    HomeListItemComponent,
+    EditorControlsComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { HomeListItemComponent } from './home-list-item/home-list-item.component
     ToolkitSearchComponent,
     CardComponent,
     LoadingComponent,
-    HomeListItemComponent
+    HomeListItemComponent,
+    EditorControlsComponent
   ],
 })
 export class SharedModule { }

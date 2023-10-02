@@ -58,6 +58,6 @@
             </tr>
         </ng-template>
     </p-table>
-    <p *ngIf="!collection?.articles?.length">No Articles in Your Collection</p>
+    <p *ngIf="!loading && !collection?.articles?.length">No Articles in Your Collection</p>
 </div>
 <p-toast></p-toast>
