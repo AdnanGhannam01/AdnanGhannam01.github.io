@@ -18,6 +18,7 @@ export class NavbarComponent {
   selectedToolkitId = "";
   selectedTutorials: Section[] = [];
   selectedReferences: Section[] = [];
+  loading = true;
 
   userMenuItems: MenuItem[] = [
     {

@@ -37,6 +37,7 @@ import { MyQuestionsComponent } from './profile/my-questions/my-questions.compon
 import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { EditorModule } from "primeng/editor";
 import { SkeletonModule } from "primeng/skeleton";
+import { ServerErrorComponent } from './server-error/server-error.component';
 
 
 
@@ -57,7 +58,8 @@ import { SkeletonModule } from "primeng/skeleton";
     QuestionsComponent,
     QuestionComponent,
     MyQuestionsComponent,
-    AskQuestionComponent
+    AskQuestionComponent,
+    ServerErrorComponent
   ],
   imports: [
     CommonModule,

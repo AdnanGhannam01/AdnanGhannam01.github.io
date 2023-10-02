@@ -8,10 +8,10 @@
     <a class="docs-logo" routerLink="/"></a>
     <p-divider class="navbar__divider" layout="vertical"></p-divider>
 
-    <ul class="docs-list navbar__list">
-        <li (click)="showDialog('lang')" class="docs-list__item">Languages</li>
-        <li (click)="showDialog('lib')" class="docs-list__item">Libraries</li>
-        <li (click)="showDialog('frame')" class="docs-list__item">Frameworks</li>
+    <ul class="docs-list navbar__list" *ngIf="toolkitsList">
+        <li (click)="showDialog('lang')" *ngIf="toolkitsList.lang.value.length" class="docs-list__item">Languages</li>
+        <li (click)="showDialog('lib')" *ngIf="toolkitsList.lib.value.length" class="docs-list__item">Libraries</li>
+        <li (click)="showDialog('frame')" *ngIf="toolkitsList.frame.value.length" class="docs-list__item">Frameworks</li>
     </ul>
 
     <div *ngIf="isLoggedIn">

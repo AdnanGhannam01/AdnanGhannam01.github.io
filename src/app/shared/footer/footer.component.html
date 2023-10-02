@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="footer__section" *ngIf="toolkitsList">
+<div class="container" *ngIf="toolkitsList">
+    <div class="footer__section" *ngIf="toolkitsList.lang.value.length">
         <h4 class="footer__section__title">Languages</h4>
         <a 
             [routerLink]="'/toolkits/' + lang._id" 
@@ -7,7 +7,7 @@
             *ngFor="let lang of toolkitsList.lang.value"
         >{{ lang.name }}</a>
     </div>
-    <div class="footer__section" *ngIf="toolkitsList">
+    <div class="footer__section" *ngIf="toolkitsList.lib.value.length">
         <h4 class="footer__section__title">Libraries</h4>
         <a 
             [routerLink]="'/toolkits/' + lib._id" 
@@ -15,7 +15,7 @@
             *ngFor="let lib of toolkitsList.lib.value"
         >{{ lib.name }}</a>
     </div>
-    <div class="footer__section" *ngIf="toolkitsList">
+    <div class="footer__section" *ngIf="toolkitsList.frame.value.length">
         <h4 class="footer__section__title">Frameworks</h4>
         <a 
             [routerLink]="'/toolkits/' + frame._id" 
