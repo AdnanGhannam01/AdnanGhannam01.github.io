@@ -4,7 +4,16 @@
     display: block;
     padding: 2em 0;
 
+    .container {
+        position: relative;
+    }
+
     .article {
+        &__sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
         &__header {
             @include mixin.flex(space-between);
             margin-bottom: 1em;
