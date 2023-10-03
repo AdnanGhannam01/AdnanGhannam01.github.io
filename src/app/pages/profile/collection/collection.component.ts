@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { catchError, throwError } from 'rxjs';
 import { Article, Collection } from 'src/app/services';
+import { NavigatorService } from 'src/app/services/navigator.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,14 +15,25 @@ export class CollectionComponent {
   loading = true;
   collection?: Collection;
 
+  messages: Message[] = [];
+
   constructor(private userService: UserService,
               private messageService: MessageService) { }
 
   ngOnInit() {
     this.userService.getCollection()
+      .pipe(catchError(() => {
+        const message = "Something went wrong, please try again later.";
+        this.messages = [{ severity: 'error', detail: message }];
+        this.loading = false;
+        return throwError(message);
+      }))
       .subscribe(({ data }) => {
         this.loading = false;
         this.collection = data;
+        if (!data.articles.length) {
+          this.messages = [{ severity: 'info', detail: 'You have no articles in your collection' }];
+        }
       });
   }
 

@@ -1,6 +1,6 @@
 <div [style]="{ 'overflow': 'auto' }">
     <p-table #table 
-        *ngIf="questions?.length"
+        *ngIf="loading || questions?.length"
         [value]="questions|| [1, 2, 3]"
         [tableStyle]="{ 'min-width': '50rem' }"
         tableStyleClass="overflow-text"
@@ -29,12 +29,11 @@
             <tr *ngIf="!loading">
                 <td>
                     <a [routerLink]="'/questions/' + question._id" class="docs-link">
-                        <h3 class="question__title">{{question.title}}</h3>
+                        {{ question.title }}
                     </a>
-                    <small>By adnan</small>
                 </td>
                 <td>{{question.createdAt | date: 'dd/MM/yyyy'}}</td>
-                <td>{{question.votes}}</td>
+                <td>{{question.votes.length}}</td>
                 <td>{{question.views}}</td>
                 <td>{{question.answers.length}}</td>
                 <td>
@@ -47,7 +46,7 @@
             </tr>
         </ng-template>
     </p-table>
-    <p *ngIf="!questions?.length">You Didn't Ask Any Questions Yet</p>
+    <p-messages [value]="messages" [enableService]="false" [closable]="false"></p-messages>
 </div>
 
 <p-toast></p-toast>

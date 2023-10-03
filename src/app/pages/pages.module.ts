@@ -39,6 +39,7 @@ import { EditorModule } from "primeng/editor";
 import { SkeletonModule } from "primeng/skeleton";
 import { ServerErrorComponent } from './server-error/server-error.component';
 import { InputMaskModule } from "primeng/inputmask";
+import { MessagesModule } from "primeng/messages";
 
 
 
@@ -84,7 +85,8 @@ import { InputMaskModule } from "primeng/inputmask";
     DropdownModule,
     EditorModule,
     SkeletonModule,
-    InputMaskModule
+    InputMaskModule,
+    MessagesModule
   ],
   providers: [ConfirmationService, MessageService]
 })

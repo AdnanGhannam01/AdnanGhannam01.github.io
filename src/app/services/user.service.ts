@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiResponse, Collection, User } from '.';
+import { ApiResponse, Collection, Question, User } from '.';
 import { Nullable } from 'primeng/ts-helpers';
 import { AuthService, Login } from './auth.service';
 
@@ -18,6 +18,11 @@ export class UserService {
   getProfile() {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
     return this.http.get<ApiResponse<User>>("/user", { headers });
+  }
+
+  getMyQuestions() {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.get<ApiResponse<Question[]>>("/user/my-questions", { headers });
   }
 
   updateProfile(name: string, email: string, phonenumber: string) {
