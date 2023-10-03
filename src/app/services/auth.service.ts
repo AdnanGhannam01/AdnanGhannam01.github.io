@@ -19,7 +19,7 @@ export class AuthService {
     return localStorage.getItem("token")
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   login(name: string, password: string, 
       next?: ((value: ApiResponse<Login>) => void), 
@@ -56,7 +56,7 @@ export class AuthService {
 
   logout() {
     this.clearLocalStorage();
-    this.router.navigate(['/']);
+    location.href = "/";
   }
 
   clearLocalStorage() {
