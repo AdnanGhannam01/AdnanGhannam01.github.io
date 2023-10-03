@@ -13,7 +13,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CollectionComponent {
   loading = true;
-  collection?: Collection;
+  #collection?: Collection;
+  get collection(): Collection | undefined { return this.#collection }
+  set collection(val: Collection) {
+    this.#collection = val;
+    if (!val.articles.length) {
+      this.messages = [{ severity: 'info', detail: 'You have no articles in your collection' }];
+    }
+  }
 
   messages: Message[] = [];
 
@@ -31,9 +38,6 @@ export class CollectionComponent {
       .subscribe(({ data }) => {
         this.loading = false;
         this.collection = data;
-        if (!data.articles.length) {
-          this.messages = [{ severity: 'info', detail: 'You have no articles in your collection' }];
-        }
       });
   }
 

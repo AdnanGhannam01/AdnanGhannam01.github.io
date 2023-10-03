@@ -13,7 +13,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MyQuestionsComponent {
   loading = true;
-  questions?: Question[];
+  #questions?: Question[];
+  get questions(): Question[] | undefined { return this.#questions }
+  set questions(val: Question[]) {
+    this.#questions = val;
+    if (!val.length) {
+      this.messages = [{ severity: 'info', detail: 'You didn\'t write any question '}];
+    }
+  }
+
 
   messages: Message[] = [];
 
@@ -32,9 +40,6 @@ export class MyQuestionsComponent {
       .subscribe(({ data }) => {
         this.questions = data;
         this.loading = false;
-        if (!data.length) {
-          this.messages = [{ severity: 'info', detail: 'You didn\'t write any question '}];
-        }
       });
   }
 
