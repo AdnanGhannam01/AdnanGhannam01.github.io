@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Message } from 'primeng/api';
 import { Question } from 'src/app/services';
 import { AuthService } from 'src/app/services/auth.service';
 import { QuestionService } from 'src/app/services/question.service';
@@ -18,6 +19,8 @@ export class QuestionsComponent {
   questions: Question[] = [];
   visibleQuestions?: Question[];
 
+  messages: Message[] = [];
+
   constructor(private activedRoute: ActivatedRoute,
               private auth: AuthService,
               private questionService: QuestionService,
@@ -35,7 +38,7 @@ export class QuestionsComponent {
             next: ({ data }) => {
               this.loading = false;
               this.questions = data;
-              this.visibleQuestions = this.questions;
+              this.displayQuestions("");
             },
             error: (err) => { this.loading = false }
           });
@@ -43,7 +46,17 @@ export class QuestionsComponent {
     });
 
     this.searchService.valueChange.subscribe(val => {
-      this.visibleQuestions = this.questions.filter(question => question.title.toLowerCase().includes(val.toLowerCase()));
+      this.displayQuestions(val);
     });
+  }
+
+  displayQuestions(val: string) {
+    this.visibleQuestions = this.questions.filter(question => question.title.toLowerCase().includes(val.toLowerCase()));
+
+    if (!this.visibleQuestions.length) {
+      this.messages = [{ severity: 'info', detail: 'No questions' }];
+    } else {
+      this.messages = [];
+    }
   }
 }

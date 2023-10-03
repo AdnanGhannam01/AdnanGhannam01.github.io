@@ -32,7 +32,6 @@ export class ReferencesComponent {
             next: ({ data }) => {
               this.loading = false;
               this.sections = data;
-              this.visibleSections = this.sections;
               this.displaySections("");
             },
             error: err => {

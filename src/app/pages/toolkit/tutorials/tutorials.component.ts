@@ -36,7 +36,6 @@ export class TutorialsComponent {
             next: ({ data }) => {
               this.loading = false;
               this.sections = data;
-              this.visibleSections = this.sections;
               if (!this.sections.length) {
                 this.messages = [{ severity: 'info', detail: 'There is no tutorials in this toolkit yet!' }];
               }

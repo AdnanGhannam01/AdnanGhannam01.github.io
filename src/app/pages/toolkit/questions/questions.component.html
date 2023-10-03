@@ -1,4 +1,5 @@
 <p-table 
+    *ngIf="!loading && questions.length"
     [value]="visibleQuestions || [1, 2, 3]" 
     tableStyleClass="overflow-text"
     [tableStyle]="{'min-width': '60rem', 'border-bottom': '1px solid var(--clr-border)'}">
@@ -45,4 +46,10 @@
     </ng-template>
 </p-table>
 
-<p *ngIf="!visibleQuestions?.length && !loading">No Results</p>
+<p-messages [value]="messages" [enableService]="false" [closable]="false"></p-messages>
+<p-button
+    *ngIf="isLoggedIn"
+    label="Ask a question"
+    [routerLink]="'/ask-question/' + id"
+    styleClass="p-button-primaryj"
+></p-button>
