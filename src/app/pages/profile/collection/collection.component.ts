@@ -19,6 +19,8 @@ export class CollectionComponent {
     this.#collection = val;
     if (!val.articles.length) {
       this.messages = [{ severity: 'info', detail: 'You have no articles in your collection' }];
+    } else {
+      this.messages = [];
     }
   }
 

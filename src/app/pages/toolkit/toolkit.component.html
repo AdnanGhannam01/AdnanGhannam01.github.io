@@ -3,7 +3,7 @@
     <div class="container">
         <div class="toolkit__title">
             <h1 class="toolkit__name">{{ toolkit.name }}</h1>
-            <small>(A {{ toolkit.type }} made by {{ toolkit.company }})</small>
+            <small>(A {{ toolkit.type }}<span *ngIf="toolkit.company"> made by {{ toolkit.company }})</span></small>
         </div>
         <p class="toolkit__desc">{{ toolkit.description }}</p>
         <docs-tabmenu [items]="tabMenuItems"></docs-tabmenu>

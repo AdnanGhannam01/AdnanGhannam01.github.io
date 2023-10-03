@@ -19,6 +19,8 @@ export class MyQuestionsComponent {
     this.#questions = val;
     if (!val.length) {
       this.messages = [{ severity: 'info', detail: 'You didn\'t write any question '}];
+    } else {
+      this.messages = [];
     }
   }
 
