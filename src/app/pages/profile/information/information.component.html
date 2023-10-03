@@ -50,15 +50,17 @@
                     </td>
                     <td *ngIf="!editMode">{{ user?.phonenumber }}</td>
                     <td *ngIf="editMode">
-                        <input
+                        <p-inputMask 
+                            mask="(999) 999-9999" 
+                            placeholder="(999) 999-9999"
                             [(ngModel)]="user.phonenumber"
-                            pInputText 
                             id="phonenumber" 
                             name="phonenumber"
                             [required]="true"
                             [style]="{ width: '100%' }"
                             *ngIf="user && editMode"
-                            aria-describedby="phonenumber-help" />
+                            aria-describedby="phonenumber-help">
+                        </p-inputMask>
                     </td>
                 </tr>
             </ng-template>

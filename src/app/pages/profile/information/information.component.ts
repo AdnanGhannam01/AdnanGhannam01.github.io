@@ -18,14 +18,11 @@ export class InformationComponent {
               private messageService: MessageService) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      
     this.userService.getProfile()
       .subscribe(({ data }) => {
         this.loading = false;
         this.user = data;
       });
-    }, 2000);
   }
 
   exit(save: boolean) {
@@ -38,6 +35,7 @@ export class InformationComponent {
       this.userService.updateProfile(this.user.name, this.user.email, this.user.phonenumber)
         .subscribe({
           next: () => {
+            console.log(123)
             this.sending = false;
             this.editMode = false;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Information updated' });
