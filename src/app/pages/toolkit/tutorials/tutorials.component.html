@@ -1,8 +1,8 @@
-<div class="tutorials__sidebar">
+<div class="tutorials__sidebar" *ngIf="!loading && sections.length">
     <docs-card *ngIf="loading"
-        title="Loading Sections"
+        title="Sections"
         [flex]="true">
-        <p-skeleton *ngFor="let i of [1, 2]"></p-skeleton>
+        <p-skeleton *ngFor="let i of [1, 2, 3, 4, 5]"></p-skeleton>
     </docs-card>
     <docs-card
         *ngIf="!loading"
@@ -39,5 +39,5 @@
         </a>
     </docs-card>
 
-    <p *ngIf="!visibleSections.length && !loading">No Results</p>
+    <p-messages [value]="messages" [enableService]="false" [closable]="false"></p-messages>
 </div>

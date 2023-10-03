@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Message } from 'primeng/api';
 import { Section } from 'src/app/services';
 import { SearchService } from 'src/app/services/search.service';
 import { SectionService } from 'src/app/services/section.service';
@@ -18,6 +19,8 @@ export class TutorialsComponent {
   sections: Section[] = [];
   visibleSections: Section[] = [];
 
+  messages: Message[] = [];
+
   constructor(private activedRoute: ActivatedRoute,
               private router: Router,
               private sectionService: SectionService,
@@ -34,23 +37,33 @@ export class TutorialsComponent {
               this.loading = false;
               this.sections = data;
               this.visibleSections = this.sections;
-            },
-            error: err => {
-              this.loading = false;
-              console.error("FETCHING ERROR", err.error);
+              if (!this.sections.length) {
+                this.messages = [{ severity: 'info', detail: 'There is no tutorials in this toolkit yet!' }];
+              }
+              this.displaySections("");
             }
           });
       }
     });
 
     this.searchService.valueChange.subscribe(val => {
-      this.visibleSections = this.sections.map(section => {
-        return {
-          ...section,
-          articles: section.articles.filter(article => article.title.toLowerCase().includes(val.toLowerCase()))
-        }
-      }).filter(section => section.articles.length != 0);
+      this.displaySections(val);
     });
+  }
+
+  displaySections(val: string) {
+    this.visibleSections = this.sections.map(section => {
+      return {
+        ...section,
+        articles: section.articles.filter(article => article.title.toLowerCase().includes(val.toLowerCase()))
+      }
+    }).filter(section => section.articles.length != 0);
+
+    if (!this.visibleSections.length) {
+      this.messages = [{ severity: 'info', detail: 'No articles' }];
+    } else {
+      this.messages = [];
+    }
   }
 
   navigateToFragment(fragment: string): void {
