@@ -8,4 +8,24 @@
             padding: 1em 0;
         }
     }
+
+    ::ng-deep {
+        .info {
+            &__table {
+                tr {
+                    &:first-child {
+                        td {
+                            border: none;
+                        }
+                    }
+                }
+
+                td {
+                    &:first-child {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
 }

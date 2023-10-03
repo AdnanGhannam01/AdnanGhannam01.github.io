@@ -18,17 +18,24 @@ export class InformationComponent {
               private messageService: MessageService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      
     this.userService.getProfile()
       .subscribe(({ data }) => {
         this.loading = false;
         this.user = data;
       });
+    }, 2000);
   }
 
   exit(save: boolean) {
+    if (!save) {
+      this.editMode = false;
+    }
+
     if (save && this.user) {
       this.sending = true;
-      this.userService.updateProfile(this.user.name, this.user.email)
+      this.userService.updateProfile(this.user.name, this.user.email, this.user.phonenumber)
         .subscribe({
           next: () => {
             this.sending = false;

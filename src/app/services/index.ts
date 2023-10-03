@@ -8,6 +8,7 @@ export interface User {
   _id: string;
   name: string;
   email: string;
+  phonenumber: string;
   privilege: string;
   userCollection: string;
   joinedAt: number,

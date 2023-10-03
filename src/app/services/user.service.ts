@@ -20,9 +20,9 @@ export class UserService {
     return this.http.get<ApiResponse<User>>("/user", { headers });
   }
 
-  updateProfile(name: string, email: string) {
+  updateProfile(name: string, email: string, phonenumber: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
-    return this.http.put<any>("/user", { name, email }, { headers });
+    return this.http.put<any>("/user", { name, email, phonenumber }, { headers });
   }
 
   removeAccount() {
