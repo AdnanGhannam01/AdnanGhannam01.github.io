@@ -28,4 +28,13 @@ export class SectionService {
       })
     }
   }
+
+  search(val: string, sections: Section[]) {
+    return sections.map(section => {
+      return {
+        ...section,
+        articles: section.articles.filter(article => article.title.toLowerCase().includes(val.toLowerCase()))
+      }
+    }).filter(section => section.articles.length != 0);
+  }
 }

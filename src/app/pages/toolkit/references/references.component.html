@@ -23,4 +23,4 @@
     </div>
 </div>
 
-<p *ngIf="!visibleSections.length && !loading">No Results</p>
+<p-messages [value]="messages" [enableService]="false" [closable]="false"></p-messages>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Message } from 'primeng/api';
 import { Section } from 'src/app/services';
 import { SearchService } from 'src/app/services/search.service';
 import { SectionService } from 'src/app/services/section.service';
@@ -14,6 +15,8 @@ export class ReferencesComponent {
 
   sections: Section[] = [];
   visibleSections: Section[] = [];
+
+  messages: Message[] = [];
 
   constructor(private activedRoute: ActivatedRoute,
               private sectionService: SectionService,
@@ -30,6 +33,7 @@ export class ReferencesComponent {
               this.loading = false;
               this.sections = data;
               this.visibleSections = this.sections;
+              this.displaySections("");
             },
             error: err => {
               this.loading = false;
@@ -40,12 +44,18 @@ export class ReferencesComponent {
     });
 
     this.searchService.valueChange.subscribe(val => {
-      this.visibleSections = this.sections.map(section => {
-        return {
-          ...section,
-          articles: section.articles.filter(article => article.title.toLowerCase().includes(val.toLowerCase()))
-        }
-      }).filter(section => section.articles.length != 0);
+      this.displaySections(val);
     });
   }
+
+  displaySections(val: string) {
+    this.visibleSections = this.sectionService.search(val, this.sections);
+
+    if (!this.visibleSections.length) {
+      this.messages = [{ severity: 'info', detail: 'No articles' }];
+    } else {
+      this.messages = [];
+    }
+  }
+
 }

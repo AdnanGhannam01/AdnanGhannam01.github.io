@@ -52,12 +52,7 @@ export class TutorialsComponent {
   }
 
   displaySections(val: string) {
-    this.visibleSections = this.sections.map(section => {
-      return {
-        ...section,
-        articles: section.articles.filter(article => article.title.toLowerCase().includes(val.toLowerCase()))
-      }
-    }).filter(section => section.articles.length != 0);
+    this.visibleSections = this.sectionService.search(val, this.sections);
 
     if (!this.visibleSections.length) {
       this.messages = [{ severity: 'info', detail: 'No articles' }];
