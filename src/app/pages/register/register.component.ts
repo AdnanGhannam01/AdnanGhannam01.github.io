@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Nullable } from 'primeng/ts-helpers';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,16 +11,21 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent {
   loading = false;
+  user = {
+    name: "",
+    password: "",
+    phonenumber: "",
+    email: ""
+  };
 
   constructor(private userService: UserService,
     private messageService: MessageService,
     private authService: AuthService,
     private router: Router) { }
 
-
-  register(name: string, email: string, password: Nullable<string>) {
+  register() {
     this.loading = true;
-    this.userService.register(name, email, password)
+    this.userService.register(this.user.name, this.user.email, this.user.password, this.user.phonenumber)
       .subscribe({
         next: ({ data }) => {
           this.loading = false;

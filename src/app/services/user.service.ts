@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiResponse, Collection, Question, User } from '.';
-import { Nullable } from 'primeng/ts-helpers';
 import { AuthService, Login } from './auth.service';
 
 @Injectable({
@@ -11,8 +10,8 @@ export class UserService {
   constructor(private http: HttpClient,
               private authService: AuthService) { }
 
-  register(name: string, email: string, password: Nullable<string>) {
-    return this.http.post<ApiResponse<Login>>("/register", { name, email, password })
+  register(name: string, email: string, password: string, phonenumber: string) {
+    return this.http.post<ApiResponse<Login>>("/register", { name, email, password, phonenumber })
   }
 
   getProfile() {

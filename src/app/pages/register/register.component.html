@@ -1,11 +1,12 @@
-<form (submit)="register(name.value, email.value, password.value)">
+<form (submit)="register()">
     <div class="form-input">
         <label htmlFor="name">Username</label>
-        <input #name
+        <input
             pInputText 
             id="name" 
             name="name"
             [required]="true"
+            [(ngModel)]="user.name"
             type="email"
             [style]="{ width: '100%' }"
             aria-describedby="name-help" />
@@ -14,14 +15,29 @@
 
     <div class="form-input">
         <label htmlFor="email">Email</label>
-        <input #email
+        <input
             pInputText 
             id="email" 
             name="email"
             [required]="true"
+            [(ngModel)]="user.email"
             [style]="{ width: '100%' }"
             aria-describedby="email-help" />
         <small id="email-help"></small>
+    </div>
+
+    <div class="form-input">
+        <label htmlFor="password">Phone Number</label>
+        <p-inputMask 
+            mask="(999) 999-9999" 
+            placeholder="(999) 999-9999"
+            [(ngModel)]="user.phonenumber"
+            id="phonenumber" 
+            name="phonenumber"
+            [required]="true"
+            [style]="{ width: '100%' }"
+            aria-describedby="phonenumber-help">
+        </p-inputMask>
     </div>
 
     <div class="form-input">
@@ -29,6 +45,8 @@
         <p-password #password
             id="password" 
             name="password" 
+            [(ngModel)]="user.password"
+            [required]="true"
             aria-describedby="password-help" 
             [toggleMask]="true"
         ></p-password>
