@@ -1,11 +1,14 @@
 @use "../../utilities/mixin.scss";
 
 :host {
+    display: block;
+    padding: 2em 0;
+
     .profile {
         &__header {
             @include mixin.flex(space-between);
             gap: 1em;
-            padding: 2em 0;
+            padding-bottom: 2em;
         }
 
         &__content {

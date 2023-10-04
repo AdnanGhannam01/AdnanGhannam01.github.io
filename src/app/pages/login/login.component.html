@@ -1,11 +1,12 @@
-<form (submit)="login(name.value, password.value)">
+<form (submit)="login(form)" #form="ngForm">
     <div class="form-input">
         <label htmlFor="name">Username</label>
-        <input #name
-            pInputText 
+        <input
+            [(ngModel)]="name"
+            pInputText
             id="name" 
             name="name"
-            [required]="true"
+            required
             [style]="{ width: '100%' }"
             aria-describedby="name-help" />
         <small id="name-help"></small>
@@ -13,10 +14,12 @@
 
     <div class="form-input">
         <label htmlFor="password">Password</label>
-        <p-password #password
+        <p-password 
+            [(ngModel)]="password"
             id="password" 
             name="password" 
             aria-describedby="password-help" 
+            required
             [toggleMask]="true"
             [feedback]="false"
         ></p-password>

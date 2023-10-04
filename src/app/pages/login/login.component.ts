@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Nullable } from 'primeng/ts-helpers';
@@ -10,16 +11,18 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  name = "";
+  password = "";
   loading = false;
 
   constructor(private authService: AuthService,
     private messageService: MessageService,
     private router: Router) { }
 
-  login(name: string, password: Nullable<string>) {
-    if (name && password) {
+  login({ form }: NgForm) {
+    if (this.name && this.password) {
       this.loading = true;
-      this.authService.login(name, password, (res) => {
+      this.authService.login(this.name, this.password, (res) => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login Success' });
         this.loading = false;
         setTimeout(() => {
