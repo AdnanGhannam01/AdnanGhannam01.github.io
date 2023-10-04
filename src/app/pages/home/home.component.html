@@ -2,7 +2,7 @@
 
 <header class="home__header home__section">
     <div class="container">
-        <div>
+        <div class="home__header__content">
             <h1 class="home__section__title">Learn and Use Any Technology with Ease</h1>
             <p>TechStack is a documentation website that provides you with tutorials and references for various languages, libraries and frameworks. Whether you want to learn a new skill, brush up on an old one, or find a quick solution to a problem, TechStack has you covered.</p>
         </div>
@@ -51,6 +51,13 @@
 
 <section class="home__section home__questions" *ngIf="topQuestions.length">
     <div class="container">
+        <div class="home__questions__side">
+            <h3 class="home__section__title">Ask Questions</h3>
+            <p>You can ask any question, and others can help you find the solution</p>
+            <div class="home__questions__img-box">
+                <img src="/assets/images/questions.png" class="docs-img"/>
+            </div>
+        </div>
         <ul class="home__questions__items"> 
             <li
                 docs-home-list-item
@@ -61,13 +68,6 @@
                 </a>
             </li>
         </ul>
-        <div class="home__questions__side">
-            <h3 class="home__section__title">Ask Questions</h3>
-            <p>You can ask any question, and others can help you find the solution</p>
-            <div class="home__questions__img-box">
-                <img src="/assets/images/questions.png" class="docs-img"/>
-            </div>
-        </div>
     </div>
 </section>
 

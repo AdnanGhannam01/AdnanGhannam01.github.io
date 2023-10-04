@@ -3,18 +3,24 @@
 :host {
     .home {
         &__header {
-            @include mixin.flex(center, flex-start, column);
-            gap: 1em;
-            min-height: 60dvh;
             background-color: var(--bg-home-header);
 
             .container {
-                @include mixin.flex(stretch);
-                gap: 1em;
+                @include mixin.flex(center, center, row, wrap);
+                gap: 2em;
+                min-height: 50dvh;
+            }
+
+            &__content {
+                flex-basis: 500px;
+                flex-grow: 1;
             }
 
             &__img-box {
-                img { max-width: 400px }
+                img {
+                    max-width: 400px;
+                    width: 100%;
+                }
             }
         }
 
@@ -33,19 +39,12 @@
 
         &__toolkits {
             .container {
-                @include mixin.flex(space-between, flex-start);
-                gap: 2em;
+                @include mixin.grid(1fr, repeat(auto-fit, minmax(300px, 1fr)), 1em, 1em);
             }
 
             &__items {
-                @include mixin.flex(center, center, row, wrap);
-                gap: 1em;
+                @include mixin.grid(1fr, repeat(auto-fill, minmax(150px, 1fr)), 1em, 1em);
                 flex: 1;
-
-                .docs-link {
-                    flex: 1;
-                    flex-basis: 100px;
-                }
             }
         }
 
@@ -57,7 +56,10 @@
             }
 
             &__img-box {
-                img { max-width: 450px; }
+                img {
+                    max-width: 450px;
+                    width: 100%;
+                }
             }
 
             &__items {
@@ -78,15 +80,18 @@
 
         &__questions {
             .container {
-                @include mixin.flex(space-between, flex-start);
-                gap: 2em;
+                @include mixin.grid(1fr, repeat(auto-fit, minmax(300px, 1fr)), 1em, 1em);
+                justify-items: center;
+                direction: rtl;
             }
 
             &__side {
                 max-width: 300px;
+                direction: ltr;
             }
 
             &__items {
+                direction: ltr;
                 @include mixin.grid(1fr, repeat(auto-fit, minmax(220px, 1fr)));
                 gap: 1em;
                 flex: 1;

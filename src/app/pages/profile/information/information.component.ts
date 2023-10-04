@@ -35,7 +35,6 @@ export class InformationComponent {
       this.userService.updateProfile(this.user.name, this.user.email, this.user.phonenumber)
         .subscribe({
           next: () => {
-            console.log(123)
             this.sending = false;
             this.editMode = false;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Information updated' });
