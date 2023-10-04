@@ -90,6 +90,8 @@ docs-root {
 
     .p-dataview {
         .p-dataview-header {
+            background-color: var(--bg-dataview-header);
+
             &--flex {
                 @include mixin.flex(space-between);
                 gap: 1em;

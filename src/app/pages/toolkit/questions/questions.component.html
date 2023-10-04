@@ -36,7 +36,7 @@
                 <a [routerLink]="'/questions/' + question._id" class="docs-link">
                     <h3 class="question__title">{{question.title}}</h3>
                 </a>
-                <small>By {{ question.user.name }}</small>
+                <p><small>By {{ question.user.name }}</small></p>
             </td>
             <td>{{question.createdAt | date: 'dd/MM/yyyy'}}</td>
             <td>{{question.votes.length}}</td>

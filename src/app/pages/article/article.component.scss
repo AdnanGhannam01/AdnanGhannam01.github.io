@@ -1,4 +1,5 @@
 @use "../../utilities/mixin.scss";
+@use "../../utilities/mediaQuery.scss";
 
 :host {
     display: block;
@@ -12,6 +13,10 @@
         &__sidebar {
             position: sticky;
             top: 100px;
+
+            @include mediaQuery.Laptops {
+                position: static;
+            }
         }
 
         &__header {
