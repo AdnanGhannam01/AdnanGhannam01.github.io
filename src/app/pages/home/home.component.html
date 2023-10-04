@@ -2,12 +2,17 @@
 
 <header class="home__header home__section">
     <div class="container">
-        <h1 class="home__section__title">Learn and Use Any Technology with Ease</h1>
-        <p>TechStack is a documentation website that provides you with tutorials and references for various languages, libraries and frameworks. Whether you want to learn a new skill, brush up on an old one, or find a quick solution to a problem, TechStack has you covered.</p>
+        <div>
+            <h1 class="home__section__title">Learn and Use Any Technology with Ease</h1>
+            <p>TechStack is a documentation website that provides you with tutorials and references for various languages, libraries and frameworks. Whether you want to learn a new skill, brush up on an old one, or find a quick solution to a problem, TechStack has you covered.</p>
+        </div>
+        <div class="home__header__img-box">
+            <img src="/assets/images/home.png"/>
+        </div>
     </div>
 </header>
 
-<section class="home__section home__toolkits">
+<section class="home__section home__toolkits" *ngIf="toolkits.length">
     <div class="container">
         <div class="home__toolkits__desc">
             <h3 class="home__section__title">Select a Toolkit</h3>
@@ -24,10 +29,13 @@
     </div>
 </section>
 
-<section class="home__section home__articles">
+<section class="home__section home__articles" *ngIf="topArticles.length">
     <div class="container">
-        <div>
+        <div class="home__section__header">
             <h3 class="home__section__title">Read Our Popular Articles</h3>
+            <div class="home__articles__img-box">
+                <img src="/assets/images/articles.png"/>
+            </div>
         </div>
         <div class="home__articles__items">
             <a *ngFor="let article of topArticles"
@@ -41,16 +49,24 @@
     </div>
 </section>
 
-<section class="home__section home__questions">
+<section class="home__section home__questions" *ngIf="topQuestions.length">
     <div class="container">
-        <div class="home__questions__items"> 
-            <a
-                *ngFor="let question of topQuestions"
-            >{{ question.title }}</a>
-        </div>
-        <div>
+        <ul class="home__questions__items"> 
+            <li
+                docs-home-list-item
+                *ngFor="let question of topQuestions">
+                <p>{{ question.title }}</p>
+                <a class="docs-link" [routerLink]="'/questions/' + question._id">
+                    <h5>Read the question...</h5>
+                </a>
+            </li>
+        </ul>
+        <div class="home__questions__side">
             <h3 class="home__section__title">Ask Questions</h3>
             <p>You can ask any question, and others can help you find the solution</p>
+            <div class="home__questions__img-box">
+                <img src="/assets/images/questions.png" class="docs-img"/>
+            </div>
         </div>
     </div>
 </section>
@@ -61,14 +77,17 @@
         <ul class="home__features__items docs-list">
             <li>
                 <h4 class="title">Programming made fun</h4>
+                <img src="/assets/images/fun.png"/>
                 <p class="desc">We make programming enjoyable and engaging. Programming tutorials and examples that are interactive, creative, and fun for learners of all levels.</p>
             </li>
             <li>
                 <h4 class="title">Programming made accessible</h4>
+                <img src="/assets/images/accessible.png"/>
                 <p class="desc">We make programming available and affordable. Programming tutorials and examples that are free, open-source, and easy to access from any device or platform.</p>
             </li>
             <li>
                 <h4 class="title">Programming made relevant</h4>
+                <img src="/assets/images/relevant.png"/>
                 <p class="desc">We make programming useful and applicable. Programming tutorials and examples that are up-to-date, practical, and relevant to the current and future needs of the industry.</p>
             </li>
         </ul>

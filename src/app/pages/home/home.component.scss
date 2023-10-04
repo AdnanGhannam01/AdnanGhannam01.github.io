@@ -7,6 +7,15 @@
             gap: 1em;
             min-height: 60dvh;
             background-color: var(--bg-home-header);
+
+            .container {
+                @include mixin.flex(stretch);
+                gap: 1em;
+            }
+
+            &__img-box {
+                img { max-width: 400px }
+            }
         }
 
         &__section {
@@ -15,6 +24,10 @@
             &__title {
                 margin-bottom: .75em;
                 font-weight: 600;
+            }
+
+            &__content {
+                @include mixin.flex();
             }
         }
 
@@ -39,11 +52,17 @@
         &__articles {
             background-color: var(--bg-section);
 
-            .home__section__title {
+            .home__section__header {
                 text-align: center;
             }
 
+            &__img-box {
+                img { max-width: 450px; }
+            }
+
             &__items {
+                overflow: hidden;
+
                 .docs-link {
                     display: block;
                     margin: 1em auto;
@@ -63,8 +82,22 @@
                 gap: 2em;
             }
 
+            &__side {
+                max-width: 300px;
+            }
+
             &__items {
+                @include mixin.grid(1fr, repeat(auto-fit, minmax(220px, 1fr)));
+                gap: 1em;
                 flex: 1;
+
+                li {
+                    padding: .75em 1em;
+                }
+
+                .docs-link {
+                    margin-top: 1em;
+                }
             }
         }
 
@@ -75,9 +108,21 @@
             &__items {
                 @include mixin.grid(1fr, repeat(auto-fit, minmax(300px, 1fr)), 2em, 2em);
 
+                li {
+                    padding: 2em 1em;
+                    background-color: #fff;
+                    border: 1px solid var(--clr-border);
+                    border-radius: 7px;
+                    box-shadow: var(--bs-primary);
+                }
+
                 .title {
                     font-weight: 600;
                     margin-bottom: .5em;
+                }
+
+                img {
+                    height: 200px;
                 }
             }
         }
