@@ -21,7 +21,7 @@ import { MyQuestionsComponent } from './pages/profile/my-questions/my-questions.
 import { AskQuestionComponent } from './pages/ask-question/ask-question.component';
 import { PreventUnauthenticateAccessGuard } from './guards/prevent-unauthenticate-access.guard';
 import { BlockNavigationIfChangeGuard } from './guards/block-navigation-if-change.guard';
-import { ServerErrorComponent } from './pages/server-error/server-error.component';
+import { ConnectionErrorComponent } from './pages/connection-error/connection-error.component';
 
 const routes: Routes = [
   {
@@ -89,7 +89,7 @@ const routes: Routes = [
         canActivate: [PreventUnauthenticateAccessGuard],
         canDeactivate: [BlockNavigationIfChangeGuard]
       },
-      { path: "500-server-error", component: ServerErrorComponent },
+      { path: "connectless", component: ConnectionErrorComponent },
       {
         path: "",
         component: HomeComponent,

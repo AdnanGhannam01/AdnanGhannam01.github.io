@@ -37,9 +37,9 @@ import { MyQuestionsComponent } from './profile/my-questions/my-questions.compon
 import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { EditorModule } from "primeng/editor";
 import { SkeletonModule } from "primeng/skeleton";
-import { ServerErrorComponent } from './server-error/server-error.component';
 import { InputMaskModule } from "primeng/inputmask";
 import { MessagesModule } from "primeng/messages";
+import { ConnectionErrorComponent } from './connection-error/connection-error.component';
 
 
 
@@ -61,7 +61,7 @@ import { MessagesModule } from "primeng/messages";
     QuestionComponent,
     MyQuestionsComponent,
     AskQuestionComponent,
-    ServerErrorComponent
+    ConnectionErrorComponent
   ],
   imports: [
     CommonModule,

@@ -11,7 +11,7 @@ export class NavigatorService {
 
   serverErrorRedirect<T>() {
     return catchError<T, Observable<never>>(() => {
-        this.router.navigate(['/500-server-error'])
+        this.router.navigate(['/connectless'])
         return throwError('Something bad happened; please try again later.');
       })
   }
