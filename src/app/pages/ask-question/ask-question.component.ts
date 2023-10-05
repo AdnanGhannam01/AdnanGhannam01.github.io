@@ -14,6 +14,7 @@ export class AskQuestionComponent {
   title = "";
   content = "";
   loading = false;
+  dataSaved = false;
 
   @ViewChild("editForm") editForm?: NgForm;
 
@@ -30,9 +31,15 @@ export class AskQuestionComponent {
     return false;
   }
 
+  cannotLeave() {
+    if (this.dataSaved) return false; // Can Leave
+    if (this.hasChanged()) return true;
+    return false;
+  }
+
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
-    if (this.hasChanged()) {
+    if (this.cannotLeave()) {
       $event.returnValue = true;
     }
   }
@@ -47,6 +54,7 @@ export class AskQuestionComponent {
             next: () => {
               this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Question Sent' });
               this.loading = false;
+              this.dataSaved = true;
               setTimeout(() => {
                 this.router.navigate(['toolkits', id, 'questions']);
               }, 1500);

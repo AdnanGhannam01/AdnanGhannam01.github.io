@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class BlockNavigationIfChangeGuard implements CanDeactivate<any> {
   canDeactivate(component: any, route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (component.hasChanged()) {
+    if (component.cannotLeave()) {
       return confirm('Your changes will be lost');
     }
 
