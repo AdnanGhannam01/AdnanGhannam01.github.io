@@ -20,20 +20,18 @@ export class LoginComponent {
     private router: Router) { }
 
   login({ form }: NgForm) {
-    if (this.name && this.password) {
-      this.loading = true;
-      this.authService.login(this.name, this.password, (res) => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login Success' });
-        this.loading = false;
-        setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 1500);
-      }, (err) => {
-        this.loading = false;
-        err.error.errors.forEach(
-          (error: any) => 
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
-      });
-    }
+    this.loading = true;
+    this.authService.login(this.name, this.password, (res) => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login Success' });
+      this.loading = false;
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 1500);
+    }, (err) => {
+      this.loading = false;
+      err.error.errors.forEach(
+        (error: any) => 
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+    });
   }
 }

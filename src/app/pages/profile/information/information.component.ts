@@ -30,6 +30,7 @@ export class InformationComponent {
       this.editMode = false;
     }
 
+    // console.log(form.controls["name"].errors?.["required"])
     if (save && this.user) {
       this.sending = true;
       this.userService.updateProfile(this.user.name, this.user.email, this.user.phonenumber)
