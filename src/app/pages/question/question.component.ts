@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { Answer, Question } from 'src/app/services';
 import { AuthService } from 'src/app/services/auth.service';
 import { HighlightService } from 'src/app/services/highlight.service';
+import { InputValidationService } from 'src/app/services/input-validation.service';
 import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
@@ -31,6 +33,7 @@ export class QuestionComponent {
   constructor(private activedRoute: ActivatedRoute,
               private questionService: QuestionService,
               private authService: AuthService,
+              private inputValidationService: InputValidationService,
               private messageService: MessageService,
               private confirmationService: ConfirmationService,
               private highlightService: HighlightService,
@@ -105,7 +108,14 @@ export class QuestionComponent {
       .subscribe(() => console.info("Voted"));
   }
 
-  sendAnswer() {
+  sendAnswer({ form }: NgForm) {
+    const error = this.inputValidationService.validate(form);
+
+    if (error) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+      return;
+    }
+
     this.questionService.sendAnswer(this.id, this.answer)
       .subscribe({
         next: () => {

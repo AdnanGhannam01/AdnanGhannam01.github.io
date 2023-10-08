@@ -6,7 +6,9 @@
             pInputText
             id="name" 
             name="name"
-            required
+            [required]="true"
+            minlength="4"
+            maxlength="20"
             [style]="{ width: '100%' }"
             aria-describedby="name-help" />
         <small id="name-help"></small>
@@ -19,7 +21,7 @@
             id="password" 
             name="password" 
             aria-describedby="password-help" 
-            required
+            [required]="true"
             [toggleMask]="true"
             [feedback]="false"
         ></p-password>

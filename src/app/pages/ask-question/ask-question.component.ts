@@ -3,6 +3,7 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Subject } from 'rxjs';
+import { InputValidationService } from 'src/app/services/input-validation.service';
 import { QuestionService } from 'src/app/services/question.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class AskQuestionComponent {
 
   constructor(private questionService: QuestionService,
               private activedRoute: ActivatedRoute,
+              private inputValidationService: InputValidationService,
               private messageService: MessageService,
               private router: Router) { }
 
@@ -44,7 +46,14 @@ export class AskQuestionComponent {
     }
   }
 
-  onSubmit() {
+  onSubmit({ form }: NgForm) {
+    const error = this.inputValidationService.validate(form);
+
+    if (error) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+      return;
+    }
+
     this.activedRoute.paramMap.subscribe(params => {
       const id = params.get("id");
       if (id) {

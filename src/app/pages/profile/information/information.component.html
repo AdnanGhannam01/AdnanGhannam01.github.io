@@ -1,4 +1,4 @@
-<form>
+<form #form="ngForm" (submit)="onSubmit(form)">
     <docs-card [flex]="true" title="Profile Information">
         <p-table [value]="[{}]" styleClass="info__table">
             <ng-template pTemplate="header">
@@ -14,14 +14,16 @@
                     <td *ngIf="!editMode">{{ user?.name }}</td>
                     <td *ngIf="editMode">
                         <input
-                            [(ngModel)]="user.name"
+                            *ngIf="data"
+                            [(ngModel)]="data.name"
                             pInputText 
                             id="name" 
                             name="name"
                             [required]="true"
+                            minlength="4"
+                            maxlength="20"
                             type="email"
                             [style]="{ width: '100%' }"
-                            *ngIf="user && editMode"
                             aria-describedby="name-help" />
                     </td>
                 </tr>
@@ -33,13 +35,13 @@
                     <td *ngIf="!editMode">{{ user?.email }}</td>
                     <td *ngIf="editMode">
                         <input
-                            [(ngModel)]="user.email"
+                            *ngIf="data"
+                            [(ngModel)]="data.email"
                             pInputText 
                             id="email" 
                             name="email"
                             [required]="true"
                             [style]="{ width: '100%' }"
-                            *ngIf="user && editMode"
                             aria-describedby="email-help" />
                     </td>
                 </tr>
@@ -51,14 +53,14 @@
                     <td *ngIf="!editMode">{{ user?.phonenumber }}</td>
                     <td *ngIf="editMode">
                         <p-inputMask 
+                            *ngIf="data"
+                            [(ngModel)]="data.phonenumber"
                             mask="(999) 999-9999" 
                             placeholder="(999) 999-9999"
-                            [(ngModel)]="user.phonenumber"
                             id="phonenumber" 
                             name="phonenumber"
                             [required]="true"
                             [style]="{ width: '100%' }"
-                            *ngIf="user && editMode"
                             aria-describedby="phonenumber-help">
                         </p-inputMask>
                     </td>
@@ -67,24 +69,26 @@
         </p-table>
         <div class="info__btns">
             <p-button
+                type="button"
                 label="Edit"
                 icon="pi pi-pencil"
                 (onClick)="editMode = true"
                 *ngIf="!editMode"
             ></p-button>
             <p-button
+                type="submit"
                 label="Save"
                 icon="pi pi-check"
                 styleClass="p-button-success"
-                (onClick)="exit(true)"
                 *ngIf="editMode"
                 [loading]="sending"
             ></p-button>
             <p-button
+                type="button"
                 label="Cancel"
                 icon="pi pi-times"
                 styleClass="p-button-danger"
-                (onClick)="exit(false)"
+                (onClick)="editMode = false"
                 *ngIf="editMode"
             ></p-button>
         </div>

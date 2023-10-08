@@ -8,18 +8,21 @@
             <li>Review your question and post it.</li>
         </ul>
     </div>
-    <form (submit)="onSubmit()" #editForm="ngForm">
+    <form (submit)="onSubmit(editForm)" #editForm="ngForm">
         <div class="ask-question__card">
             <h4 class="ask-question__card__title">Title:</h4>
             <input type="text" 
                 placeholder="Write question title here..." 
                 name="title" 
                 pInputText 
+                [required]="true"
+                minlength="10"
+                maxlength="150"
                 [(ngModel)]="title" />
         </div>
         <div class="ask-question__card">
             <h4 class="ask-question__card__title">Question details:</h4>
-            <p-editor name="editor" [(ngModel)]="content" [style]="{ height: '320px' }">
+            <p-editor name="editor" [required]="true" minlength="20" [(ngModel)]="content" [style]="{ height: '320px' }">
                 <ng-template pTemplate="header">
                     <docs-editor-controls></docs-editor-controls>
                 </ng-template>

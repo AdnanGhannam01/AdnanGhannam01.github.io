@@ -84,11 +84,11 @@
         </ng-template>
     </p-dataView>
 
-    <form class="question__card write" *ngIf="isLoggedIn" (submit)="sendAnswer()">
+    <form class="question__card write" *ngIf="isLoggedIn" (submit)="sendAnswer(form)" #form="ngForm">
         <div class="question__content">
             <h3>Write your answer:</h3>
             <div class="question__editor">
-                <p-editor [(ngModel)]="answer" name="editor" [style]="{ height: '320px' }"></p-editor>
+                <p-editor [(ngModel)]="answer" [required]="true" minlength="10" name="content" [style]="{ height: '320px' }"></p-editor>
             </div>
             <p-button
                 type="submit"
@@ -122,14 +122,14 @@
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
-        <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
-        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Save changes" (click)="cd.accept()"></button>
     </ng-template>
 </p-confirmDialog>
 
 <p-confirmDialog #cd [style]="{ 'min-width': '50vw' }" key="answer" *ngIf="editingAnswer">
     <ng-template pTemplate="header">
-        <h3>Edit your question</h3>
+        <h3>Edit your answer</h3>
     </ng-template>
     <ng-template pTemplate="message">
         <form class="question__edit-form">
@@ -144,8 +144,8 @@
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
-        <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
-        <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Save changes" (click)="cd.accept()"></button>
     </ng-template>
 </p-confirmDialog>
 
