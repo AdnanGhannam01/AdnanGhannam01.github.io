@@ -32,6 +32,16 @@ export class NavbarComponent {
       url: "/profile/collection",
     },
     {
+      label: "Change Password",
+      icon: "pi pi-key",
+      url: "/profile/change-password",
+    },
+    {
+      label: "View My Questions",
+      icon: "pi pi-question-circle",
+      url: "/profile/my-questions",
+    },
+    {
       separator: true
     },
     {
