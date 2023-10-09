@@ -1,4 +1,26 @@
 <div class="container" *ngIf="question">
+    <div class="question__header">
+        <h2>{{ question.title }}</h2>
+        <div class="question__header__bottom">
+            <div>
+                <strong class="label">Asked:</strong>
+                <span class="value">{{ question.createdAt | date:'dd-MM-yyyy' }}</span>
+            </div>
+            <div *ngIf="question.createdAt != question.lastModifyAt">
+                <strong class="label">Last Update:</strong>
+                <span class="value">{{ question.lastModifyAt | date:'dd-MM-yyyy' }}</span>
+            </div>
+            <div>
+                <strong class="label">Asked By:</strong>
+                <span class="value">{{ question.user.name }}</span>
+            </div>
+            <div>
+                <strong class="label">Views:</strong>
+                <span class="value">{{ question.views }}</span>
+            </div>
+        </div>
+    </div>
+    <p-divider></p-divider>
     <div class="question__card question">
         <div class="question__votes">
             <p-button icon="pi pi-angle-up" 
@@ -16,9 +38,6 @@
         <div class="question__content">
             <div class="question__header">
                 <div>
-                    <h3>Q: 
-                        <span>{{ question.title }}</span>
-                    </h3>
                     <small>Posted by {{ question.user.name }} at {{ question.createdAt | date:'dd/MM/yyyy' }} | {{ question.answers.length }} Answers</small>
                 </div>
                 <div *ngIf="isOwner(question.user._id)">
