@@ -107,6 +107,7 @@ body {
 
 .docs-list {
     list-style-type: none;
+    padding: 0;
 
     &__item {
         cursor: pointer;
@@ -162,7 +163,6 @@ p:not(.editor-block p),
 ul:not(.editor-block ul),
 ol:not(.editor-block ol),
 li:not(.editor-block li) {
-  padding: 0;
   margin: 0;
 }
 
