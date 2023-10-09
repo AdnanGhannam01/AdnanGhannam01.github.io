@@ -1,3 +1,4 @@
+<docs-loading *ngIf="loading"></docs-loading>
 <div class="container" *ngIf="question">
     <div class="question__header">
         <div class="question__header__top">
@@ -129,7 +130,7 @@
             <p-button
                 type="submit"
                 label="Submit"
-                [loading]="loading"
+                [loading]="sending"
                 styleClass="p-button-success"
             ></p-button>
         </div>

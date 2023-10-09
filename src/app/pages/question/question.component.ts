@@ -16,7 +16,8 @@ import { QuestionService } from 'src/app/services/question.service';
 export class QuestionComponent {
   id = "";
   isLoggedIn = false;
-  loading = false;
+  loading = true;
+  sending = false;
 
   sortOptions: SelectItem[] = [];
 
@@ -92,6 +93,8 @@ export class QuestionComponent {
               });
 
               this.highlightService.apply();
+
+              this.loading = false;
             },
             error: err => {
               this.router.navigate(["/not-found"]);
@@ -187,14 +190,14 @@ export class QuestionComponent {
     this.questionService.sendAnswer(this.id, this.newAnswerContent)
       .subscribe({
         next: () => {
-          this.loading = false;
+          this.sending = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Answer Sent' });
           setTimeout(() => {
             location.reload();
           }, 1500);
         },
         error: (err) => {
-          this.loading = false;
+          this.sending = false;
           err.error.errors.forEach(
             (error: any) => 
               this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
