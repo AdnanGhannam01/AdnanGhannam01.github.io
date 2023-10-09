@@ -18,17 +18,17 @@ export class DateFormatPipe implements PipeTransform {
         if (diffInMinutes === 0) {
           return "Just now";
         } else {
-          return diffInMinutes + " Minutes";
+          return diffInMinutes + " Minutes ago";
         }
       } else {
-        return diffInHours + " Hours";
+        return diffInHours + " Hours ago";
       }
     } else if (diffInDays === 1) {
-      return diffInDays + " Day";
+      return diffInDays + " Day ago";
     } else if (diffInDays <= 7) {
-      return diffInDays + " Days";
+      return diffInDays + " Days ago";
     } else if (diffInDays <= 365) {
-      return Math.floor(diffInDays / 7) + " Weeks";
+      return Math.floor(diffInDays / 7) + " Weeks ago";
     } else {
       let datePipe = new DatePipe('en-US');
       return datePipe.transform(value, 'dd-MM-yyyy');
