@@ -7,7 +7,7 @@
     .question {
         &__card {
             @include mixin.flex(stretch, flex-start);
-            gap: 1em;
+            gap: 2em;
             padding: 1em;
             border: 1px solid var(--clr-border);
             margin: .25em 0;
@@ -15,6 +15,7 @@
             &.question {
                 margin-bottom: 1em;
                 border: none;
+                padding: 1em 0;
             }
 
             &.write {
@@ -30,6 +31,11 @@
         &__header {
             margin-bottom: 1em;
 
+            &__top {
+                @include mixin.flex(space-between);
+                gap: 1em;
+            }
+
             &__bottom {
                 font-size: .8em;
                 @include mixin.flex(flex-start);
@@ -42,6 +48,14 @@
 
                 .value {
                     font-style: italic;
+
+                    &.open {
+                        color: var(--green-400);
+                    }
+
+                    &.close {
+                        color: var(--red-400);
+                    }
                 }
             }
         }

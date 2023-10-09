@@ -1,6 +1,16 @@
 <div class="container" *ngIf="question">
     <div class="question__header">
-        <h2>{{ question.title }}</h2>
+        <div class="question__header__top">
+            <h2>{{ question.title }}</h2>
+            <div *ngIf="isOwner(question.user._id)">
+                <p-button 
+                    (click)="menu.toggle($event)" 
+                    icon="pi pi-ellipsis-v"
+                    styleClass="p-button-rounded p-button-text"
+                ></p-button>
+                <p-menu appendTo="body" #menu [model]="questionMenu" [popup]="true"></p-menu>
+            </div>
+        </div>
         <div class="question__header__bottom">
             <div>
                 <strong class="label">Asked:</strong>
@@ -17,6 +27,12 @@
             <div>
                 <strong class="label">Views:</strong>
                 <span class="value">{{ question.views }}</span>
+            </div>
+            <div>
+                <strong class="label">State:</strong>
+                <span [class]="'value' + (question.isOpen ? ' open' : ' close')">
+                    {{ question.isOpen ? 'Open' : 'Closed' }}
+                </span>
             </div>
         </div>
     </div>
@@ -36,24 +52,6 @@
             ></p-button>
         </div>
         <div class="question__content">
-            <div class="question__header">
-                <div>
-                    <small>Posted by {{ question.user.name }} at {{ question.createdAt | date:'dd/MM/yyyy' }} | {{ question.answers.length }} Answers</small>
-                </div>
-                <div *ngIf="isOwner(question.user._id)">
-                    <p-button
-                        (onClick)="startEditingQuestion(question)"
-                        icon="pi pi-pencil"
-                        styleClass="p-button-primary p-button-text"
-                    ></p-button>
-                    <p-button
-                        (onClick)="deleteQuestion()"
-                        icon="pi pi-trash"
-                        styleClass="p-button-danger p-button-text"
-                    ></p-button>
-                </div>
-            </div>
-            <p-divider></p-divider>
             <p class="question__content__text editor-block" [innerHTML]="question.content"></p>
         </div>
     </div>
@@ -82,18 +80,16 @@
                 </div>
                 <div class="question__content">
                     <div class="question__header">
-                        <p>Answered by {{ answer.user.name}} at {{ question.createdAt | date:'dd/MM/yyyy' }}</p>
-                        <div *ngIf="isOwner(answer.user._id)">
-                            <p-button
-                                (onClick)="startEditingAnswer(answer)"
-                                icon="pi pi-pencil"
-                                styleClass="p-button-primary p-button-text"
-                            ></p-button>
-                            <p-button
-                                (onClick)="deleteAnswer(answer._id)"
-                                icon="pi pi-trash"
-                                styleClass="p-button-danger p-button-text"
-                            ></p-button>
+                        <div class="question__header__top">
+                            <p>Answered by {{ answer.user.name}} at {{ question.createdAt | date:'dd/MM/yyyy' }}</p>
+                            <div>
+                                <p-button 
+                                    (click)="menu.toggle($event)" 
+                                    icon="pi pi-ellipsis-v"
+                                    styleClass="p-button-rounded p-button-text"
+                                ></p-button>
+                                <p-menu appendTo="body" #menu [model]="getAnswerMenu(answer)" [popup]="true"></p-menu>
+                            </div>
                         </div>
                     </div>
                     <p-divider></p-divider>
@@ -107,7 +103,7 @@
         <div class="question__content">
             <h3>Write your answer:</h3>
             <div class="question__editor">
-                <p-editor [(ngModel)]="answer" [required]="true" minlength="10" name="content" [style]="{ height: '320px' }"></p-editor>
+                <p-editor [(ngModel)]="newAnswerContent" [required]="true" minlength="10" name="content" [style]="{ height: '320px' }"></p-editor>
             </div>
             <p-button
                 type="submit"

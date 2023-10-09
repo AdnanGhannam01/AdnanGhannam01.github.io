@@ -34,6 +34,11 @@ export class QuestionService {
     return this.http.put<any>("/questions/" + id, { title, content }, { headers });
   }
 
+  toggleQuestion(id: string, state: boolean) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
+    return this.http.put<any>(`/questions/open_close/${id}?state=${state}`, { }, { headers });
+  }
+
   remove(id: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`)
     return this.http.delete<any>("/questions/" + id, { headers });

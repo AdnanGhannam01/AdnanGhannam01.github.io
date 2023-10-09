@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService, SelectItem } from 'primeng/api';
 import { Answer, Question } from 'src/app/services';
 import { AuthService } from 'src/app/services/auth.service';
 import { HighlightService } from 'src/app/services/highlight.service';
@@ -25,7 +25,31 @@ export class QuestionComponent {
   sortField: string = "";
 
   question?: Question;
-  answer = "";
+  questionMenu: MenuItem[] = [
+    {
+      label: "Edit",
+      icon: "pi pi-pencil",
+      command: () => {
+        this.startEditingQuestion();
+      }
+    },
+    {
+      label: "Open-Close Question",
+      icon: "pi pi-lock-open",
+      command: () => {
+        this.toggleQuestion();
+      }
+    },
+    {
+      label: "Delete",
+      icon: "pi pi-trash",
+      command: () => {
+        this.deleteQuestion();
+      }
+    },
+  ];
+
+  newAnswerContent = "";
 
   editingQuestion?: Question;
   editingAnswer?: Answer;
@@ -59,7 +83,6 @@ export class QuestionComponent {
               this.question.answers.forEach(answer => {
                 answer.up = this.didVote(answer, 1);
               });
-
               this.highlightService.apply();
             },
             error: err => {
@@ -68,6 +91,34 @@ export class QuestionComponent {
           });
       }
     });
+  }
+
+  getAnswerMenu(answer: Answer): MenuItem[] {
+    return [
+      {
+        label: "Edit",
+        icon: "pi pi-pencil",
+        command: () => {
+          this.startEditingAnswer(answer)
+        },
+        visible: this.isOwner(answer._id)
+      },
+      {
+        label: "Mark As Correct",
+        icon: "pi pi-check",
+        command: () => {
+          
+        },
+        visible: this.isOwner(this.question!._id)
+      },
+      {
+        label: "Delete",
+        icon: "pi pi-trash",
+        command: () => {
+          this.deleteAnswer(answer._id)
+        }
+      },
+    ];
   }
 
   onSortChange(event: any) {
@@ -116,7 +167,7 @@ export class QuestionComponent {
       return;
     }
 
-    this.questionService.sendAnswer(this.id, this.answer)
+    this.questionService.sendAnswer(this.id, this.newAnswerContent)
       .subscribe({
         next: () => {
           this.loading = false;
@@ -136,8 +187,10 @@ export class QuestionComponent {
 
   isOwner(id: string) { return this.authService.isOwner(id) }
 
-  startEditingQuestion(item: Question) {
-    this.editingQuestion = { ...item };
+  startEditingQuestion() {
+    if (!this.question) { return }
+
+    this.editingQuestion = { ...this.question };
     this.confirmationService.confirm({
       key: "question",
       accept: () => {
@@ -152,6 +205,24 @@ export class QuestionComponent {
       .subscribe({
         next: () => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Question updated' });
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        },
+        error: (err) => {
+          err.error.errors.forEach(
+            (error: any) => 
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+        }
+      });
+  }
+
+  toggleQuestion() {
+    if (!this.question) { return }
+    this.questionService.toggleQuestion(this.question._id, !this.question.isOpen)
+      .subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Success' });
           setTimeout(() => {
             location.reload();
           }, 1000);

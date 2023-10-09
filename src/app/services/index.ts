@@ -86,4 +86,5 @@ export interface Question {
     votes: Vote[];
     up: boolean | null;
     answers: Answer[];
+    isOpen: boolean;
 }
