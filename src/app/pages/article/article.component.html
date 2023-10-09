@@ -15,7 +15,13 @@
     <section *ngIf="article">
         <p-breadcrumb class="max-w-full" [model]="breadcrumbItems" [home]="home"></p-breadcrumb>
         <header class="article__header">
-            <h1 class="article__title">{{ article.title }}</h1>
+            <div>
+                <h1 class="article__title">{{ article.title }}</h1>
+                <small>
+                    <strong>Time: </strong>
+                    <span>{{ article.createdAt | dateFormat }}</span>
+                </small>
+            </div>
             <p-button 
                 *ngIf="isLoggedIn"
                 icon="pi pi-ellipsis-v" 
@@ -94,7 +100,6 @@
 <p-dialog header="Article Creators" 
     *ngIf="article"
     [(visible)]="creatorsVisible"
-    position="top" 
     [modal]="true" 
     [draggable]="false"
     [style]="{ 'min-width': '30vw' }">

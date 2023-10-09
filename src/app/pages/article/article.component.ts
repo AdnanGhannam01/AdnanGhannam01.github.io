@@ -104,15 +104,15 @@ export class ArticleComponent {
               { label: this.article.title }
             ];
 
+            this.highlightService.apply();
+
             this.sectionService.getAll(data.toolkit._id, data.type)
               .subscribe(({ data }) => {
                 this.nodes = data.map(section => {
                   return this.sectionService.convertToTree(section);
                 });
+                this.loading = false;
               });
-            
-            this.highlightService.apply();
-            this.loading = false;
           },
           error: err => {
             this.router.navigate(["/not-found"]);
