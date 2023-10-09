@@ -79,10 +79,18 @@ export class QuestionComponent {
           .subscribe({
             next: ({ data }) => {
               this.question = data;
+
+              this.question.isOwner = this.authService.isOwner(data.user._id);
               this.question.up = this.didVote(this.question, 1);
+              this.question.votesValue = this.getVotesCount(data);
+
               this.question.answers.forEach(answer => {
                 answer.up = this.didVote(answer, 1);
+                answer.isOwner = this.authService.isOwner(answer.user._id);
+                answer.votesValue = this.getVotesCount(answer);
+                answer.menuItems = this.getAnswerMenu(answer);
               });
+
               this.highlightService.apply();
             },
             error: err => {
@@ -101,7 +109,7 @@ export class QuestionComponent {
         command: () => {
           this.startEditingAnswer(answer)
         },
-        visible: this.isOwner(answer._id)
+        visible: answer.isOwner
       },
       {
         label: "Mark As Correct",
@@ -109,7 +117,7 @@ export class QuestionComponent {
         command: () => {
           
         },
-        visible: this.isOwner(this.question!._id)
+        visible: this.question?.isOwner
       },
       {
         label: "Delete",
@@ -133,7 +141,7 @@ export class QuestionComponent {
     }
   }
 
-  getVotes(item: Question | Answer) {
+  getVotesCount(item: Question | Answer) {
     return item.votes.reduce((total, vote) => total += vote.value, 0);
   }
 
@@ -184,8 +192,6 @@ export class QuestionComponent {
         }
       });
   }
-
-  isOwner(id: string) { return this.authService.isOwner(id) }
 
   startEditingQuestion() {
     if (!this.question) { return }

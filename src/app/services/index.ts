@@ -1,3 +1,5 @@
+import { MenuItem } from "primeng/api";
+
 export interface ApiResponse<T> {
     success: boolean;
     data: T;
@@ -71,8 +73,11 @@ export interface Answer {
     createdAt: number;
     lastModifyAt: number;
     votes: Vote[];
+    votesValue: number;
     up: boolean | null;
     isCorrect?: boolean;
+    isOwner: boolean;
+    menuItems: MenuItem[];
 }
 
 export interface Question {
@@ -84,7 +89,9 @@ export interface Question {
     user: User;
     views: number;
     votes: Vote[];
+    votesValue: number;
     up: boolean | null;
     answers: Answer[];
     isOpen: boolean;
+    isOwner: boolean;
 }

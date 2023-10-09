@@ -2,7 +2,7 @@
     <div class="question__header">
         <div class="question__header__top">
             <h2>{{ question.title }}</h2>
-            <div *ngIf="isOwner(question.user._id)">
+            <div *ngIf="question.isOwner">
                 <p-button 
                     (click)="menu.toggle($event)" 
                     icon="pi pi-ellipsis-v"
@@ -40,13 +40,13 @@
     <div class="question__card question">
         <div class="question__votes">
             <p-button icon="pi pi-angle-up" 
-                [disabled]="isOwner(question.user._id)"
+                [disabled]="question.isOwner"
                 (onClick)="voteChange(question, true)"
                 [styleClass]="'p-button-rounded p-button-primary' + (question.up ? '': ' p-button-outlined')"
             ></p-button>
-            <strong>{{ getVotes(question) }}</strong>
+            <strong>{{ question.votesValue }}</strong>
             <p-button icon="pi pi-angle-down" 
-                [disabled]="isOwner(question.user._id)"
+                [disabled]="question.isOwner"
                 (onClick)="voteChange(question, false)"
                 [styleClass]="'p-button-rounded p-button-danger' + (question.up === false ? '': ' p-button-outlined')"
             ></p-button>
@@ -67,13 +67,13 @@
             <div class="question__card" *ngIf="answer.user">
                 <div class="question__votes">
                     <p-button icon="pi pi-angle-up" 
-                        [disabled]="isOwner(answer.user._id)"
+                        [disabled]="answer.isOwner"
                         (onClick)="voteChange(answer, true)"
                         [styleClass]="'p-button-rounded p-button-primary' + (answer.up ? '': ' p-button-outlined')"
                     ></p-button>
-                    <strong>{{ getVotes(answer) }}</strong>
+                    <strong>{{ answer.votesValue }}</strong>
                     <p-button icon="pi pi-angle-down" 
-                        [disabled]="isOwner(answer.user._id)"
+                        [disabled]="answer.isOwner"
                         (onClick)="voteChange(answer, false)"
                         [styleClass]="'p-button-rounded p-button-danger' + (answer.up === false ? '': ' p-button-outlined')"
                     ></p-button>
@@ -82,13 +82,13 @@
                     <div class="question__header">
                         <div class="question__header__top">
                             <p>Answered by {{ answer.user.name}} at {{ question.createdAt | date:'dd/MM/yyyy' }}</p>
-                            <div>
+                            <div *ngIf="question.isOwner || answer.isOwner">
                                 <p-button 
                                     (click)="menu.toggle($event)" 
                                     icon="pi pi-ellipsis-v"
                                     styleClass="p-button-rounded p-button-text"
                                 ></p-button>
-                                <p-menu appendTo="body" #menu [model]="getAnswerMenu(answer)" [popup]="true"></p-menu>
+                                <p-menu appendTo="body" #menu [model]="answer.menuItems" [popup]="true"></p-menu>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,11 @@
         <div class="question__content">
             <h3>Write your answer:</h3>
             <div class="question__editor">
-                <p-editor [(ngModel)]="newAnswerContent" [required]="true" minlength="10" name="content" [style]="{ height: '320px' }"></p-editor>
+                <p-editor [(ngModel)]="newAnswerContent" [required]="true" minlength="10" name="content" [style]="{ height: '320px' }">
+                    <ng-template pTemplate="header">
+                        <docs-editor-controls></docs-editor-controls>
+                    </ng-template>
+                </p-editor>
             </div>
             <p-button
                 type="submit"
