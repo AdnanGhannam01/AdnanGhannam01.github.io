@@ -136,18 +136,20 @@
     </form>
 </div>
 
-<p-confirmDialog #cd [style]="{ 'min-width': '50vw' }" key="question" *ngIf="editingQuestion">
+<p-confirmDialog #questionEdit [style]="{ 'min-width': '50vw' }" key="question">
     <ng-template pTemplate="header">
         <h3>Edit your question</h3>
     </ng-template>
     <ng-template pTemplate="message">
         <form class="question__edit-form">
             <input type="text" 
+                *ngIf="editingQuestion"
                 placeholder="Write question title here..." 
                 name="title" 
                 [(ngModel)]="editingQuestion.title"
                 pInputText />
             <p-editor 
+                *ngIf="editingQuestion"
                 name="editor" 
                 [(ngModel)]="editingQuestion.content"
                 [style]="{ height: '320px' }">
@@ -158,18 +160,19 @@
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
-        <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="cd.reject()"></button>
-        <button type="button" pButton icon="pi pi-check" label="Save changes" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="questionEdit.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Save changes" (click)="questionEdit.accept()"></button>
     </ng-template>
 </p-confirmDialog>
 
-<p-confirmDialog #cd [style]="{ 'min-width': '50vw' }" key="answer" *ngIf="editingAnswer">
+<p-confirmDialog #answerEdit [style]="{ 'min-width': '50vw' }" key="answer">
     <ng-template pTemplate="header">
         <h3>Edit your answer</h3>
     </ng-template>
     <ng-template pTemplate="message">
         <form class="question__edit-form">
             <p-editor 
+                *ngIf="editingAnswer"
                 name="editor" 
                 [(ngModel)]="editingAnswer.content"
                 [style]="{ height: '320px' }">
@@ -180,8 +183,8 @@
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
-        <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="cd.reject()"></button>
-        <button type="button" pButton icon="pi pi-check" label="Save changes" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="answerEdit.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Save changes" (click)="answerEdit.accept()"></button>
     </ng-template>
 </p-confirmDialog>
 
