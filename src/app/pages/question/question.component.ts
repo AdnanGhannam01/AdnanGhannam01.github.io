@@ -65,8 +65,8 @@ export class QuestionComponent {
 
   ngOnInit() {
     this.sortOptions = [
-      { label: 'Votes High to Low', value: '!votes' },
-      { label: 'Votes Low to High', value: 'votes' }
+      { label: 'Votes High to Low', value: '!votesValue' },
+      { label: 'Votes Low to High', value: 'votesValue' }
     ];
 
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -131,6 +131,7 @@ export class QuestionComponent {
 
   onSortChange(event: any) {
     let value = event.value;
+    console.log(value)
 
     if (value.indexOf('!') === 0) {
       this.sortOrder = -1;
