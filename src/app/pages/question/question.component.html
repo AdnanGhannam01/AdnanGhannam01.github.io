@@ -14,11 +14,11 @@
         <div class="question__header__info">
             <div>
                 <strong class="label">Asked:</strong>
-                <span class="value">{{ question.createdAt | date:'dd-MM-yyyy' }}</span>
+                <span class="value">{{ question.createdAt | dateFormat }}</span>
             </div>
             <div *ngIf="question.createdAt != question.lastModifyAt">
                 <strong class="label">Last Update:</strong>
-                <span class="value">{{ question.lastModifyAt | date:'dd-MM-yyyy' }}</span>
+                <span class="value">{{ question.lastModifyAt | dateFormat }}</span>
             </div>
             <div>
                 <strong class="label">Asked By:</strong>
@@ -83,16 +83,16 @@
                         <div class="question__header__top">
                             <div class="question__header__info">
                                 <div>
-                                    <strong class="label">Answered By:</strong>
+                                    <strong class="label">User:</strong>
                                     <span class="value">{{ answer.user.name }}</span>
                                 </div>
                                 <div>
-                                    <strong class="label">Answered At:</strong>
-                                    <span class="value">{{ question.createdAt | date:'dd-MM-yyyy' }}</span>
+                                    <strong class="label">Time:</strong>
+                                    <span class="value">{{ answer.createdAt | dateFormat }}</span>
                                 </div>
                                 <div *ngIf="answer.createdAt != answer.lastModifyAt">
                                     <strong class="label">Last Update:</strong>
-                                    <span class="value">{{ question.lastModifyAt | date:'dd-MM-yyyy' }}</span>
+                                    <span class="value">{{ answer.lastModifyAt | dateFormat }}</span>
                                 </div>
                                 <div *ngIf="answer.isCorrect">
                                     <strong class="label">State:</strong>

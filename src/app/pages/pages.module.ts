@@ -40,6 +40,7 @@ import { SkeletonModule } from "primeng/skeleton";
 import { InputMaskModule } from "primeng/inputmask";
 import { MessagesModule } from "primeng/messages";
 import { ConnectionErrorComponent } from './connection-error/connection-error.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -66,6 +67,7 @@ import { ConnectionErrorComponent } from './connection-error/connection-error.co
   imports: [
     CommonModule,
     SharedModule,
+    PipesModule,
     AppRoutingModule,
     FormsModule,
     ButtonModule,

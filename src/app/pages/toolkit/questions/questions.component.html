@@ -38,7 +38,7 @@
                 </a>
                 <p><small>By {{ question.user.name }}</small></p>
             </td>
-            <td>{{question.createdAt | date: 'dd/MM/yyyy'}}</td>
+            <td>{{question.createdAt | dateFormat }}</td>
             <td>{{question.votes.length}}</td>
             <td>{{question.views}}</td>
             <td>{{question.answers.length}}</td>

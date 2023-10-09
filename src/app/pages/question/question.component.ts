@@ -156,16 +156,24 @@ export class QuestionComponent {
   }
 
   voteChange(item: Question | Answer, option: boolean) {
+    const increment = item.up === null ? 1 : 2;
+
     item.up = item.up === option ? null : option;
 
     if (item.up == null) {
       this.questionService.unvote(item)
-        .subscribe(() => console.info("Unvoted"));
+        .subscribe(() => {
+          item.votesValue -= option ? 1 : -1;
+          console.info("Unvoted");
+        });
       return;
     }
 
     this.questionService.vote(item, item.up)
-      .subscribe(() => console.info("Voted"));
+      .subscribe(() => {
+        item.votesValue += item.up ? increment : -increment;
+        console.info("Voted");
+      });
   }
 
   sendAnswer({ form }: NgForm) {
