@@ -55,6 +55,9 @@ export class QuestionComponent {
   editingQuestion?: Question;
   editingAnswer?: Answer;
 
+  breadcrumbItems: MenuItem[] | undefined;
+  home: MenuItem | undefined;
+
   constructor(private activedRoute: ActivatedRoute,
               private questionService: QuestionService,
               private authService: AuthService,
@@ -79,6 +82,7 @@ export class QuestionComponent {
         this.questionService.getOne(this.id)
           .subscribe({
             next: ({ data }) => {
+              console.log(data)
               this.question = data;
 
               this.question.isOwner = this.authService.isOwner(data.user._id);
@@ -91,6 +95,15 @@ export class QuestionComponent {
                 answer.votesValue = this.getVotesCount(answer);
                 answer.menuItems = this.getAnswerMenu(answer);
               });
+
+              this.home = { icon: 'pi pi-home', routerLink: '/' };
+              this.breadcrumbItems = [
+                {
+                  label: data.toolkit.name,
+                  url: `/toolkits/${data.toolkit._id}` 
+                },
+                { label: data.title }
+              ];
 
               this.highlightService.apply();
 

@@ -94,4 +94,5 @@ export interface Question {
     answers: Answer[];
     isOpen: boolean;
     isOwner: boolean;
+    toolkit: Toolkit;
 }
