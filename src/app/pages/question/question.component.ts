@@ -115,7 +115,7 @@ export class QuestionComponent {
         label: "Mark As Correct",
         icon: "pi pi-check",
         command: () => {
-          
+          this.markAsCorrect(answer._id);
         },
         visible: this.question?.isOwner
       },
@@ -286,6 +286,20 @@ export class QuestionComponent {
           }
         });
     }
+  }
+
+  markAsCorrect(id: string) {
+    this.questionService.markAsCorrect(id)
+      .subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Answer Marked' });
+        },
+        error: (err) => {
+          err.error.errors.forEach(
+            (error: any) => 
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message }));
+        }
+      });
   }
 
   deleteAnswer(id: string) {

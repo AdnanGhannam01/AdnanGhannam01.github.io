@@ -11,7 +11,7 @@
                 <p-menu appendTo="body" #menu [model]="questionMenu" [popup]="true"></p-menu>
             </div>
         </div>
-        <div class="question__header__bottom">
+        <div class="question__header__info">
             <div>
                 <strong class="label">Asked:</strong>
                 <span class="value">{{ question.createdAt | date:'dd-MM-yyyy' }}</span>
@@ -30,7 +30,7 @@
             </div>
             <div>
                 <strong class="label">State:</strong>
-                <span [class]="'value' + (question.isOpen ? ' open' : ' close')">
+                <span [class]="'value' + (question.isOpen ? ' success' : ' danger')">
                     {{ question.isOpen ? 'Open' : 'Closed' }}
                 </span>
             </div>
@@ -81,7 +81,24 @@
                 <div class="question__content">
                     <div class="question__header">
                         <div class="question__header__top">
-                            <p>Answered by {{ answer.user.name}} at {{ question.createdAt | date:'dd/MM/yyyy' }}</p>
+                            <div class="question__header__info">
+                                <div>
+                                    <strong class="label">Answered By:</strong>
+                                    <span class="value">{{ answer.user.name }}</span>
+                                </div>
+                                <div>
+                                    <strong class="label">Answered At:</strong>
+                                    <span class="value">{{ question.createdAt | date:'dd-MM-yyyy' }}</span>
+                                </div>
+                                <div *ngIf="answer.createdAt != answer.lastModifyAt">
+                                    <strong class="label">Last Update:</strong>
+                                    <span class="value">{{ question.lastModifyAt | date:'dd-MM-yyyy' }}</span>
+                                </div>
+                                <div *ngIf="answer.isCorrect">
+                                    <strong class="label">State:</strong>
+                                    <span class="value success">Correct <span class="pi pi-check"></span></span>
+                                </div>
+                            </div>
                             <div *ngIf="question.isOwner || answer.isOwner">
                                 <p-button 
                                     (click)="menu.toggle($event)" 

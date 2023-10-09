@@ -10,7 +10,10 @@
             gap: 2em;
             padding: 1em;
             border: 1px solid var(--clr-border);
-            margin: .25em 0;
+
+            &:not(:last-child) {
+                border-bottom: 0;
+            }
 
             &.question {
                 margin-bottom: 1em;
@@ -36,26 +39,26 @@
                 gap: 1em;
             }
 
-            &__bottom {
-                font-size: .8em;
+            &__info {
+                font-size: .9rem;
                 @include mixin.flex(flex-start);
                 gap: 1.5em;
                 margin-top: .5em;
+            }
 
-                .label {
-                    margin-inline-end: .5em;
+            .label {
+                margin-inline-end: .5em;
+            }
+
+            .value {
+                font-style: italic;
+
+                &.success {
+                    color: var(--green-400);
                 }
 
-                .value {
-                    font-style: italic;
-
-                    &.open {
-                        color: var(--green-400);
-                    }
-
-                    &.close {
-                        color: var(--red-400);
-                    }
+                &.danger {
+                    color: var(--red-400);
                 }
             }
         }

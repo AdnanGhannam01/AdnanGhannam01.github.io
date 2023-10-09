@@ -54,6 +54,11 @@ export class QuestionService {
     return this.http.put<any>('/answers/' + id, { content }, { headers });
   }
 
+  markAsCorrect(id: string) {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`);
+    return this.http.put<any>('/answers/correct/' + id, { }, { headers });
+  }
+
   removeAnswer(id: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.authService.token}`);
     return this.http.delete<any>('/answers/' + id, { headers });
