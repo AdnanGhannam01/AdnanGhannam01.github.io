@@ -2,4 +2,18 @@
 
 :host {
     padding: 2em 0;
+
+    .tutorials {
+        &__article-link {
+            &.visited {
+                .not-checked { display: none }
+                .checked { display: inline }
+            }
+
+            &:not(.visited) {
+                .not-checked { display: inline }
+                .checked { display: none }
+            }
+        }
+    }
 }

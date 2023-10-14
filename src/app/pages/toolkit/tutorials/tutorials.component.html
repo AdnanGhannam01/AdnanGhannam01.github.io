@@ -32,9 +32,11 @@
         [id]="'section-' + i"
         [flex]="true">
         <a *ngFor="let article of section.articles" 
-            class="docs-link"
+            class="docs-link tutorials__article-link"
+            [class.visited]="false"
             [routerLink]="'/articles/' + article._id">
-            <span class="icon pi pi-check-circle"></span>
+            <span class="icon not-checked pi pi-circle"></span>
+            <span class="icon checked visited pi pi-check-circle"></span>
             {{ article.title }}
         </a>
     </docs-card>
