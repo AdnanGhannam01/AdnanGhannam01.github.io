@@ -7,6 +7,7 @@
     border-bottom: 1px solid var(--clr-border);
     -ms-overflow-style: none;
     scrollbar-width: none;
+    user-select: none;
 
     &::-webkit-scrollbar {
         display: none;
@@ -19,6 +20,13 @@
             
             &:not(:last-child) {
                 margin-right: 1em;
+            }
+
+            &.disabled {
+                color: currentColor;
+                cursor: default;
+                opacity: 0.5;
+                text-decoration: none;
             }
         }
 

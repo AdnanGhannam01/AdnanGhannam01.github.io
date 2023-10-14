@@ -20,7 +20,7 @@ export class ToolkitComponent implements OnInit {
     { label: "Toturial", url: "./", icon: "pi pi-book" },
     { label: "References", url: "./references", icon: "pi pi-align-left" },
     { label: "Questions", url: "./questions", icon: "pi pi-question" },
-    { label: "PlayGround", url: "./compiler", icon: "pi pi-cog" }
+    { label: "Online Compiler", url: "./compiler", icon: "pi pi-cog", disabled: true }
   ];
 
   constructor(private activedRoute: ActivatedRoute,

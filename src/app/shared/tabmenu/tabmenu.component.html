@@ -1,5 +1,6 @@
 <a *ngFor="let item of items"
-    [routerLink]="item.url" 
+    [class.disabled]="item.disabled"
+    [routerLink]="item.disabled ? null : item.url" 
     routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }"
     class="docs-with-border bottom docs-link tabmenu__item">

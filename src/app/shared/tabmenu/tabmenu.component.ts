@@ -4,6 +4,7 @@ export interface TabMenuItem {
   label: string;
   icon?: string;
   url?: string;
+  disabled?: boolean;
 };
 
 @Component({
