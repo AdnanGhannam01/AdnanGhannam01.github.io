@@ -100,7 +100,7 @@ export class QuestionComponent {
               this.breadcrumbItems = [
                 {
                   label: data.toolkit.name,
-                  url: `/toolkits/${data.toolkit._id}` 
+                  url: `/toolkits/${data.toolkit._id}/questions` 
                 },
                 { label: data.title }
               ];

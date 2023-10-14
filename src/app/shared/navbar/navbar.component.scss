@@ -47,6 +47,7 @@
         .dialog {
             &__content {
                 @include mixin.flex(stretch, stretch);
+                height: 100%;
             }
 
             &__left {

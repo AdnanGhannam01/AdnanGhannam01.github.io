@@ -54,6 +54,7 @@
 
     --bg-quote: var(--blue-100);
     --clr-quote-border: var(--blue-300);
+    --bg-code: var(--gray-200);
 
     --bg-dataview-header: var(--gray-100);
 }
@@ -183,5 +184,12 @@ li:not(.editor-block li) {
         border-radius: 5px;
         margin: 1em 0;
         padding: 1.5em 3em;
+    }
+
+    code {
+        background-color: var(--bg-code);
+        padding: .25em;
+        font-size: .95em;
+        border-radius: 5px;
     }
 }

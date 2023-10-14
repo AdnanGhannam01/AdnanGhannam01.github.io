@@ -36,7 +36,7 @@
     *ngIf="selectedList"
     [(visible)]="visible" 
     [modal]="true" 
-    [style]="{ 'min-width': '300px', 'width': '950px', 'margin-inline': '1em' }" 
+    [style]="{ 'width': 'clamp(300px, 90vw, 950px)', 'min-height': '400px', 'margin-inline': '1em' }" 
     [draggable]="false"
     [resizable]="false">
     <div class="dialog__content">
@@ -53,25 +53,35 @@
         </div>
         <div class="dialog__center">
             <h2 class="title">Popular Tutorials</h2>
-            <strong>
-                <a class="docs-link" 
-                    *ngFor="let section of selectedTutorials; index as i"
-                >{{ section.title }}</a>
-            </strong>
-            <a class="docs-link"
-                [routerLink]="'/toolkits/' + selectedToolkitId"
-            >View All...</a>
+            <div *ngIf="selectedTutorials.length">
+                <strong>
+                    <a class="docs-link" 
+                        *ngFor="let section of selectedTutorials; index as i"
+                    >{{ section.title }}</a>
+                </strong>
+                <a class="docs-link"
+                    [routerLink]="'/toolkits/' + selectedToolkitId"
+                >View All...</a>
+            </div>
+            <div *ngIf="!selectedTutorials.length">
+                <strong>There is no tutorials for this toolkit yet!</strong>
+            </div>
         </div>
         <div class="dialog__right">
             <h2 class="title">Reference Materials</h2>
-            <strong>
-                <a class="docs-link" 
-                    *ngFor="let section of selectedReferences; index as i"
-                >{{ section.title }}</a>
-            </strong>
-            <a class="docs-link"
-                [routerLink]="'/toolkits/' + selectedToolkitId"
-            >View All...</a>
+            <div *ngIf="selectedReferences.length">
+                <strong>
+                    <a class="docs-link" 
+                        *ngFor="let section of selectedReferences; index as i"
+                    >{{ section.title }}</a>
+                </strong>
+                <a class="docs-link"
+                    [routerLink]="'/toolkits/' + selectedToolkitId + '/references'"
+                >View All...</a>
+            </div>
+            <div *ngIf="!selectedReferences.length">
+                <strong>There is no references for this toolkit yet!</strong>
+            </div>
         </div>
     </div>
 </p-dialog>
