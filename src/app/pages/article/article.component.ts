@@ -95,11 +95,11 @@ export class ArticleComponent {
             this.breadcrumbItems = [
               {
                 label: this.article.toolkit.name, 
-                url: `/toolkits/${this.article.toolkit._id}` 
+                routerLink: `/toolkits/${this.article.toolkit._id}` 
               },
               { 
                 label: this.article.section.title, 
-                url: `/toolkits/${this.article.toolkit._id}#${this.article.section._id}` 
+                routerLink: `/toolkits/${this.article.toolkit._id}#${this.article.section._id}` 
               },
               { label: this.article.title }
             ];

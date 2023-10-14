@@ -24,22 +24,22 @@ export class NavbarComponent {
     {
       label: "View My Profile",
       icon: "pi pi-user",
-      url: "/profile",
+      routerLink: "/profile",
     },
     {
       label: "View Collection",
       icon: "pi pi-bookmark",
-      url: "/profile/collection",
+      routerLink: "/profile/collection",
     },
     {
       label: "Change Password",
       icon: "pi pi-key",
-      url: "/profile/change-password",
+      routerLink: "/profile/change-password",
     },
     {
       label: "View My Questions",
       icon: "pi pi-question-circle",
-      url: "/profile/my-questions",
+      routerLink: "/profile/my-questions",
     },
     {
       separator: true
