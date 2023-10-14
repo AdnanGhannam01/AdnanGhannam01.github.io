@@ -23,7 +23,8 @@ export class ProfileComponent {
 
   deleteConfirmation() {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
+      message: 'Are you sure that you want to delete your account?',
+      header: 'Delete Account Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.userService.removeAccount()
@@ -42,7 +43,7 @@ export class ProfileComponent {
             }
           })
       },
-      reject: (type: ConfirmEventType) => { }
+      reject: () => { }
     });
   }
 }

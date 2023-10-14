@@ -31,7 +31,7 @@
 </div>
 
 <p-menu #menu [model]="optionsMenu" [popup]="true"></p-menu>
-<p-confirmDialog #deleteConfirm [style]="{'max-width': '50vw'}">
+<!-- <p-confirmDialog #deleteConfirm [style]="{'max-width': '50vw'}">
     <ng-template pTemplate="header">
         <h3>Delete Account</h3>
     </ng-template>
@@ -39,4 +39,8 @@
         <button type="button" pButton icon="pi pi-times" label="No" (click)="deleteConfirm.reject()"></button>
         <button type="button" pButton icon="pi pi-check" label="Yes" (click)="deleteConfirm.accept()"></button>
     </ng-template>
-</p-confirmDialog>
+</p-confirmDialog> -->
+<p-confirmDialog 
+    appendTo="body" 
+    [style]="{ 'width': 'clamp(300px, 60vw, 600px)', 'margin-inline': '1em' }" 
+></p-confirmDialog>
