@@ -76,17 +76,16 @@
 <p-menu #menu [model]="optionsMenu" [popup]="true"></p-menu>
 <p-dialog header="Send a Feedback"
     [(visible)]="feedbackVisible" 
-    position="top" 
     [modal]="true" 
     [draggable]="false"
-    [style]="{ 'min-width': '50vw' }">
+    [style]="{ 'width': 'clamp(300px, 80vw, 650px)', 'margin-inline': '1em' }">
     <form (submit)="sendFeedback(textarea)">
         <textarea #textarea 
             rows="5"
             pInputTextarea 
             name="feedback"
             placeholder="Write your feedback..."
-            [style]="{ 'width': '100%' }"
+            [style]="{ 'width': '100%', 'resize': 'vertical' }"
         ></textarea>
         <p-button 
             [style]="{ 'width': '100%', 'margin-top': '.5em' }"
