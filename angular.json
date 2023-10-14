@@ -18,6 +18,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/documentation-app",
+            "baseHref": "/TechStack/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
