@@ -51,7 +51,7 @@
                 </td>
                 <td>
                     <p-button
-                        (onClick)="remove(article._id)"
+                        (onClick)="showConfirmDialog(article._id)"
                         icon="pi pi-trash"
                         styleClass="p-button-danger"
                     ></p-button>
@@ -61,4 +61,9 @@
     </p-table>
     <p-messages [value]="messages" [enableService]="false" [closable]="false"></p-messages>
 </div>
+
+<p-confirmDialog 
+    appendTo="body" 
+    [style]="{ 'width': 'clamp(300px, 60vw, 600px)', 'margin-inline': '1em' }" 
+></p-confirmDialog>
 <p-toast></p-toast>

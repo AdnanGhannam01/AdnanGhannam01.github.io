@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Message, MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, Message, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { catchError, throwError } from 'rxjs';
 import { Article, Collection } from 'src/app/services';
@@ -9,7 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'docs-collection',
   templateUrl: './collection.component.html',
-  styleUrls: ['./collection.component.scss']
+  styleUrls: ['./collection.component.scss'],
+  providers: [ConfirmationService]
 })
 export class CollectionComponent {
   loading = true;
@@ -27,6 +28,7 @@ export class CollectionComponent {
   messages: Message[] = [];
 
   constructor(private userService: UserService,
+              private confirmationService: ConfirmationService,
               private messageService: MessageService) { }
 
   ngOnInit() {
@@ -45,6 +47,18 @@ export class CollectionComponent {
 
   onSearch(table: Table, input: HTMLInputElement) {
     table.filterGlobal(input.value, 'contains');
+  }
+
+  showConfirmDialog(id: string) {
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this article from your collection?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.remove(id);
+      },
+      reject: () => { }
+    });
   }
 
   remove(id: string) {
